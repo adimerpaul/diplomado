@@ -415,7 +415,7 @@
 
                 <b class="arrow"></b>
             </li-->
-
+            <?php if($_SESSION['idrol']=='1'):  ?>
             <li class="">
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-desktop"></i>
@@ -487,7 +487,7 @@
                         </a>
                         <b class="arrow"></b>
                     </li>
-
+                    <?php endif ?>
 
 
                     <!--li-- class="">
@@ -542,6 +542,15 @@
                             </li>
                         </ul>
                     </li-->
+                    <li class="">
+                        <a href="#" >
+                            <i class="menu-icon fa fa-desktop"></i>
+                            <span class="menu-text">
+								Documentos
+							</span>
+
+                        </a>
+                    </li>
                 </ul>
             </li>
 

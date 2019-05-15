@@ -2,21 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2aa755f-b274-4975-a3fc-6277258307ee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/application/controllers/Docentes.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/controllers/Documentos.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/controllers/Modulos.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/controllers/Programas.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/views/docentes.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/views/documentos.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/views/modulos.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/views/programas.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/docentes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Alumno.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Alumno.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Welcome.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Welcome.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/alumno.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/alumno.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/persona.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/persona.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/templates/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/templates/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/templates/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/templates/header.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,8 +38,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/views/templates/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="356" column="66" selection-start-line="356" selection-start-column="66" selection-end-line="356" selection-end-column="66" />
+            <state relative-caret-position="412">
+              <caret line="550" selection-start-line="550" selection-end-line="550" />
             </state>
           </provider>
         </entry>
@@ -243,12 +228,12 @@
       <workItem from="1552336106574" duration="10666000" />
       <workItem from="1552789830137" duration="24961000" />
       <workItem from="1553732671394" duration="183000" />
-      <workItem from="1557882579409" duration="11218000" />
+      <workItem from="1557882579409" duration="11568000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47028000" />
+    <option name="totallyTimeSpent" value="47378000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -572,8 +557,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/templates/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="356" column="66" selection-start-line="356" selection-start-column="66" selection-end-line="356" selection-end-column="66" />
+        <state relative-caret-position="412">
+          <caret line="550" selection-start-line="550" selection-end-line="550" />
         </state>
       </provider>
     </entry>
