@@ -21,4 +21,8 @@ class Welcome extends CI_Controller {
             header('Location: '.base_url());
         }
     }
+    function logout(){
+	    session_destroy();
+        header('Location: '.base_url());
+    }
 }

@@ -354,7 +354,7 @@
                         <li class="divider"></li>
 
                         <li>
-                            <a href="#">
+                            <a href="<?=base_url()?>Welcome/logout">
                                 <i class="ace-icon fa fa-power-off"></i>
                                 Logout
                             </a>
@@ -437,7 +437,7 @@
                         <b class="arrow"></b>
                     </li>
                     <li class="">
-                        <a href="<?=base_url()?>">
+                        <a href="<?=base_url()?>Docentes">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Docentes
                         </a>
@@ -448,6 +448,35 @@
                         <a href="<?=base_url()?>Alumno">
                             <i class="menu-icon fa fa-caret-right"></i>
                             Alumnos
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="">
+                        <a href="<?=base_url()?>Documentos">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Documentos
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="">
+                        <a href="<?=base_url()?>Programas">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Programas
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="">
+                        <a href="<?=base_url()?>Modulos">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Modulos
+                        </a>
+                        <b class="arrow"></b>
+                    </li>
+
+                    <li class="">
+                        <a href="<?=base_url()?>Tipopagos">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            Tipo pago
                         </a>
                         <b class="arrow"></b>
                     </li>

@@ -15,6 +15,10 @@ class Alumno extends CI_Controller{
     function insert(){
         $idpersona=$_POST['idpersona'];
         $observacion=$_POST['observacion'];
+        $apellido=$this->User->consulta('apellido_paterno','persona','idpersona',$idpersona);
+        $ci=$this->User->consulta('ci','persona','idpersona',$idpersona);
+        $query = $this->db->query("INSERT INTO usuario(nombre,clave,idpersona,idrol)
+ VALUES ('$apellido','$ci','$idpersona','2');");
         $query = $this->db->query("INSERT INTO estudiante(
 idpersona
 , observaciones
