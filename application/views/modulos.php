@@ -27,7 +27,7 @@
         <tbody>
         <?php
         $query = $this->db->query("SELECT 
-m.nombre,m.codigo,m.fechainicio,m.fechafin,p.nombre as nombreprograma,pe.apellido_paterno,pe.apellido_materno,pe.nombres,m.idmodulo FROM modulo m 
+m.nombre,m.codigo,m.fechainicio,m.fechafin,p.nombre as nombreprograma,pe.paterno,pe.materno,pe.nombres,m.idmodulo FROM modulo m 
 INNER JOIN docente d ON m.iddocente=d.idpersona 
 INNER JOIN persona pe ON pe.idpersona=d.idpersona 
 INNER JOIN programa p ON p.idprograma=m.idprograma");
@@ -39,7 +39,7 @@ INNER JOIN programa p ON p.idprograma=m.idprograma");
                     <td>".$row->codigo."</td>
                     <td>$row->fechainicio $row->fechafin</td>
                     <td>".$row->nombreprograma."</td>
-                    <td>$row->apellido_paterno $row->apellido_materno $row->nombres</td>
+                    <td>$row->paterno $row->materno $row->nombres</td>
                     
                     <td>
                     <button type='button' class='btn btn-warning btn-mini' data-toggle='modal' data-target='#update' data-id='$row->idmodulo'> <i class='fa fa-pencil-square-o'></i>Modificar</button>

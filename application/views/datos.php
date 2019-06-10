@@ -16,13 +16,13 @@
                 <label  class="col-sm-3 col-form-label">apellido_paterno</label>
                 <div class="col-sm-9">
                     <input type="text" id="idpersona"  name="idpersona" hidden value="<?=$idpersona?>">
-                    <input type="text" id="apellido_paterno" class="form-control" placeholder="apellido_paterno" name="apellido_paterno" required value="<?=$row->apellido_paterno?>">
+                    <input type="text" id="apellido_paterno" class="form-control" placeholder="apellido_paterno" name="apellido_paterno" required value="<?=$row->paterno?>">
                 </div>
             </div>
             <div class="form-group row">
                 <label  class="col-sm-3 col-form-label">apellido_materno</label>
                 <div class="col-sm-9">
-                    <input type="text" id="apellido_materno" class="form-control" placeholder="apellido_materno" name="apellido_materno" value="<?=$row->apellido_materno?>">
+                    <input type="text" id="apellido_materno" class="form-control" placeholder="apellido_materno" name="apellido_materno" value="<?=$row->materno?>">
                 </div>
             </div>
             <div class="form-group row">
@@ -60,7 +60,16 @@
             </div><div class="form-group row">
                 <label  class="col-sm-3 col-form-label">genero</label>
                 <div class="col-sm-9">
-                    <input type="text" id="genero" class="form-control" placeholder="genero" name="genero" value="<?=$row->genero?>">
+                    <select name="genero" id="genero" class="form-control" required>
+                        <option value="">Selecionar...</option>
+                        <option value="MASCULINO">MASCULINO</option>
+                        <option value="FEMENINO">FEMENINO</option>
+                    </select>
+                    <script !src="">
+                        window.onload=function() {
+                            $('#genero').val('<?=$row->sexo?>');
+                        }
+                    </script>
                 </div>
             </div>
             <div style="text-align: center; width: 100%" >

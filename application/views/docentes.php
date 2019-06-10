@@ -34,11 +34,11 @@ WHERE u.idrol=3");
         foreach ($query->result() as $row)
         {
             echo "<tr>
-                    <td>".$row->apellido_paterno." ".$row->apellido_materno." ".$row->nombres."</td>
+                    <td>".$row->paterno." ".$row->materno." ".$row->nombres."</td>
                     <td>".$row->ci."</td>
                     <td>".$row->telefono."</td>
                     <td>".$row->email."</td>
-                    <td>".$row->genero."</td>
+                    <td>".$row->sexo."</td>
                     <td>
                     <button type=\"button\" class=\"btn btn-warning btn-mini\" data-toggle=\"modal\" data-target=\"#update\" data-id='$row->idusuario'> <i class='fa fa-pencil'></i>Modificar</button>
                     <a href='".base_url()."Docentes/delete/$row->idusuario' class='btn btn-danger btn-mini eli' > <i class='fa fa-trash'></i>Eliminar</a>
@@ -63,10 +63,9 @@ WHERE u.idrol=3");
 </div>
 
 
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Registrar persona</h5>
@@ -75,31 +74,61 @@ WHERE u.idrol=3");
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="<?=base_url()?>Docentes/insert">
+                <form id="insert" method="post" action="<?=base_url()?>Docentes/insert">
                     <div class="form-group row">
-                        <label  class="col-sm-3 col-form-label">Persona </label>
-                        <div class="col-sm-9">
-                            <select name="idpersona" required class="form-control">
-                                <option value="">Seleccionar</option>
-                                <?php
-                                $query=$this->db->query("SELECT * FROM persona WHERE idpersona NOT IN (SELECT idpersona FROM docente)");
-                                foreach ($query->result() as $row){
-                                    echo "<option value='$row->idpersona'>$row->apellido_paterno $row->apellido_materno $row->nombres</option>";
-                                }
-                                ?>
+                        <label class="col-sm-1 col-form-label">paterno</label>
+                        <div class="col-sm-3">
+                            <input type="text" id="paterno" value="" class="form-control" placeholder="paterno" name="paterno" required>
+                        </div>
+                        <label class="col-sm-1 col-form-label">materno</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" placeholder="materno" name="materno" required>
+                        </div>
+                        <label class="col-sm-1 col-form-label">nombres</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" placeholder="nombres" name="nombres" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label">ci</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" placeholder="ci" name="ci" required>
+                        </div>
+                        <label class="col-sm-1 col-form-label">profesion</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" placeholder="profesion" name="profesion" >
+                        </div>
+                        <label class="col-sm-1 col-form-label">email</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" placeholder="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label">celular</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" placeholder="celular" name="celular" >
+                        </div>
+                        <label class="col-sm-1 col-form-label">telefono</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" placeholder="telefono" name="telefono" >
+                        </div>
+                        <label class="col-sm-1 col-form-label">sexo</label>
+                        <div class="col-sm-3">
+                            <select name="sexo" class="form-control" required>
+                                <option value="">Selecionar...</option>
+                                <option value="MASCULINO">MASCULINO</option>
+                                <option value="FEMENINO">FEMENINO</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label  class="col-sm-3 col-form-label">Nombre</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" placeholder="nombre" name="nombre" required>
+                        <label class="col-sm-1 col-form-label">user</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" placeholder="user" name="user" required>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label  class="col-sm-3 col-form-label">Clave</label>
-                        <div class="col-sm-9">
-                            <input type="password" class="form-control" placeholder="clave" name="clave">
+                        <label class="col-sm-1 col-form-label">password</label>
+                        <div class="col-sm-3">
+                            <input type="password" class="form-control" placeholder="password" name="password" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -169,6 +198,21 @@ WHERE u.idrol=3");
                     e.preventDefault();
             })
         }
+        // $("#insert").submit(function (e) {
+        //     e.preventDefault();
+        //     var formData = new FormData(this);
+        //     ///console.log($(this).serialize());
+        //     $.ajax({
+        //         url: 'Docentes/insert',
+        //         type: 'POST',
+        //         data: $(this).serialize(),
+        //         success:function (e) {
+        //             console.log(e);
+        //         }
+        //     });
+        //     return false;
+        // });
+
         $('#update').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
             var id = button.data('id') // Extract info from data-* attributes

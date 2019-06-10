@@ -9,16 +9,52 @@ class Docentes extends CI_Controller{
         $data['title']='Controlar docentes';
         $this->load->View('templates/header',$data);
         $this->load->View('docentes',$data);
-        $data['js']="<script src='".base_url()."assets/js/docentes.js'></script>";
+        $data['js']="";
         $this->load->View('templates/footer',$data);
     }
     function insert(){
-        $idpersona=$_POST['idpersona'];
-        $nombre=$_POST['nombre'];
-        $clave=$_POST['clave'];
-        $query = $this->db->query("INSERT INTO docente(idpersona) VALUES ('$idpersona');");
-        $query = $this->db->query("INSERT INTO usuario(nombre,clave,idpersona,idrol) VALUES ('$nombre','$clave','$idpersona','3');");
+        $paterno=$_POST['paterno'];
+        $materno=$_POST['materno'];
+        $nombres=$_POST['nombres'];
+        $ci=$_POST['ci'];
+        $profesion=$_POST['profesion'];
+        $email=$_POST['email'];
+        $celular=$_POST['celular'];
+        $telefono=$_POST['telefono'];
+        $sexo=$_POST['sexo'];
+        $user=$_POST['user'];
+        $password=$_POST['password'];
+        $this->db->query("INSERT INTO persona SET 
+paterno='$paterno',
+materno='$materno',
+nombres='$nombres',
+ci='$ci',
+profesion='$profesion',
+telefono='$telefono',
+celular='$celular',
+email='$email',
+sexo='$sexo'
+");
+        $idpersona=$this->db->insert_id();
+        $this->db->query("INSERT INTO docente SET idpersona='$idpersona'");
+        $this->db->query("INSERT INTO usuario SET idpersona='$idpersona',nombre='$user',clave='$password',idrol='3'");
+
+
+
+
+        //        $array=$_POST;
+//        unset($array['user']);
+//        unset($array['password']);
+//        $json = json_encode($array);
+//        echo("INSERT INTO persona SET $json");
+        //echo $json;
+//        $idpersona=$_POST['idpersona'];
+//        $nombre=$_POST['nombre'];
+//        $clave=$_POST['clave'];
+//        $query = $this->db->query("INSERT INTO docente(idpersona) VALUES ('$idpersona');");
+//        $query = $this->db->query("INSERT INTO usuario(nombre,clave,idpersona,idrol) VALUES ('$nombre','$clave','$idpersona','3');");
         header("Location: ".base_url()."Docentes");
+
     }
     function update(){
         $idusuario=$_POST['idusuario'];

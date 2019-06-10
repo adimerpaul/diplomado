@@ -14,8 +14,8 @@ class Datos extends CI_Controller{
         $this->load->View('templates/footer',$data);
     }
     function update(){
-        $apellido_paterno=$_POST['apellido_paterno'];
-        $apellido_materno=$_POST['apellido_materno'];
+        $paterno=$_POST['apellido_paterno'];
+        $materno=$_POST['apellido_materno'];
         $nombres=$_POST['nombres'];
         $ci=$_POST['ci'];
         $profesion=$_POST['profesion'];
@@ -26,15 +26,15 @@ class Datos extends CI_Controller{
         $idpersona=$_POST['idpersona'];
         $query = $this->db->query("UPDATE  persona
 SET
-apellido_paterno='$apellido_paterno'
-, apellido_materno ='$apellido_materno'
+paterno='$paterno'
+, materno ='$materno'
 , nombres ='$nombres'
 , ci ='$ci'
 , profesion ='$profesion'
 , telefono ='$telefono'
 , celular ='$celular'
 , email ='$email'
-, genero ='$genero' WHERE idpersona='$idpersona'");
+, sexo ='$genero' WHERE idpersona='$idpersona'");
         header("Location: ".base_url()."Datos/index/$idpersona");
     }
 }

@@ -13,31 +13,45 @@ class Alumno extends CI_Controller{
         $this->load->View('templates/footer',$data);
     }
     function insert(){
-        $idpersona=$_POST['idpersona'];
+        $paterno=$_POST['paterno'];
+        $materno=$_POST['materno'];
+        $nombres=$_POST['nombres'];
+        $ci=$_POST['ci'];
+        $profesion=$_POST['profesion'];
+        $email=$_POST['email'];
+        $celular=$_POST['celular'];
+        $telefono=$_POST['telefono'];
+        $sexo=$_POST['sexo'];
+        $beca=$_POST['beca'];
         $observacion=$_POST['observacion'];
-        $apellido=$this->User->consulta('apellido_paterno','persona','idpersona',$idpersona);
-        $ci=$this->User->consulta('ci','persona','idpersona',$idpersona);
-        $query = $this->db->query("INSERT INTO usuario(nombre,clave,idpersona,idrol)
- VALUES ('$apellido','$ci','$idpersona','2');");
-        $query = $this->db->query("INSERT INTO estudiante(
-idpersona
-, observaciones
-) VALUES (
-$idpersona
-, '$observacion');");
+        $this->db->query("INSERT INTO persona SET 
+paterno='$paterno',
+materno='$materno',
+nombres='$nombres',
+ci='$ci',
+profesion='$profesion',
+telefono='$telefono',
+celular='$celular',
+email='$email',
+sexo='$sexo'
+");
+        $idpersona=$this->db->insert_id();
+        $this->db->query("INSERT INTO estudiante SET idpersona='$idpersona',beca='$beca',observaciones='$observacion'");
+        $this->db->query("INSERT INTO usuario SET idpersona='$idpersona',nombre='$paterno',clave='$ci',idrol='2'");
+
         header("Location: ".base_url()."Alumno");
     }
     function update(){
         $idestudiante=$_POST['idestudiante'];
-        $idmodulo=$_POST['idmodulo'];
-        $query = $this->db->query("INSERT INTO estudiantemodulo(idestudiante,idmodulo)
-VALUES('$idestudiante','$idmodulo')");
+        $idprograma=$_POST['idmodulo'];
+        $query = $this->db->query("INSERT INTO estudianteprograma(idestudiante,idprograma)
+VALUES('$idestudiante','$idprograma')");
         header("Location: ".base_url()."Alumno");
 
     }
     function datos(){
         $idestudiante=$_POST['idestudiante'];
-        $query = $this->db->query("SELECT * FROM estudiantemodulo e INNER JOIN modulo m ON e.idmodulo=m.idmodulo INNER JOIN programa p ON p.idprograma=m.idprograma WHERE e.idestudiante='$idestudiante'");
+        $query = $this->db->query("SELECT * FROM estudianteprograma e INNER JOIN programa p ON e.idprograma=p.idprograma  WHERE e.idestudiante='$idestudiante'");
 
         foreach ($query->result() as $row)
         {

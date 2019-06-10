@@ -32,7 +32,6 @@
     if('ontouchstart' in document.documentElement) document.write("<script src='<?=base_url()?>assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
 <script src="<?=base_url()?>assets/js/bootstrap.min.js"></script>
-
 <!-- page specific plugin scripts -->
 
 <!-- ace scripts -->
