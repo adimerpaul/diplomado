@@ -32,20 +32,53 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/views/templates/header.php">
+<<<<<<< Updated upstream
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/controllers/Tipopagos.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="207" column="67" selection-start-line="207" selection-start-column="67" selection-end-line="207" selection-end-column="67" />
+            <state relative-caret-position="170">
+              <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/documentos.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="71" lean-forward="true" selection-end-line="125" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+>>>>>>> Stashed changes
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/application/views/tipopagos.php">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
+            <state relative-caret-position="240">
+              <caret line="207" column="67" selection-start-line="207" selection-start-column="67" selection-end-line="207" selection-end-column="67" />
+=======
+            <state relative-caret-position="275">
+              <caret line="21" column="13" lean-forward="true" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+>>>>>>> Stashed changes
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+<<<<<<< Updated upstream
         <entry file="file://$PROJECT_DIR$/application/controllers/Calificacion.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
               <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+=======
+        <entry file="file://$PROJECT_DIR$/application/controllers/Documentos.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="42" selection-end-column="1" />
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
@@ -107,7 +140,6 @@
         <option value="$PROJECT_DIR$/assets/js/docentes.js" />
         <option value="$PROJECT_DIR$/application/views/persona.php" />
         <option value="$PROJECT_DIR$/application/controllers/Documentos.php" />
-        <option value="$PROJECT_DIR$/application/views/documentos.php" />
         <option value="$PROJECT_DIR$/application/controllers/Programas.php" />
         <option value="$PROJECT_DIR$/application/views/programas.php" />
         <option value="$PROJECT_DIR$/application/controllers/Modulos.php" />
@@ -124,6 +156,9 @@
         <option value="$PROJECT_DIR$/application/controllers/Tipopagos.php" />
         <option value="$PROJECT_DIR$/application/views/tipopagos.php" />
         <option value="$PROJECT_DIR$/application/views/templates/header.php" />
+        <option value="$PROJECT_DIR$/application/views/documentos.php" />
+        <option value="$PROJECT_DIR$/application/controllers/Tipopagos.php" />
+        <option value="$PROJECT_DIR$/application/views/tipopagos.php" />
       </list>
     </option>
   </component>
@@ -198,10 +233,14 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< Updated upstream
     <property name="last_opened_file_path" value="C:/crudlaravel" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../boleteria" />
+>>>>>>> Stashed changes
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
@@ -232,20 +271,32 @@
       <workItem from="1552789830137" duration="24961000" />
       <workItem from="1553732671394" duration="183000" />
       <workItem from="1557882579409" duration="11568000" />
+<<<<<<< Updated upstream
       <workItem from="1558573639228" duration="6146000" />
       <workItem from="1558722418201" duration="7434000" />
       <workItem from="1560049471342" duration="24000" />
+=======
+      <workItem from="1558186667921" duration="998000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< Updated upstream
     <option name="totallyTimeSpent" value="60982000" />
+=======
+    <option name="totallyTimeSpent" value="48376000" />
+>>>>>>> Stashed changes
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
+<<<<<<< Updated upstream
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.28744328" />
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.27836612" />
+>>>>>>> Stashed changes
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
@@ -382,6 +433,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/assets/js/docentes.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -393,6 +445,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/Programas.php">
+=======
+    <entry file="file://$PROJECT_DIR$/../validator/index.php" />
+    <entry file="file://$PROJECT_DIR$/../validator/doc/assets/example.js" />
+    <entry file="file://$PROJECT_DIR$/application/controllers/Documentacion.php">
+>>>>>>> Stashed changes
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="69" lean-forward="true" selection-start-line="26" selection-start-column="69" selection-end-line="26" selection-end-column="69" />
@@ -420,6 +477,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/application/controllers/Documentacion.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -435,6 +493,11 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa9896.43334/bootstrap2-toggle.js">
+=======
+    <entry file="file://$PROJECT_DIR$/../validator/doc/examples/simple2.html" />
+    <entry file="file://$PROJECT_DIR$/../validator/doc/examples/simple3.html" />
+    <entry file="file://$PROJECT_DIR$/application/views/calificacion.php">
+>>>>>>> Stashed changes
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="13" column="37" lean-forward="true" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
@@ -511,6 +574,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/application/controllers/Datos.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
@@ -526,6 +590,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/persona.php">
+=======
+    <entry file="file://$PROJECT_DIR$/application/controllers/Programas.php">
+>>>>>>> Stashed changes
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="27" column="13" lean-forward="true" selection-end-line="219" />
@@ -546,6 +613,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/application/controllers/Tipopagos.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -554,6 +622,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/tipopagos.php">
+=======
+    <entry file="file://$PROJECT_DIR$/application/controllers/Modulos.php">
+>>>>>>> Stashed changes
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="36" column="52" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
@@ -578,6 +649,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Documentos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="42" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/modulos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="529">
+          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Tipopagos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/documentos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="71" lean-forward="true" selection-end-line="125" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/tipopagos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="21" column="13" lean-forward="true" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
         </state>
       </provider>
     </entry>

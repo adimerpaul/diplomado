@@ -112,7 +112,7 @@ WHERE u.idrol=3");
                         <div class="col-sm-3">
                             <input type="text" class="form-control" placeholder="telefono" name="telefono" >
                         </div>
-                        <label class="col-sm-1 col-form-label">sexo</label>
+                        <label class="col-sm-1 col-form-label">Genero</label>
                         <div class="col-sm-3">
                             <select name="sexo" class="form-control" required>
                                 <option value="">Selecionar...</option>
