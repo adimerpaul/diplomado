@@ -42,4 +42,26 @@ SET nombre='$nombre', version='$version', estado='$estado' WHERE idprograma='$id
         $row=$query->result_array()[0];
         echo json_encode($row);
     }
+    function insertmodulo(){
+        $nombre=$_POST['nombre'];
+        $codigo=$_POST['codigo'];
+        $fechainicio=$_POST['fechainicio'];
+        $fechafin=$_POST['fechafin'];
+        $iddocente=$_POST['iddocente'];
+        $idprograma=$_POST['idprograma'];
+        $query = $this->db->query("INSERT INTO modulo SET 
+        nombre='$nombre',
+        codigo='$codigo',
+        fechainicio='$fechainicio',
+        fechafin='$fechafin',
+        iddocente='$iddocente',
+        idprograma='$idprograma'
+        ");
+        header("Location: ".base_url()."Programas");
+    }
+    public function deletemodulo($idmodulo)
+    {
+        $query = $this->db->query("DELETE FROM modulo WHERE idmodulo='$idmodulo'");
+        header("Location: ".base_url()."Programas");
+    }
 }

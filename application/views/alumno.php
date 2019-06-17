@@ -1,3 +1,8 @@
+<style>
+.modal-lg{
+    width: 100%;
+}
+</style>
 <div class="page-content">
     <div class="page-header">
         <h1>
@@ -97,7 +102,7 @@
                         </div>
                         <label class="col-sm-1 col-form-label">email</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="email" name="email" required>
+                            <input type="text" class="form-control" placeholder="email" name="email" >
                         </div>
                     </div>
                     <div class="form-group row">
@@ -121,7 +126,7 @@
                     <div class="form-group row">
                         <label class="col-sm-1 col-form-label">beca</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="beca" name="beca" required>
+                            <input type="text" class="form-control" placeholder="beca" name="beca" >
                         </div>
                         <label class="col-sm-1 col-form-label">observacion</label>
                         <div class="col-sm-3">
@@ -180,7 +185,7 @@
     </div>
 </div>
 <div class="modal fade" id="historial" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Historial programa</h5>
@@ -189,19 +194,18 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="<?=base_url()?>Alumno/update">
                     <div class="form-group row">
-                        <label  class="col-sm-2 col-form-label"> Programas</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-2">
+                            <h6  class="col-form-label">Programas:</h6>
                             <input type="text" id="idestudiante2"  name="idestudiante" hidden>
                             <p id="contenedor"></p>
                         </div>
+                        <div id="opcion"  class="col-sm-10">
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-warning">Agregar</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-times-circle-o"></i> Close</button>
                     </div>
-                </form>
             </div>
         </div>
     </div>
