@@ -48,21 +48,63 @@ sexo='$sexo'
 VALUES('$idestudiante','$idprograma')");
         header("Location: ".base_url()."Alumno");
     }
+    function alumnosnotas(){
+        $idestudiante=$_POST['idestudiante'];
+        $idprograma=$_POST['idprograma'];
+        $query=$this->db->query("SELECT m.idmodulo,m.nombre,
+(
+CASE
+    WHEN (SELECT count(*) FROM estudiantemodulo
+          WHERE idmodulo=m.idmodulo AND idestudiante='$idestudiante'AND idprograma='$idprograma')=0 THEN ''
+    ELSE (SELECT nota FROM estudiantemodulo
+          WHERE idmodulo=m.idmodulo AND idestudiante='$idestudiante'AND idprograma='$idprograma')
+END
+)
+as nota
+FROM modulo m
+WHERE m.idprograma='$idprograma'");
+        $row=$query->result_array();
+        echo json_encode($row);
+    }
     function datos(){
         $idestudiante=$_POST['idestudiante'];
         $idpersona=$this->User->consulta('idpersona','estudiante','idestudiante',$idestudiante);
-
         $query = $this->db->query("SELECT * FROM estudianteprograma e INNER JOIN programa p ON e.idprograma=p.idprograma  WHERE e.idestudiante='$idestudiante'");
         echo "<button id='personal' class='btn btn-success btn-mini' idpersona='$idpersona' style='width: 120px'><i class='fa fa-user'></i> Datos personales</button> <br>";
         foreach ($query->result() as $row)
         {
         echo "<b>".substr($row->date,0,10)." ".$row->nombre."</b><br>
-               <button id='actualizardoc' idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-primary btn-mini ' style='width: 120px'><i class='fa fa-file'></i> Documentacion</button> <br>
-               <button class='btn btn-warning btn-mini ' style='width: 120px'><i class='fa fa-money'></i> Pagos efectuados</button> <br>
-               <button class='btn btn-danger btn-mini ' style='width: 120px'><i class='fa fa-dollar'></i> Pagos por multas</button> <br>
-               <button class='btn btn-info btn-mini ' style='width: 120px'><i class='fa fa-barcode'></i> Calificacion</button> <br>
+               <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-primary btn-mini actualizardoc' style='width: 120px'><i class='fa fa-file'></i> Documentacion</button> <br>
+               <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-warning btn-mini actualizarpagos ' style='width: 120px'><i class='fa fa-money'></i> Pagos efectuados</button> <br>
+               <button class='btn btn-danger btn-mini' style='width: 120px'><i class='fa fa-dollar'></i> Pagos por multas</button> <br>
+               <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-info btn-mini  actualizarnotas' style='width: 120px'><i class='fa fa-barcode'></i> Calificacion</button> <br>
                <button class='btn btn-warning btn-mini ' style='width: 120px'><i class='fa fa-file-text'></i> Tramite del titulo</button> <br>";
         }
+    }
+    function updatedocuments(){
+        $idestudiante=$_POST['idestudiante'];
+        $idprograma=$_POST['idprograma'];
+        //echo $idestudiante;
+        $query=$this->db->query("SELECT * FROM documento");
+        foreach ($query->result() as $row){
+            $this->db->query ("INSERT INTO estudiantedocumento 
+SET idestudiante='$idestudiante' ,idprograma='$idprograma', iddocumento='".$row->iddocumento."',estado='".$_POST['d'.$row->iddocumento]."'
+ON DUPLICATE KEY UPDATE estado= '".$_POST['d'.$row->iddocumento]."';");
+        }
+        echo 1;
+        //echo json_encode($_POST);
+    }
+    function updatepagos(){
+        $idestudiante=$_POST['idestudiante'];
+        $idprograma=$_POST['idprograma'];
+        //echo $idestudiante;
+        $query=$this->db->query("SELECT * FROM tipopago");
+        foreach ($query->result() as $row){
+            $this->db->query("INSERT INTO pago 
+SET idestudiante='$idestudiante' ,idprograma='$idprograma', idtipopago='".$row->idtipopago."',monto='".$_POST['p'.$row->idtipopago]."'
+ON DUPLICATE KEY UPDATE monto= '".$_POST['p'.$row->idtipopago]."';");
+        }
+        echo 1;
     }
     function dat(){
         $table=$_POST['table'];
@@ -91,6 +133,43 @@ VALUES('$idestudiante','$idprograma')");
         $where3=$_POST['where3'];
         $dato3=$_POST['dato3'];
         $query = $this->db->query("SELECT * FROM $table WHERE $where='$dato' AND $where2='$dato2' AND $where3='$dato3'");
+        $row=$query->result_array();
+        echo json_encode($row);
+    }
+    function alumnosdocumento(){
+        $idestudiante=$_POST['idestudiante'];
+        $idprograma=$_POST['idprograma'];
+        $query = $this->db->query("SELECT d.iddocumento,d.nombre,
+( 
+CASE
+    WHEN (SELECT count(*) FROM estudiantedocumento 
+          WHERE iddocumento=d.iddocumento AND idestudiante='$idestudiante'AND idprograma='$idprograma')=0 THEN 'NO'
+          WHEN (SELECT estado FROM estudiantedocumento 
+          WHERE iddocumento=d.iddocumento AND idestudiante='$idestudiante'AND idprograma='$idprograma')='NO' THEN 'NO'
+    ELSE 'SI'
+END
+)
+as tienedocumento
+FROM documento d");
+        $row=$query->result_array();
+        echo json_encode($row);
+    }
+    function alumnospagos(){
+        $idestudiante=$_POST['idestudiante'];
+        $idprograma=$_POST['idprograma'];
+        $query=$this->db->query("SELECT t.idtipopago,t.nombre,t.monto as m1,
+(
+CASE
+    WHEN (SELECT count(*) FROM pago
+          WHERE idtipopago=t.idtipopago AND idestudiante='$idestudiante'AND idprograma='$idprograma')=0 THEN 0
+          WHEN (SELECT monto FROM pago
+          WHERE idtipopago=t.idtipopago AND idestudiante='$idestudiante'AND idprograma='$idprograma')=0 THEN 0
+    ELSE (SELECT monto FROM pago
+          WHERE idtipopago=t.idtipopago AND idestudiante='$idestudiante'AND idprograma='$idprograma')
+END
+)
+as monto
+FROM tipopago t");
         $row=$query->result_array();
         echo json_encode($row);
     }

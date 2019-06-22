@@ -19,81 +19,145 @@ $('#historial').on('show.bs.modal', function (event) {
             $('#contenedor').html("Procesando, espere por favor...");
         },
         success:  function (response) {
+            $('#opcion').html('');
             $('#contenedor').html(response);
             $('#personal').click(actualizar);
-            $('#actualizardoc').click(actualizardocumentos);
+            $('.actualizardoc').click(actualizardocumentos);
+            $('.actualizarpagos').click(actualizarpagos);
+            $('.actualizarnotas').click(actualizarnotas);
         }
     });
 })
+function actualizarnotas(e) {
+    var idestudiante=$(this).attr('idestudiante');
+    var idprograma=$(this).attr('idprograma');
+    var parametros = {
+        "idestudiante": idestudiante,
+        "idprograma": idprograma
+    };
+    var t="        <form method='post' style='padding-top: 20px' class='updatenotas' >\n" +
+        "            <input type='text' name='idestudiante' value='"+idestudiante+"' hidden>" +
+        "<input type='text' name='idprograma' value='"+idprograma+"' hidden>";
+    Promise.all([
+        $.ajax({
+            data:  parametros,
+            url:   'Alumno/alumnosnotas',
+            type:  'post'})
+    ]).then(function (e) {
+        var documentos=JSON.parse(e);
+        //console.log(e);
+        documentos.forEach(function (documento) {
+            t+="    <div class='row'> <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-4'> <input class='form-control'  name='n"+documento.idmodulo+"' value='"+documento.nota+"' placeholder='notas' ></div></div>";
+        })
+        t+=("<div style='text-align: center; width: 100%' >\n" +
+            "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
+            "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cancelar</a>\n" +
+            "            </div>\n" +
+            "        </form>");
+        $('#opcion').html(t);
+        $('.updatenotas').submit(actualizarpa);
+    })
+    e.preventDefault();
+}
+function actualizarpagos(e) {
+    var idestudiante=$(this).attr('idestudiante');
+    var idprograma=$(this).attr('idprograma');
+    var parametros = {
+        "idestudiante": idestudiante,
+        "idprograma": idprograma
+    };
+    var t="        <form method='post' style='padding-top: 20px' class='updatepagos' >\n" +
+        "            <input type='text' name='idestudiante' value='"+idestudiante+"' hidden>" +
+        "<input type='text' name='idprograma' value='"+idprograma+"' hidden>";
+    Promise.all([
+        $.ajax({
+            data:  parametros,
+            url:   'Alumno/alumnospagos',
+            type:  'post'})
+    ]).then(function (e) {
+        var documentos=JSON.parse(e);
+        //console.log(e);
+        documentos.forEach(function (documento) {
+            t+=" <div class='col-sm-3'>"+documento.nombre+"("+documento.m1+")</div> <div class='col-sm-9'> <input class='form-control'  name='p"+documento.idtipopago+"' value='"+documento.monto+"' ></div>";
+        })
+        t+=("<div style='text-align: center; width: 100%' >\n" +
+            "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
+            "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cancelar</a>\n" +
+            "            </div>\n" +
+            "        </form>");
+        $('#opcion').html(t);
+        $('.updatepagos').submit(actualizarpa);
+    })
+    e.preventDefault();
+}
+function actualizarpa(e){
+    Promise.all([
+        $.ajax({
+            data:$(this).serialize(),
+            type:'POST',
+            url:'Alumno/updatepagos'
+        })
+    ]).then(function (e) {
+        //console.log(e);
+        if (e[0]==1){
+            $('#opcion').html('');
+            alert('Actualizado correctamente');
+        } else {
+            alert('Algo salio mal');
+        }
+    });
+    return false;
+}
 function actualizardocumentos(e) {
     var idestudiante=$(this).attr('idestudiante');
     var idprograma=$(this).attr('idprograma');
     var parametros = {
-        "table": 'documento',
-        "where": '1',
-        "dato": '1'
+        "idestudiante": idestudiante,
+        "idprograma": idprograma
     };
-
-    $.ajax({
+    var t="        <form method='post' style='padding-top: 20px' class='updatedocuments' >\n" +
+        "            <input type='text' name='idestudiante' value='"+idestudiante+"' hidden>" +
+                    "<input type='text' name='idprograma' value='"+idprograma+"' hidden>";
+    Promise.all([
+        $.ajax({
         data:  parametros,
-        url:   'Alumno/dat',
-        type:  'post',
-        beforeSend: function () {
-            $('#opcion').html("Procesando, espere por favor...");
-        },
-        success:  function (response) {
-            $('#opcion').html("        <form method='post' style='padding-top: 20px' >\n" +
-                "            <input type='text' name='idestudiante' value='"+idestudiante+"' hidden>");
-            var datos=JSON.parse(response);
-            //console.log(datos);
-            for (var i=0;i<datos.length;i++){
-                var myPromise = new Promise((resolve, reject) => {
-
-
-                    var si=verificartexto(datos[i].iddocumento,idestudiante,idprograma,datos[i].nombre);
-
-                    // if(/* Termino correctamente */) {
-                    //     resolve('Success!');
-                    // } else {
-                    //     reject('Failure!');
-                    // }
-                });
-            // t+="<div class='form-group row'>"+
-            //     "<label  class='col-sm-4 col-form-label'>"+datos[i].nombre+"</label>"+
-            //     "<div class='col-sm-8'>"+
-            //     texto+
-            //     "</div>"+
-            //     "</div>";
-            };
-            myPromise.then(function() {
-                $('#opcion').append("<div style='text-align: center; width: 100%' >\n" +
-                    "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
-                    "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cancelar</a>\n" +
-                    "            </div>\n" +
-                    "        </form>");
-            }).catch(function() {
-                /* capturar el error */
-            })
+        url:   'Alumno/alumnosdocumento',
+        type:  'post'})
+    ]).then(function (e) {
+        var documentos=JSON.parse(e);
+        documentos.forEach(function (documento) {
+            if(documento.tienedocumento=="SI"){
+                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'> <input type='radio' name='d"+documento.iddocumento+"' checked value='SI'> SI <input type='radio' name='d"+documento.iddocumento+"' value='NO'>NO </div>";
+            }else{
+                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'><input type='radio' name='d"+documento.iddocumento+"' value='SI'> SI <input type='radio' name='d"+documento.iddocumento+"' checked value='NO'>NO  </div>";
+            }
+        })
+       t+=("<div style='text-align: center; width: 100%' >\n" +
+            "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
+            "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cancelar</a>\n" +
+            "            </div>\n" +
+            "        </form>");
+        $('#opcion').html(t);
+        $('.updatedocuments').submit(actualizardoc);
+    })
+    e.preventDefault();
+}
+function actualizardoc(e) {
+    Promise.all([
+        $.ajax({
+            data:$(this).serialize(),
+            type:'POST',
+            url:'Alumno/updatedocuments'
+        })
+    ]).then(function (e) {
+        if (e[0]==1){
+            $('#opcion').html('');
+            alert('Actualizado correctamente');
+        } else {
+            alert('Algo salio mal');
         }
     });
-    // var parametros = {
-    //     "table": 'persona',
-    //     "where": 'idpersona',
-    //     "dato": idpersona,
-    //     "where2": 'idpersona',
-    //     "dato2": idpersona
-    // };
-    // $.ajax({
-    //     data:  parametros,
-    //     url:   'Alumno/dat2',
-    //     type:  'post',
-    //     beforeSend: function () {
-    //         $('#opcion').html("Procesando, espere por favor...");
-    //     },
-    //     success:  function (response) {
-    //     }
-    // });
-    e.preventDefault();
+    return false;
 }
 function verificartexto(iddocumento,idestudiante,idprograma,nombre){
     var parametros = {
@@ -121,6 +185,8 @@ function verificartexto(iddocumento,idestudiante,idprograma,nombre){
     });
 
 }
+
+
 function actualizar(e) {
     var idpersona=$(this).attr('idpersona');
     var parametros = {
@@ -140,16 +206,16 @@ function actualizar(e) {
             var t='\n' +
                 '        <form method="post" style="padding-top: 20px" id="datos">\n' +
                 '            <div class="form-group row">\n' +
-                '                <label  class="col-sm-3 col-form-label">apellido_paterno</label>\n' +
+                '                <label  class="col-sm-3 col-form-label">paterno</label>\n' +
                 '                <div class="col-sm-9">\n' +
                 '                    <input type="text" id="idpersona"  name="idpersona" hidden value="'+datos.idpersona+'">\n' +
-                '                    <input type="text" id="paterno" class="form-control" placeholder="apellido_paterno" name="paterno" required value="'+datos.paterno+'">\n' +
+                '                    <input type="text" id="paterno" class="form-control" placeholder="paterno" name="paterno" required value="'+datos.paterno+'">\n' +
                 '                </div>\n' +
                 '            </div>\n' +
                 '            <div class="form-group row">\n' +
-                '                <label  class="col-sm-3 col-form-label">apellido_materno</label>\n' +
+                '                <label  class="col-sm-3 col-form-label">materno</label>\n' +
                 '                <div class="col-sm-9">\n' +
-                '                    <input type="text" id="materno" class="form-control" placeholder="apellido_materno" name="materno" value="'+datos.materno+'">\n' +
+                '                    <input type="text" id="materno" class="form-control" placeholder="materno" name="materno" value="'+datos.materno+'">\n' +
                 '                </div>\n' +
                 '            </div>\n' +
                 '            <div class="form-group row">\n' +
@@ -215,7 +281,6 @@ function saveestudent(e) {
         success:  function (response) {
             if (response==1){
                 $('#opcion').html('');
-
                 alert('Actualizado correctamente');
             } else {
                 alert('Algo salio mal');
