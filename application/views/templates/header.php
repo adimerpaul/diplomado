@@ -199,19 +199,19 @@
             <?php endif?>
             <?php if ($_SESSION['idrol']==2):?>
                 <li class="">
-                    <a href="<?=base_url()?>Datospersonales">
+                    <a href="<?=base_url()?>Datos/index/<?=$_SESSION['idpersona']?>">
                         <i class="menu-icon fa fa-user"></i>
                         <span class="menu-text"> Datos personales </span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="<?=base_url()?>Documentacionestudiante" >
+                    <a href="<?=base_url()?>Documentacion/index/<?=$_SESSION['idestudiante']?>" >
                         <i class="menu-icon fa fa-list"></i>
                         <span class="menu-text"> Documentacion  </span>
                     </a>
                 </li>
                 <li class="">
-                    <a href="<?=base_url()?>Pagosefectuados" >
+                    <a href="<?=base_url()?>Pagos/index/<?=$_SESSION['idestudiante']?>" >
                         <i class="menu-icon fa fa-pencil-square-o"></i>
                         <span class="menu-text"> Pagos efectuados </span>
                     </a>
@@ -223,7 +223,7 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="<?=base_url()?>Calificacionestudiante">
+                    <a href="<?=base_url()?>Calificacion/index/<?=$_SESSION['idestudiante']?>" >
                         <i class="menu-icon fa fa-calendar"></i>
                         <span class="menu-text"> Calificacion</span>
                     </a>

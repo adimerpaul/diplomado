@@ -15,6 +15,7 @@ class Welcome extends CI_Controller {
             $row=$query->row();
             $_SESSION['idusuario']=$row->idusuario;
             $_SESSION['idpersona']=$row->idpersona;
+            $_SESSION['idestudiante']=$this->User->consulta('idestudiante','estudiante','idpersona',$row->idusuario);
             $_SESSION['idrol']=$row->idrol;
             header('Location: '.base_url().'main');
         }else{

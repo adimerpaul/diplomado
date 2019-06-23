@@ -158,12 +158,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="<?=base_url()?>Alumno/update">
+                <form method="post" ter="<?=base_url()?>Alumno/update" id="insertProgram">
                     <div class="form-group row">
                         <label  class="col-sm-3 col-form-label"> Seleccione Programa</label>
                         <div class="col-sm-9">
                             <input type="text" id="idestudiante"  name="idestudiante" hidden>
-                            <select name="idmodulo" class="form-control" required >
+                            <select name="idmodulo"  class="form-control" required >
                                 <?php
                                 $query = $this->db->query("SELECT * FROM programa  ");
 

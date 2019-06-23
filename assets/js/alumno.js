@@ -1,8 +1,24 @@
+$('#insertProgram').submit(insertProgram);
+function insertProgram() {
+    Promise.all([
+        $.ajax({
+            data:$(this).serialize(),
+            type:'POST',
+            url:'Alumno/update'
+        })
+    ]).then(function (e) {
+        if (e[0]==1){
+            alert('Actualizado correctamente');
+            $('#update').modal('hide');
+        } else {
+            alert('Algo salio mal');
+        }
+    });
+    return false;
+}
 $('#update').on('show.bs.modal', function (event) {
-
     var button = $(event.relatedTarget) // Button that triggered the modal
-    $('#idestudiante').prop('value', button.data('idestudiante')) // Extract info from data-* attributes
-
+    $('#idestudiante').prop('value', button.data('idestudiante'));
 })
 $('#historial').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
@@ -25,9 +41,109 @@ $('#historial').on('show.bs.modal', function (event) {
             $('.actualizardoc').click(actualizardocumentos);
             $('.actualizarpagos').click(actualizarpagos);
             $('.actualizarnotas').click(actualizarnotas);
+            $('.actualizarmulta').click(actualizarmulta);
+            $('.actualizartramite').click(actualizartramite);
         }
     });
 })
+function actualizartramite(e) {
+    var idestudiante=$(this).attr('idestudiante');
+    var idprograma=$(this).attr('idprograma');
+    var parametros = {
+        "idestudiante": idestudiante,
+        "idprograma": idprograma
+    };
+    var t="        <form method='post' style='padding-top: 20px' class='updatetramite' >\n" +
+        "            <input type='text' name='idestudiante' value='"+idestudiante+"' hidden>" +
+        "<input type='text' name='idprograma' value='"+idprograma+"' hidden>";
+    Promise.all([
+        $.ajax({
+            data:  parametros,
+            url:   'Alumno/alumnostramites',
+            type:  'post'})
+    ]).then(function (e) {
+        var documentos=JSON.parse(e);
+        documentos.forEach(function (documento) {
+            if(documento.estado=="SI"){
+                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'> <input type='radio' name='d"+documento.idtramite+"' checked value='SI'> SI <input type='radio' name='d"+documento.idtramite+"' value='NO'>NO </div>";
+            }else{
+                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'><input type='radio' name='d"+documento.idtramite+"' value='SI'> SI <input type='radio' name='d"+documento.idtramite+"' checked value='NO'>NO  </div>";
+            }
+        })
+        t+=("<div style='text-align: center; width: 100%' >\n" +
+            "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
+            "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cancelar</a>\n" +
+            "            </div>\n" +
+            "        </form>");
+        $('#opcion').html(t);
+        $('.updatetramite').submit(updatetramite);
+    })
+    e.preventDefault();
+}
+
+function updatetramite() {
+    Promise.all([
+        $.ajax({
+            data:$(this).serialize(),
+            type:'POST',
+            url:'Alumno/updatetramite'
+        })
+    ]).then(function (e) {
+        //console.log(e);
+        if (e[0]==1){
+            $('#opcion').html('');
+            alert('Actualizado correctamente');
+        } else {
+            alert('Algo salio mal');
+        }
+    });
+    return false;
+}
+function actualizarmulta(e) {
+    var idestudiante=$(this).attr('idestudiante');
+    var idprograma=$(this).attr('idprograma');
+    var parametros = {
+        "idestudiante": idestudiante,
+        "idprograma": idprograma
+    };
+    var t="        <form method='post' style='padding-top: 20px' class='updatemultas' >\n" +
+        "            <input type='text' name='idestudiante' value='"+idestudiante+"' hidden>" +
+        "<input type='text' name='idprograma' value='"+idprograma+"' hidden>";
+    Promise.all([
+        $.ajax({
+            data:  parametros,
+            url:   'Alumno/alumnosmultas',
+            type:  'post'})
+    ]).then(function (e) {
+        var documentos=JSON.parse(e);
+        documentos.forEach(function (documento) {
+            t+="<div class='row'> <div class='col-sm-6'>"+documento.motivo+"</div> <div class='col-sm-4'> <input class='form-control'  name='m"+documento.idmulta+"' value='"+documento.monto+"'></div></div>";
+        })
+        t+="<div class='row'> <div class='col-sm-2'>MOTIVO</div><div class='col-sm-3'> <input class='form-control' name='motivo' placeholder='motivo' ></div><div class='col-sm-3'> <input class='form-control' name='monto' placeholder='monto' ></div><div class='col-sm-2'> <button type='submit' class='btn btn-warning'> <i class='fa fa-money'></i> Registrar multa</button></div></div>";
+        t+=("        </form>");
+        $('#opcion').html(t);
+        $('.updatemultas').submit(updatemultas);
+    })
+    e.preventDefault();
+}
+function updatemultas(e) {
+    Promise.all([
+        $.ajax({
+            data:$(this).serialize(),
+            type:'POST',
+            url:'Alumno/insertmultas'
+        })
+    ]).then(function (e) {
+        //console.log(e);
+        if (e[0]==1){
+            $('#opcion').html('');
+            alert('Actualizado correctamente');
+        } else {
+            alert('Algo salio mal');
+        }
+    });
+    return false;
+}
 function actualizarnotas(e) {
     var idestudiante=$(this).attr('idestudiante');
     var idprograma=$(this).attr('idprograma');
@@ -45,7 +161,6 @@ function actualizarnotas(e) {
             type:  'post'})
     ]).then(function (e) {
         var documentos=JSON.parse(e);
-        //console.log(e);
         documentos.forEach(function (documento) {
             t+="    <div class='row'> <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-4'> <input class='form-control'  name='n"+documento.idmodulo+"' value='"+documento.nota+"' placeholder='notas' ></div></div>";
         })
@@ -55,9 +170,27 @@ function actualizarnotas(e) {
             "            </div>\n" +
             "        </form>");
         $('#opcion').html(t);
-        $('.updatenotas').submit(actualizarpa);
+        $('.updatenotas').submit(actualizarno);
     })
     e.preventDefault();
+}
+function actualizarno() {
+    Promise.all([
+        $.ajax({
+            data:$(this).serialize(),
+            type:'POST',
+            url:'Alumno/updatenotas'
+        })
+    ]).then(function (e) {
+        //console.log(e);
+        if (e[0]==1){
+            $('#opcion').html('');
+            alert('Actualizado correctamente');
+        } else {
+            alert('Algo salio mal');
+        }
+    });
+    return false;
 }
 function actualizarpagos(e) {
     var idestudiante=$(this).attr('idestudiante');

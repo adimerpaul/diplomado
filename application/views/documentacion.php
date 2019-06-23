@@ -11,32 +11,49 @@
         <form method='post' style='padding-top: 20px' action='<?=base_url()?>Documentacion/update'>
             <input type='text' name='idestudiante' value='<?=$idestudiante?>' hidden>
             <?php
-            $query = $this->db->query("SELECT * FROM documento ");
+            $co=0;
+            $q = $this->db->query("SELECT * FROM estudianteprograma e INNER JOIN programa p ON e.idprograma=p.idprograma
+ WHERE idestudiante='$idestudiante'");
+            foreach ($q->result() as $r) {
+                $co++;
+                echo "<p><h4>Programa : $r->nombre</h4></p>";
+                $query = $this->db->query("SELECT d.iddocumento,d.nombre,
+( 
+CASE
+    WHEN (SELECT count(*) FROM estudiantedocumento 
+          WHERE iddocumento=d.iddocumento AND idestudiante='$idestudiante'AND idprograma='$r->idprograma')=0 THEN 'NO'
+          WHEN (SELECT estado FROM estudiantedocumento 
+          WHERE iddocumento=d.iddocumento AND idestudiante='$idestudiante'AND idprograma='$r->idprograma')='NO' THEN 'NO'
+    ELSE 'SI'
+END
+)
+as tienedocumento
+FROM documento d
+");
 
-            foreach ($query->result() as $row)
-            {
-                $query2 = $this->db->query("SELECT * FROM estudiantedocumento WHERE iddocumento='".$row->iddocumento."' AND idestudiante='".$idestudiante."'");
-                $cantidad=$query2->num_rows();
-                $row2=$query2->row();
-                //echo $cantidad." ".$row2->estado;
-                $sw="";
-                if ($cantidad==1 && $row2->estado=='SI'){
-                    $sw="<input type='radio' name='d".$row->iddocumento."' checked  value='SI'> SI "."<input type='radio' name='d".$row->iddocumento."'  value='NO'>NO";
-                }else{
-                    $sw="<input type='radio' name='d".$row->iddocumento."'  value='SI'> SI "."<input type='radio' name='d".$row->iddocumento."'checked value='NO'>NO";
-                }
-                echo " <div class='form-group row'>
-                            <label  class='col-sm-4 col-form-label'>".$row->nombre."</label>
+                foreach ($query->result() as $row) {
+                    $sw="";
+                    if ($row->tienedocumento == 'SI') {
+                        $sw = "<input type='radio' name='d$co" .$row->iddocumento."' checked  value='SI'> SI " . "<input type='radio' name='d$co" . $row->iddocumento . "'  value='NO'>NO";
+                    } else {
+                        $sw = "<input type='radio' name='d$co" .$row->iddocumento. "'  value='SI'> SI " . "<input type='radio' name='d$co" . $row->iddocumento . "' checked value='NO'>NO";
+                    }
+
+                    echo " <div class='form-group row'>
+                            <label  class='col-sm-4 col-form-label'>" . $row->nombre . "</label>
                             <div class='col-sm-8'>
                             $sw
                             </div>
                         </div>";
+                }
             }
             ?>
+            <?php if ($_SESSION['idrol']=="1"):?>
             <div style='text-align: center; width: 100%' >
                 <button type='submit' class='btn btn-success'>Guardar</button>
                 <a href='<?=base_url()?>Alumno' type='button' class='btn btn-danger' >Cancelar</a>
             </div>
+            <?php endif;?>
         </form>
     </div>
 </div>

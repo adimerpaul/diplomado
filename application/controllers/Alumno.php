@@ -46,7 +46,16 @@ sexo='$sexo'
         $idprograma=$_POST['idmodulo'];
         $query = $this->db->query("INSERT INTO estudianteprograma(idestudiante,idprograma)
 VALUES('$idestudiante','$idprograma')");
-        header("Location: ".base_url()."Alumno");
+        echo 1;
+    }
+    function alumnosmultas(){
+        $idestudiante=$_POST['idestudiante'];
+        $idprograma=$_POST['idprograma'];
+        $query=$this->db->query("SELECT *
+        FROM multas m
+        WHERE idprograma='$idprograma' AND idestudiante='$idestudiante'");
+        $row=$query->result_array();
+        echo json_encode($row);
     }
     function alumnosnotas(){
         $idestudiante=$_POST['idestudiante'];
@@ -76,10 +85,18 @@ WHERE m.idprograma='$idprograma'");
         echo "<b>".substr($row->date,0,10)." ".$row->nombre."</b><br>
                <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-primary btn-mini actualizardoc' style='width: 120px'><i class='fa fa-file'></i> Documentacion</button> <br>
                <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-warning btn-mini actualizarpagos ' style='width: 120px'><i class='fa fa-money'></i> Pagos efectuados</button> <br>
-               <button class='btn btn-danger btn-mini' style='width: 120px'><i class='fa fa-dollar'></i> Pagos por multas</button> <br>
+               <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-danger btn-mini actualizarmulta' style='width: 120px'><i class='fa fa-dollar'></i> Pagos por multas</button> <br>
                <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-info btn-mini  actualizarnotas' style='width: 120px'><i class='fa fa-barcode'></i> Calificacion</button> <br>
-               <button class='btn btn-warning btn-mini ' style='width: 120px'><i class='fa fa-file-text'></i> Tramite del titulo</button> <br>";
+               <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-warning btn-mini actualizartramite' style='width: 120px'><i class='fa fa-file-text'></i> Tramite del titulo</button> <br>";
         }
+    }
+    function insertmultas(){
+        $idestudiante=$_POST['idestudiante'];
+        $idprograma=$_POST['idprograma'];
+        $monto=$_POST['monto'];
+        $motivo=$_POST['motivo'];
+        $this->db->query ("INSERT INTO multas SET idprograma='$idprograma' ,idestudiante='$idestudiante',monto='$monto',motivo='$motivo' ");
+        echo 1;
     }
     function updatedocuments(){
         $idestudiante=$_POST['idestudiante'];
@@ -94,6 +111,35 @@ ON DUPLICATE KEY UPDATE estado= '".$_POST['d'.$row->iddocumento]."';");
         echo 1;
         //echo json_encode($_POST);
     }
+    function updatetramite(){
+        $idestudiante=$_POST['idestudiante'];
+        $idprograma=$_POST['idprograma'];
+        //echo $idestudiante;
+        $query=$this->db->query("SELECT * FROM tramite");
+        foreach ($query->result() as $row){
+            $this->db->query ("INSERT INTO estudiantetramite 
+SET idestudiante='$idestudiante' ,idprograma='$idprograma', idtramite='".$row->idtramite."',estado='".$_POST['d'.$row->idtramite]."'
+ON DUPLICATE KEY UPDATE estado= '".$_POST['d'.$row->idtramite]."';");
+        }
+        echo 1;
+    }
+    function alumnostramites(){
+        $idestudiante=$_POST['idestudiante'];
+        $idprograma=$_POST['idprograma'];
+        $query=$this->db->query("SELECT t.idtramite,t.nombre,
+(
+CASE
+    WHEN (SELECT count(*) FROM estudiantetramite
+          WHERE idtramite=t.idtramite AND idestudiante='$idestudiante'AND idprograma='$idprograma')=0 THEN 'NO'
+    ELSE (SELECT estado FROM estudiantetramite
+          WHERE idtramite=t.idtramite AND idestudiante='$idestudiante'AND idprograma='$idprograma')
+END
+)
+as estado
+FROM tramite t");
+        $row=$query->result_array();
+        echo json_encode($row);
+    }
     function updatepagos(){
         $idestudiante=$_POST['idestudiante'];
         $idprograma=$_POST['idprograma'];
@@ -103,6 +149,18 @@ ON DUPLICATE KEY UPDATE estado= '".$_POST['d'.$row->iddocumento]."';");
             $this->db->query("INSERT INTO pago 
 SET idestudiante='$idestudiante' ,idprograma='$idprograma', idtipopago='".$row->idtipopago."',monto='".$_POST['p'.$row->idtipopago]."'
 ON DUPLICATE KEY UPDATE monto= '".$_POST['p'.$row->idtipopago]."';");
+        }
+        echo 1;
+    }
+    function updatenotas(){
+        $idestudiante=$_POST['idestudiante'];
+        $idprograma=$_POST['idprograma'];
+        //echo $idestudiante;
+        $query=$this->db->query("SELECT * FROM modulo WHERE idprograma='$idprograma'");
+        foreach ($query->result() as $row){
+            $this->db->query("INSERT INTO estudiantemodulo 
+SET idestudiante='$idestudiante',idmodulo='".$row->idmodulo."',nota='".$_POST['n'.$row->idmodulo]."'
+ON DUPLICATE KEY UPDATE nota= '".$_POST['n'.$row->idmodulo]."';");
         }
         echo 1;
     }

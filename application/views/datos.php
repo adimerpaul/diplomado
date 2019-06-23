@@ -72,10 +72,12 @@
                     </script>
                 </div>
             </div>
+            <?php if ($_SESSION['idrol']==1):?>
             <div style="text-align: center; width: 100%" >
                 <button type="submit" class="btn btn-success">Guardar</button>
                 <a href="<?=base_url()?>Alumno" type="button" class="btn btn-danger" >Cancelar</a>
             </div>
+            <?php endif;?>
         </form>
     </div>
 </div>
