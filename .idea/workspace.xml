@@ -4,18 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/application/controllers/Docentes.php" line="37" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d2aa755f-b274-4975-a3fc-6277258307ee" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Alumno.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Alumno.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Welcome.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Welcome.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/alumno.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/alumno.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/calificacion.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/calificacion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/datos.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/datos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/documentacion.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/documentacion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/pagos.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/pagos.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/templates/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/templates/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/alumno.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/alumno.js" afterDir="false" />
-    </list>
+    <list default="true" id="d2aa755f-b274-4975-a3fc-6277258307ee" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +21,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/templates/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
+            <state relative-caret-position="3825">
               <caret line="225" column="45" selection-start-line="225" selection-start-column="45" selection-end-line="225" selection-end-column="45" />
             </state>
           </provider>
@@ -41,8 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/Alumno.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="73" column="35" lean-forward="true" selection-start-line="62" selection-start-column="8" selection-end-line="73" selection-end-column="35" />
+            <state relative-caret-position="1241">
+              <caret line="73" column="35" selection-start-line="62" selection-start-column="8" selection-end-line="73" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -63,7 +52,7 @@
         <entry file="file://$PROJECT_DIR$/application/views/calificacion.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="322">
-              <caret line="40" column="13" lean-forward="true" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+              <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -227,7 +216,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="C:/firebase/name-of-app-here" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -269,17 +258,18 @@
       <workItem from="1561145459948" duration="11199000" />
       <workItem from="1561166146376" duration="5226000" />
       <workItem from="1561224811251" duration="12090000" />
+      <workItem from="1561253700334" duration="56000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110102000" />
+    <option name="totallyTimeSpent" value="110158000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.18003026" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.18229954" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
@@ -595,8 +585,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/templates/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
+        <state relative-caret-position="3825">
           <caret line="225" column="45" selection-start-line="225" selection-start-column="45" selection-end-line="225" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Alumno.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1241">
+          <caret line="73" column="35" selection-start-line="62" selection-start-column="8" selection-end-line="73" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -610,17 +607,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Alumno.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="73" column="35" lean-forward="true" selection-start-line="62" selection-start-column="8" selection-end-line="73" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/calificacion.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
-          <caret line="40" column="13" lean-forward="true" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+          <caret line="40" column="13" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
         </state>
       </provider>
     </entry>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-06-2019 a las 04:52:58
+-- Tiempo de generación: 24-06-2019 a las 21:36:10
 -- Versión del servidor: 10.1.40-MariaDB
 -- Versión de PHP: 7.3.5
 
@@ -118,14 +118,14 @@ INSERT INTO `estudiantedocumento` (`iddocumento`, `idestudiante`, `estado`, `idp
 (9, 4, 'NO', 3),
 (10, 3, 'NO', 3),
 (10, 3, 'NO', 5),
-(10, 4, 'SI', 3),
-(11, 3, 'NO', 3),
+(10, 4, 'NO', 3),
+(11, 3, 'SI', 3),
 (11, 3, 'SI', 5),
-(11, 4, 'SI', 3),
-(12, 3, 'NO', 3),
+(11, 4, 'NO', 3),
+(12, 3, 'SI', 3),
 (12, 3, 'NO', 5),
 (12, 4, 'NO', 3),
-(13, 3, 'NO', 3),
+(13, 3, 'SI', 3),
 (13, 3, 'SI', 5),
 (13, 4, 'NO', 3),
 (14, 3, 'SI', 3),
@@ -147,6 +147,18 @@ CREATE TABLE `estudiantemodulo` (
   `nota` decimal(11,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `estudiantemodulo`
+--
+
+INSERT INTO `estudiantemodulo` (`idestudiante`, `idmodulo`, `nota`) VALUES
+(3, 10, '50.00'),
+(3, 11, '0.00'),
+(3, 12, '0.00'),
+(3, 13, '10.00'),
+(3, 15, '0.00'),
+(3, 17, '10.00');
+
 -- --------------------------------------------------------
 
 --
@@ -167,7 +179,30 @@ CREATE TABLE `estudianteprograma` (
 INSERT INTO `estudianteprograma` (`idestudiante`, `idprograma`, `date`, `nota`) VALUES
 (3, 3, '2019-06-15 18:27:43', 0),
 (3, 5, '2019-06-15 18:28:39', 0),
-(4, 3, '2019-06-15 21:02:45', 0);
+(4, 3, '2019-06-22 16:17:16', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `estudiantetramite`
+--
+
+CREATE TABLE `estudiantetramite` (
+  `idestudiante` int(11) NOT NULL,
+  `idprograma` int(11) NOT NULL,
+  `estado` varchar(5) NOT NULL,
+  `idtramite` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `estudiantetramite`
+--
+
+INSERT INTO `estudiantetramite` (`idestudiante`, `idprograma`, `estado`, `idtramite`) VALUES
+(3, 3, 'SI', 1),
+(3, 3, 'NO', 2),
+(3, 5, 'SI', 1),
+(3, 5, 'SI', 2);
 
 -- --------------------------------------------------------
 
@@ -200,6 +235,27 @@ INSERT INTO `modulo` (`idmodulo`, `nombre`, `idprograma`, `codigo`, `fechainicio
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `multas`
+--
+
+CREATE TABLE `multas` (
+  `idmulta` int(11) NOT NULL,
+  `idprograma` int(11) NOT NULL,
+  `idestudiante` int(11) NOT NULL,
+  `monto` decimal(11,2) NOT NULL,
+  `motivo` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `multas`
+--
+
+INSERT INTO `multas` (`idmulta`, `idprograma`, `idestudiante`, `monto`, `motivo`) VALUES
+(4, 3, 3, '10.00', 'NO CONCLUSION');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `pago`
 --
 
@@ -216,9 +272,9 @@ CREATE TABLE `pago` (
 --
 
 INSERT INTO `pago` (`idestudiante`, `idtipopago`, `monto`, `fechapago`, `idprograma`) VALUES
-(3, 1, 15, '2019-06-22 01:25:35', 3),
+(3, 1, 2500, '2019-06-22 01:25:35', 3),
 (3, 1, 100, '2019-06-22 01:33:54', 5),
-(3, 2, 15, '2019-06-22 01:25:35', 3),
+(3, 2, 2500, '2019-06-22 01:25:35', 3),
 (3, 2, 10, '2019-06-22 01:33:54', 5);
 
 -- --------------------------------------------------------
@@ -316,6 +372,25 @@ INSERT INTO `tipopago` (`idtipopago`, `nombre`, `monto`, `fecha_actualizacion`) 
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tramite`
+--
+
+CREATE TABLE `tramite` (
+  `idtramite` int(11) NOT NULL,
+  `nombre` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tramite`
+--
+
+INSERT INTO `tramite` (`idtramite`, `nombre`) VALUES
+(1, 'POSTGRADO'),
+(2, 'SECRETARIA');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -375,7 +450,7 @@ ALTER TABLE `estudiantedocumento`
 -- Indices de la tabla `estudiantemodulo`
 --
 ALTER TABLE `estudiantemodulo`
-  ADD KEY `idestudiante` (`idestudiante`),
+  ADD PRIMARY KEY (`idestudiante`,`idmodulo`),
   ADD KEY `idmodulo` (`idmodulo`);
 
 --
@@ -386,12 +461,28 @@ ALTER TABLE `estudianteprograma`
   ADD KEY `idmodulo` (`idprograma`);
 
 --
+-- Indices de la tabla `estudiantetramite`
+--
+ALTER TABLE `estudiantetramite`
+  ADD PRIMARY KEY (`idestudiante`,`idprograma`,`idtramite`),
+  ADD KEY `idprograma` (`idprograma`),
+  ADD KEY `idtramite` (`idtramite`);
+
+--
 -- Indices de la tabla `modulo`
 --
 ALTER TABLE `modulo`
   ADD PRIMARY KEY (`idmodulo`),
   ADD KEY `idprograma` (`idprograma`),
   ADD KEY `iddocente` (`iddocente`);
+
+--
+-- Indices de la tabla `multas`
+--
+ALTER TABLE `multas`
+  ADD PRIMARY KEY (`idmulta`),
+  ADD KEY `idestudiante` (`idestudiante`),
+  ADD KEY `idprograma` (`idprograma`);
 
 --
 -- Indices de la tabla `pago`
@@ -426,6 +517,12 @@ ALTER TABLE `tipopago`
   ADD PRIMARY KEY (`idtipopago`);
 
 --
+-- Indices de la tabla `tramite`
+--
+ALTER TABLE `tramite`
+  ADD PRIMARY KEY (`idtramite`);
+
+--
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -456,6 +553,12 @@ ALTER TABLE `modulo`
   MODIFY `idmodulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
+-- AUTO_INCREMENT de la tabla `multas`
+--
+ALTER TABLE `multas`
+  MODIFY `idmulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
@@ -478,6 +581,12 @@ ALTER TABLE `rol`
 --
 ALTER TABLE `tipopago`
   MODIFY `idtipopago` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `tramite`
+--
+ALTER TABLE `tramite`
+  MODIFY `idtramite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
@@ -524,12 +633,40 @@ ALTER TABLE `estudianteprograma`
   ADD CONSTRAINT `estudianteprograma_ibfk_2` FOREIGN KEY (`idprograma`) REFERENCES `programa` (`idprograma`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Filtros para la tabla `estudiantetramite`
+--
+ALTER TABLE `estudiantetramite`
+  ADD CONSTRAINT `estudiantetramite_ibfk_1` FOREIGN KEY (`idestudiante`) REFERENCES `estudiante` (`idestudiante`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `estudiantetramite_ibfk_2` FOREIGN KEY (`idprograma`) REFERENCES `programa` (`idprograma`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `estudiantetramite_ibfk_3` FOREIGN KEY (`idtramite`) REFERENCES `tramite` (`idtramite`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `modulo`
+--
+ALTER TABLE `modulo`
+  ADD CONSTRAINT `modulo_ibfk_1` FOREIGN KEY (`iddocente`) REFERENCES `docente` (`idpersona`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `multas`
+--
+ALTER TABLE `multas`
+  ADD CONSTRAINT `multas_ibfk_1` FOREIGN KEY (`idestudiante`) REFERENCES `estudiante` (`idestudiante`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `multas_ibfk_2` FOREIGN KEY (`idprograma`) REFERENCES `programa` (`idprograma`);
+
+--
 -- Filtros para la tabla `pago`
 --
 ALTER TABLE `pago`
   ADD CONSTRAINT `pago_ibfk_1` FOREIGN KEY (`idestudiante`) REFERENCES `estudiante` (`idestudiante`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pago_ibfk_2` FOREIGN KEY (`idprograma`) REFERENCES `programa` (`idprograma`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `pago_ibfk_3` FOREIGN KEY (`idtipopago`) REFERENCES `tipopago` (`idtipopago`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`idpersona`) REFERENCES `persona` (`idpersona`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuario_ibfk_2` FOREIGN KEY (`idrol`) REFERENCES `rol` (`idrol`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
