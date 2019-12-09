@@ -43,7 +43,8 @@
                     <td>
                     <button type='button' class='btn btn-warning btn-mini' data-toggle='modal' data-target='#update' data-nombre='$row->nombre' data-id='$row->idprograma' data-version='$row->version' data-estado='$row->estado'> <i class='fa fa-pencil-square-o'></i> Modificar</button><br>
                     <a href='".base_url()."Programas/delete/$row->idprograma' type='button' class='btn btn-danger btn-mini eli' > <i class='fa fa-trash-o'></i> Eliminar</a>        <br>
-                    <button type='button' class='btn btn-info btn-mini' data-toggle='modal' data-target='#modulo' data-id='$row->idprograma' > <i class='fa fa-plus'></i> Modulos</button>
+                    <button type='button' class='btn btn-info btn-mini' data-toggle='modal' data-target='#modulo' data-id='$row->idprograma' > <i class='fa fa-plus'></i> Modulos</button> <br>
+                    <a type='button' class='btn btn-primary btn-mini'  href='".base_url()."Programas/archivo/$row->idprograma' > <i class='fa fa-file-pdf-o'></i> Notas</a>
                     </td>
                 </tr>";
         }
