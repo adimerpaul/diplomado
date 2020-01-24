@@ -10,16 +10,25 @@ class Welcome extends CI_Controller {
 	    $name=$_POST['name'];
         $password=$_POST['password'];
         $query = $this->db->query("SELECT * FROM usuario WHERE nombre='$name' AND clave='$password' AND estado='ACTIVO'");
-        echo $query->num_rows();
+        //echo $query->num_rows();
         if($query->num_rows()==1){
+            
             $row=$query->row();
             $_SESSION['idusuario']=$row->idusuario;
             $_SESSION['idpersona']=$row->idpersona;
+            // echo $this->User->consulta('idestudiante','estudiante','idpersona',$row->idusuario);
+            // exit;
+            
             $_SESSION['idestudiante']=$this->User->consulta('idestudiante','estudiante','idpersona',$row->idusuario);
             $_SESSION['idrol']=$row->idrol;
-            header('Location: '.base_url().'main');
+            
+            // echo "<meta http-equiv='refresh' content='0; url=".base_url()."Main'>";
+            header("Location: ".base_url()."Main");
+            exit;
         }else{
-            header('Location: '.base_url());
+            // echo "<meta http-equiv='refresh' content='0; url=".base_url()."'>";
+            header("Location: ".base_url());
+            exit;
         }
     }
     function logout(){
