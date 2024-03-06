@@ -42,22 +42,8 @@ SET time_zone = "+00:00";
 -- 	tipopago	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	2	InnoDB	latin1_swedish_ci	16 KB	-
 -- 	tramite	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	2	InnoDB	latin1_swedish_ci	16 KB	-
 -- 	usuario	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	4	InnoDB	latin1_swedish_ci	48 KB	-
-    DROP TABLE IF EXISTS `docente`;
-    DROP TABLE IF EXISTS `documento`;
-    DROP TABLE IF EXISTS `estudiante`;
-    DROP TABLE IF EXISTS `estudiantedocumento`;
-    DROP TABLE IF EXISTS `estudiantemodulo`;
-    DROP TABLE IF EXISTS `estudianteprograma`;
-    DROP TABLE IF EXISTS `estudiantetramite`;
-    DROP TABLE IF EXISTS `modulo`;
-    DROP TABLE IF EXISTS `multas`;
-    DROP TABLE IF EXISTS `pago`;
-    DROP TABLE IF EXISTS `persona`;
-    DROP TABLE IF EXISTS `programa`;
-    DROP TABLE IF EXISTS `rol`;
-    DROP TABLE IF EXISTS `tipopago`;
-    DROP TABLE IF EXISTS `tramite`;
-    DROP TABLE IF EXISTS `usuario`;
+DROP TABLE `docente`, `documento`, `estudiante`, `estudiantedocumento`, `estudiantemodulo`, `estudianteprograma`, `estudiantetramite`, `modulo`, `multas`, `pago`, `persona`, `programa`, `rol`, `tipopago`, `tramite`, `usuario`;
+
 
 
 CREATE TABLE `docente` (
@@ -257,12 +243,27 @@ CREATE TABLE `modulo` (
 --
 
 INSERT INTO `modulo` (`idmodulo`, `nombre`, `idprograma`, `codigo`, `fechainicio`, `fechafin`, `iddocente`) VALUES
-(10, 'Control de la Calidad Ambiental', 3, '', '2019-06-15', '2019-06-15', 10),
-(11, 'Estudios de Evaluación de Impactos Ambientale', 3, '', '2019-06-15', '2019-06-15', 10),
-(12, 'Valoracion Economica del Medio Ambiente', 3, '', '2019-06-15', '2019-06-15', 10),
-(13, 'Auditoria AmbientalEstudios de Evaluación de ', 3, '', '2019-06-15', '2019-06-15', 10),
-(15, 'Sistemas de Gestion Ambiental', 3, '', '2019-06-15', '2019-06-15', 10),
-(17, 'Valoracion Economica del Medio Ambiente', 5, '', '2019-06-15', '2019-06-15', 10);
+(10, 'Fundamentos de la asistencia técnica integral y desarrollo comunitario.', 3, '', '2019-06-15', '2019-06-15', 10),
+(11, 'Gestión de conflictos y psicología de la negociación.', 3, '', '2019-06-15', '2019-06-15', 10),
+(12, 'Territorio y desarrollo sostenible', 3, '', '2019-06-15', '2019-06-15', 10),
+(13, 'Contabilidad básica y financiera para proyectos de desarrollo.', 3, '', '2019-06-15', '2019-06-15', 10),
+(15, 'Diseño, operación y mantenimiento de proyectos de desarrollo.', 3, '', '2019-06-15', '2019-06-15', 10),
+(16, 'Fundamentos de S.I.G.  y Teledetección', 5, '', '2019-06-15', '2019-06-15', 10),
+(17, 'Procesamiento de Datos Georeferenciados', 5, '', '2019-06-15', '2019-06-15', 10),
+(18, 'Fotogrametria y Cartografia Digital', 5, '', '2019-06-15', '2019-06-15', 10),
+(19, ' Percepción Remota', 5, '', '2019-06-15', '2019-06-15', 10),
+(20, 'Hidráulica Avanzada y Métodos Numéricos', 5, '', '2019-06-15', '2019-06-15', 10),
+(21, 'Modelamiento Hidrológico', 5, '', '2019-06-15', '2019-06-15', 10),
+(22, 'Modelamiento Hidráulico de Canales y Ríos', 5, '', '2019-06-15', '2019-06-15', 10),
+(23, 'Hidrologia e Hidráulica Urbana', 5, '', '2019-06-15', '2019-06-15', 10),
+(24, 'Hidrologia Subterránea', 5, '', '2019-06-15', '2019-06-15', 10),
+(25, 'Diseño de Obras Hidráulicas', 5, '', '2019-06-15', '2019-06-15', 10),
+(26, 'Diseño de Presas . ', 5, '', '2019-06-15', '2019-06-15', 10),
+(27, 'Hidráulica Fluvial Avanzada', 5, '', '2019-06-15', '2019-06-15', 10),
+(28, 'Planificación y Gestión Integral de Recursos Hídricos', 5, '', '2019-06-15', '2019-06-15', 10),
+(29, 'Evaluación de Calidad de Aguas', 5, '', '2019-06-15', '2019-06-15', 10),
+(30, 'Seminario de Tesis', 5, '', '2019-06-15', '2019-06-15', 10),
+(31, 'Metodología de Investigación Científica', 5, '', '2019-06-15', '2019-06-15', 10);
 
 -- --------------------------------------------------------
 
@@ -357,7 +358,7 @@ CREATE TABLE `programa` (
 --
 
 INSERT INTO `programa` (`idprograma`, `nombre`, `version`, `estado`) VALUES
-(3, 'GESTION AMBIENTAL - SEMIPRESENCIAL VIRTUAL', '5', 'ACTIVO'),
+(3, 'ASISTENCIA TÉCNICA INTEGRAL ( ATI ) Y DESARROLLO COMUNITARIO DESCOM  2da .  VERSIÓN', '2', 'ACTIVO'),
 (5, 'GESTION AMBIENTAL', '2', 'ACTIVO');
 
 -- --------------------------------------------------------
