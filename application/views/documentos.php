@@ -13,21 +13,22 @@
         <i class="fa fa-file-archive-o"></i>
         Registrar documento
     </button>
-    <table id="example" class="display" style="width:100%">
-        <thead>
-        <tr>
-            <th>Nombre documento</th>
-            <th>Id documento</th>
-            <th>Opciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        $query = $this->db->query("SELECT * FROM documento");
+    <div class="table-responsive">
+        <table id="example" class="table" style="width:100%">
+            <thead>
+            <tr>
+                <th>Nombre documento</th>
+                <th>Id documento</th>
+                <th>Opciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            $query = $this->db->query("SELECT * FROM documento");
 
-        foreach ($query->result() as $row)
-        {
-            echo "<tr>
+            foreach ($query->result() as $row)
+            {
+                echo "<tr>
                     <td>".$row->nombre."</td>
                     <td>".$row->iddocumento."</td>
                     <td>
@@ -35,11 +36,12 @@
                     <a href='".base_url()."Documentos/delete/$row->iddocumento' type='button' class='btn btn-danger btn-mini eli' > <i class='fa fa-trash-o'></i>Eliminar</a>        
                     </td>
                 </tr>";
-        }
-        ?>
+            }
+            ?>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 

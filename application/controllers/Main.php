@@ -6,7 +6,7 @@ class Main extends CI_Controller{
          if ($_SESSION['idusuario']==""){
              header('Location: '.base_url());
          }
-         $data['title']='Main';
+         $data['title']='Post grado UTO';
          $this->load->View('templates/header',$data);
        $this->load->View('main',$data);
        $data['js']="";

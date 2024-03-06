@@ -45,8 +45,8 @@
                     <div class="center">
                         <h1>
                             <i class="ace-icon fa fa-leaf green"></i>
-                            <span class="red">UTO</span>
-                            <span class="white" id="id-text2"> FNI</span>
+                            <span class="red">POST</span>
+                            <span class="white" id="id-text2">GRADO</span>
                         </h1>
                         <h4 class="blue" id="id-company-text">&copy; Sistema de diplomado</h4>
                     </div>
@@ -63,8 +63,8 @@
                                     </h4>
 
                                     <div class="space-6"></div>
-
-                                    <form method="post" action="<?=base_url()?>Welcome/login">
+<!--@action="--><?php //=base_url()?><!--Welcome/login"-->
+                                    <form method="post" id="form" >
                                         <fieldset>
                                             <label class="block clearfix">
 														<span class="block input-icon input-icon-right">
@@ -103,7 +103,7 @@
                                 <div class="toolbar clearfix">
                                     <div>
                                         <a href="#" data-target="#forgot-box" class="forgot-password-link">
-                                            <i class="ace-icon fa fa-arrow-left"></i>
+<!--                                            <i class="ace-icon fa fa-arrow-left"></i>-->
                                             Olvide mi password
                                         </a>
                                     </div>
@@ -173,6 +173,29 @@
 <![endif]-->
 <script type="text/javascript">
     if('ontouchstart' in document.documentElement) document.write("<script src='<?=base_url()?>assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    window.onload = function() {
+        document.getElementById('form').onsubmit = function() {
+            var name = document.getElementsByName('name')[0].value;
+            var password = document.getElementsByName('password')[0].value;
+            if (name == '' || password == '') {
+                alert('Por favor, rellene todos los campos');
+                return false;
+            }
+            $.ajax({
+                type: 'POST',
+                url: '<?=base_url()?>Welcome/login',
+                data: {name: name, password: password},
+                success: function(data) {
+                    if (data == '1') {
+                        window.location.href = '<?=base_url()?>Main';
+                    } else {
+                        alert('Usuario o contraseña incorrectos');
+                    }
+                }
+            });
+            return false;
+        }
+    }
 </script>
 </body>
 </html>

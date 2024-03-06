@@ -18,24 +18,25 @@
         <i class="fa fa-user"></i>
         Registrar alumno
     </button>
-    <table id="example" class="display" style="width:100%">
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Ci</th>
-            <th>Telefono</th>
-            <th>Gmail</th>
-            <th>Genero</th>
-            <th>Opciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        $query = $this->db->query("SELECT * FROM persona WHERE idpersona in (select idpersona FROM estudiante)");
+    <div class="table-responsive">
+        <table id="example" class="table" style="width:100%">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Ci</th>
+                <th>Telefono</th>
+                <th>Gmail</th>
+                <th>Genero</th>
+                <th>Opciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            $query = $this->db->query("SELECT * FROM persona WHERE idpersona in (select idpersona FROM estudiante)");
 
-        foreach ($query->result() as $row)
-        {
-            echo "<tr>
+            foreach ($query->result() as $row)
+            {
+                echo "<tr>
                     <td>".$row->paterno." ".$row->materno." ".$row->nombres."</td>
                     <td>".$row->ci."</td>
                     <td>".$row->telefono."</td>
@@ -46,21 +47,22 @@
                     <button type=\"button\" class=\"btn btn-warning btn-mini\" data-toggle=\"modal\" data-target=\"#historial\" data-idestudiante=".$this->User->consulta("idestudiante","estudiante","idpersona",$row->idpersona)."> <i class='fa fa-file-archive-o'></i>Historial</button>        
                     </td>
                 </tr>";
-        }
-        ?>
+            }
+            ?>
 
-        </tbody>
-        <tfoot>
-        <tr>
-            <th>Nombre</th>
-            <th>Ci</th>
-            <th>Telefono</th>
-            <th>Gmail</th>
-            <th>Genero</th>
-            <th>Opciones</th>
-        </tr>
-        </tfoot>
-    </table>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>Nombre</th>
+                <th>Ci</th>
+                <th>Telefono</th>
+                <th>Gmail</th>
+                <th>Genero</th>
+                <th>Opciones</th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
 
 

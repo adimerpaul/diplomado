@@ -13,27 +13,28 @@
         <i class="fa fa-users"></i>
         Registrar Docente
     </button>
-    <table id="example" class="display" style="width:100%">
-        <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>CI</th>
-            <th>Telefono</th>
-            <th>Gmail</th>
-            <th>Genero</th>
-            <th>Opciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        $query = $this->db->query("SELECT * FROM persona p 
+    <div class="table-responsive">
+        <table id="example" class="table" style="width:100%">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>CI</th>
+                <th>Telefono</th>
+                <th>Gmail</th>
+                <th>Genero</th>
+                <th>Opciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            $query = $this->db->query("SELECT * FROM persona p 
 INNER JOIN docente d ON p.idpersona=d.idpersona
 INNER JOIN usuario u ON p.idpersona=u.idpersona
 WHERE u.idrol=3");
 
-        foreach ($query->result() as $row)
-        {
-            echo "<tr>
+            foreach ($query->result() as $row)
+            {
+                echo "<tr>
                     <td>".$row->paterno." ".$row->materno." ".$row->nombres."</td>
                     <td>".$row->ci."</td>
                     <td>".$row->telefono."</td>
@@ -44,22 +45,22 @@ WHERE u.idrol=3");
                     <a href='".base_url()."Docentes/delete/$row->idusuario' class='btn btn-danger btn-mini eli' > <i class='fa fa-trash'></i>Eliminar</a>
                     </td>
                 </tr>";
-        }
-        ?>
+            }
+            ?>
 
-        </tbody>
-        <tfoot>
-        <tr>
-            <th>Nombre</th>
-            <th>Ci</th>
-            <th>Telefono</th>
-            <th>Gmail</th>
-            <th>Genero</th>
-            <th>Opciones</th>
-        </tr>
-        </tfoot>
-    </table>
-
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>Nombre</th>
+                <th>Ci</th>
+                <th>Telefono</th>
+                <th>Gmail</th>
+                <th>Genero</th>
+                <th>Opciones</th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>
 
 

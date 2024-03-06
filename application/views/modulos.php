@@ -13,28 +13,29 @@
         <i class="fa fa-anchor"></i>
         Registrar Modulo
     </button>
-    <table id="example" class="display" style="width:100%">
-        <thead>
-        <tr>
-            <th>Nombre Modulo</th>
-            <th>Codigo</th>
-            <th>Fechas</th>
-            <th>Programa</th>
-            <th>Docente</th>
-            <th>Opciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        $query = $this->db->query("SELECT 
+    <div class="table-responsive">
+        <table id="example" class="display" style="width:100%">
+            <thead>
+            <tr>
+                <th>Nombre Modulo</th>
+                <th>Codigo</th>
+                <th>Fechas</th>
+                <th>Programa</th>
+                <th>Docente</th>
+                <th>Opciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            $query = $this->db->query("SELECT 
 m.nombre,m.codigo,m.fechainicio,m.fechafin,p.nombre as nombreprograma,pe.paterno,pe.materno,pe.nombres,m.idmodulo FROM modulo m 
 INNER JOIN docente d ON m.iddocente=d.idpersona 
 INNER JOIN persona pe ON pe.idpersona=d.idpersona 
 INNER JOIN programa p ON p.idprograma=m.idprograma");
 
-        foreach ($query->result() as $row)
-        {
-            echo "<tr>
+            foreach ($query->result() as $row)
+            {
+                echo "<tr>
                     <td>".$row->nombre."</td>
                     <td>".$row->codigo."</td>
                     <td>$row->fechainicio $row->fechafin</td>
@@ -46,11 +47,12 @@ INNER JOIN programa p ON p.idprograma=m.idprograma");
                     <a href='".base_url()."Modulos/delete/$row->idmodulo' type='button' class='btn btn-danger btn-mini eli' > <i class='fa fa-trash-o'></i>Eliminar</a>        
                     </td>
                 </tr>";
-        }
-        ?>
+            }
+            ?>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 

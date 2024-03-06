@@ -13,29 +13,30 @@
         <i class="fa fa-map-o"></i>
         Registrar Programa
     </button>
-    <table id="example" class="display" style="width:100%">
-        <thead>
-        <tr>
-            <th>Nombre programa</th>
-            <th>Version</th>
-            <th>Estado</th>
-            <th>Modulos</th>
-            <th>Opciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        $query = $this->db->query("SELECT * FROM programa");
+    <div class="table-responsive">
+        <table id="example" class="table" style="width:100%">
+            <thead>
+            <tr>
+                <th>Nombre programa</th>
+                <th>Version</th>
+                <th>Estado</th>
+                <th>Modulos</th>
+                <th>Opciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            $query = $this->db->query("SELECT * FROM programa");
 
-        foreach ($query->result() as $row)
-        {
-            $query2 = $this->db->query("SELECT * FROM modulo WHERE idprograma='$row->idprograma'");
-        $modulos="<table>";
-        foreach ($query2->result() as $row2) {
-            $modulos.="<tr><td>$row2->nombre</td><td><!--i class='fa fa-eye btn-mini btn-warning'></i--> <a href='".base_url()."Programas/deletemodulo/$row2->idmodulo'><i class='fa fa-times-circle btn-mini btn-danger eli'></i></a></td></tr>";
-        }
-        $modulos.="</table>";
-            echo "<tr>
+            foreach ($query->result() as $row)
+            {
+                $query2 = $this->db->query("SELECT * FROM modulo WHERE idprograma='$row->idprograma'");
+                $modulos="<table>";
+                foreach ($query2->result() as $row2) {
+                    $modulos.="<tr><td>$row2->nombre</td><td><!--i class='fa fa-eye btn-mini btn-warning'></i--> <a href='".base_url()."Programas/deletemodulo/$row2->idmodulo'><i class='fa fa-times-circle btn-mini btn-danger eli'></i></a></td></tr>";
+                }
+                $modulos.="</table>";
+                echo "<tr>
                     <td>".$row->nombre."</td>
                     <td>".$row->version."</td>
                     <td>".$row->estado."</td>
@@ -47,11 +48,12 @@
                     <a type='button' class='btn btn-primary btn-mini'  href='".base_url()."Programas/archivo/$row->idprograma' > <i class='fa fa-file-pdf-o'></i> Notas</a>
                     </td>
                 </tr>";
-        }
-        ?>
+            }
+            ?>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>
 <!-- Modulo -->
 <div class="modal fade" id="modulo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -26,7 +26,39 @@ SET time_zone = "+00:00";
 
 --
 -- Estructura de tabla para la tabla `docente`
---
+-- --
+--     	docente	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	1	InnoDB	latin1_swedish_ci	32 KB	-
+-- 	estudiante	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	2	InnoDB	latin1_swedish_ci	32 KB	-
+-- 	estudiantedocumento	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	27	InnoDB	latin1_swedish_ci	64 KB	-
+-- 	estudiantemodulo	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	6	InnoDB	latin1_swedish_ci	32 KB	-
+-- 	estudianteprograma	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	3	InnoDB	latin1_swedish_ci	32 KB	-
+-- 	estudiantetramite	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	4	InnoDB	latin1_swedish_ci	48 KB	-
+-- 	modulo	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	6	InnoDB	latin1_swedish_ci	48 KB	-
+-- 	multas	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	1	InnoDB	latin1_swedish_ci	48 KB	-
+-- 	pago	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	4	InnoDB	latin1_swedish_ci	48 KB	-
+-- 	persona	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	4	InnoDB	latin1_swedish_ci	16 KB	-
+-- 	programa	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	2	InnoDB	latin1_swedish_ci	16 KB	-
+-- 	rol	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	3	InnoDB	latin1_swedish_ci	16 KB	-
+-- 	tipopago	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	2	InnoDB	latin1_swedish_ci	16 KB	-
+-- 	tramite	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	2	InnoDB	latin1_swedish_ci	16 KB	-
+-- 	usuario	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	4	InnoDB	latin1_swedish_ci	48 KB	-
+    DROP TABLE IF EXISTS `docente`;
+    DROP TABLE IF EXISTS `documento`;
+    DROP TABLE IF EXISTS `estudiante`;
+    DROP TABLE IF EXISTS `estudiantedocumento`;
+    DROP TABLE IF EXISTS `estudiantemodulo`;
+    DROP TABLE IF EXISTS `estudianteprograma`;
+    DROP TABLE IF EXISTS `estudiantetramite`;
+    DROP TABLE IF EXISTS `modulo`;
+    DROP TABLE IF EXISTS `multas`;
+    DROP TABLE IF EXISTS `pago`;
+    DROP TABLE IF EXISTS `persona`;
+    DROP TABLE IF EXISTS `programa`;
+    DROP TABLE IF EXISTS `rol`;
+    DROP TABLE IF EXISTS `tipopago`;
+    DROP TABLE IF EXISTS `tramite`;
+    DROP TABLE IF EXISTS `usuario`;
+
 
 CREATE TABLE `docente` (
   `idpersona` int(11) NOT NULL,
@@ -408,10 +440,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idusuario`, `nombre`, `clave`, `estado`, `idrol`, `idpersona`) VALUES
-(9, 'admin', 'admin', 'ACTIVO', 1, 9),
-(10, 'pedro', 'pedro', 'ACTIVO', 3, 10),
-(11, 'ALUMNO', '101010', 'ACTIVO', 2, 11),
-(12, 'ALUMNO2', '202020', 'ACTIVO', 2, 12);
+(9, 'admin', MD5('admin'), 'ACTIVO', 1, 9),
+(10, 'pedro', MD5('pedro'), 'ACTIVO', 3, 10),
+(11, 'ALUMNO', MD5('101010'), 'ACTIVO', 2, 11),
+(12, 'ALUMNO2', MD5('202020'), 'ACTIVO', 2, 12);
 
 --
 -- Índices para tablas volcadas

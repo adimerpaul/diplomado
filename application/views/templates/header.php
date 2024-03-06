@@ -60,10 +60,10 @@
         </button>
 
         <div class="navbar-header pull-left">
-            <a href="index.html" class="navbar-brand">
+            <a href="<?=base_url()?>Main" class="navbar-brand">
                 <small>
                     <i class="fa fa-leaf"></i>
-                    UTO FNI
+                    Post Grado UTO
                 </small>
             </a>
         </div>
@@ -122,35 +122,35 @@
             try{ace.settings.loadState('sidebar')}catch(e){}
         </script>
 
-        <div class="sidebar-shortcuts" id="sidebar-shortcuts">
-            <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-                <button class="btn btn-success">
-                    <i class="ace-icon fa fa-signal"></i>
-                </button>
-
-                <button class="btn btn-info">
-                    <i class="ace-icon fa fa-pencil"></i>
-                </button>
-
-                <button class="btn btn-warning">
-                    <i class="ace-icon fa fa-users"></i>
-                </button>
-
-                <button class="btn btn-danger">
-                    <i class="ace-icon fa fa-cogs"></i>
-                </button>
-            </div>
-
-            <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-                <span class="btn btn-success"></span>
-
-                <span class="btn btn-info"></span>
-
-                <span class="btn btn-warning"></span>
-
-                <span class="btn btn-danger"></span>
-            </div>
-        </div><!-- /.sidebar-shortcuts -->
+<!--        <div class="sidebar-shortcuts" id="sidebar-shortcuts">-->
+<!--            <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">-->
+<!--                <button class="btn btn-success">-->
+<!--                    <i class="ace-icon fa fa-signal"></i>-->
+<!--                </button>-->
+<!---->
+<!--                <button class="btn btn-info">-->
+<!--                    <i class="ace-icon fa fa-pencil"></i>-->
+<!--                </button>-->
+<!---->
+<!--                <button class="btn btn-warning">-->
+<!--                    <i class="ace-icon fa fa-users"></i>-->
+<!--                </button>-->
+<!---->
+<!--                <button class="btn btn-danger">-->
+<!--                    <i class="ace-icon fa fa-cogs"></i>-->
+<!--                </button>-->
+<!--            </div>-->
+<!---->
+<!--            <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">-->
+<!--                <span class="btn btn-success"></span>-->
+<!---->
+<!--                <span class="btn btn-info"></span>-->
+<!---->
+<!--                <span class="btn btn-warning"></span>-->
+<!---->
+<!--                <span class="btn btn-danger"></span>-->
+<!--            </div>-->
+<!--        </div>-->
 
         <ul class="nav nav-list">
             <?php if ($_SESSION['idrol']==1):?>
