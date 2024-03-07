@@ -58,23 +58,33 @@ function actualizartramite(e) {
         "<input type='text' name='idprograma' value='"+idprograma+"' hidden>";
     Promise.all([
         $.ajax({
-            data:  parametros,
-            url:   'Alumno/alumnostramites',
-            type:  'post'})
+            data: parametros,
+            url: 'Alumno/alumnostramites',
+            type: 'post'})
     ]).then(function (e) {
-        var documentos=JSON.parse(e);
+        res = JSON.parse(e);
+        var documentos=res.row
+        idRol = res.idRol;
+        var disabled = '';
+        if (idRol==='1'){
+            disabled = '';
+        }else[
+            disabled = 'disabled'
+        ]
         documentos.forEach(function (documento) {
             if(documento.estado=="SI"){
-                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'> <input type='radio' name='d"+documento.idtramite+"' checked value='SI'> SI <input type='radio' name='d"+documento.idtramite+"' value='NO'>NO </div>";
+                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'> <input "+disabled+" type='radio' name='d"+documento.idtramite+"' checked value='SI'> SI <input "+disabled+" type='radio' name='d"+documento.idtramite+"' value='NO'>NO </div>";
             }else{
-                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'><input type='radio' name='d"+documento.idtramite+"' value='SI'> SI <input type='radio' name='d"+documento.idtramite+"' checked value='NO'>NO  </div>";
+                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'><input "+disabled+" type='radio' name='d"+documento.idtramite+"' value='SI'> SI <input "+disabled+" type='radio' name='d"+documento.idtramite+"' checked value='NO'>NO  </div>";
             }
         })
-        t+=("<div style='text-align: center; width: 100%' >\n" +
-            "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
-            "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cancelar</a>\n" +
-            "            </div>\n" +
-            "        </form>");
+        if (idRol==='1'){
+            t+=("<div style='text-align: center; width: 100%' >\n" +
+                "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
+                "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cancelar</a>\n" +
+                "            </div>\n" +
+                "        </form>");
+        }
         $('#opcion').html(t);
         $('.updatetramite').submit(updatetramite);
     })
@@ -111,15 +121,26 @@ function actualizarmulta(e) {
         "<input type='text' name='idprograma' value='"+idprograma+"' hidden>";
     Promise.all([
         $.ajax({
-            data:  parametros,
-            url:   'Alumno/alumnosmultas',
-            type:  'post'})
+            data: parametros,
+            url: 'Alumno/alumnosmultas',
+            type: 'post'})
     ]).then(function (e) {
-        var documentos=JSON.parse(e);
+        res = JSON.parse(e);
+        var documentos = res.row
+        idRol = res.idRol;
+
+        if (idRol==='1'){
+            disabled = '';
+        }else{
+            disabled = 'disabled';
+        }
+
         documentos.forEach(function (documento) {
-            t+="<div class='row'> <div class='col-sm-6'>"+documento.motivo+"</div> <div class='col-sm-4'> <input class='form-control'  name='m"+documento.idmulta+"' value='"+documento.monto+"'></div></div>";
+            t+="<div class='row'> <div class='col-sm-6'>"+documento.motivo+"</div> <div class='col-sm-4'> <input "+disabled+" class='form-control'  name='m"+documento.idmulta+"' value='"+documento.monto+"'></div></div>";
         })
-        t+="<div class='row'> <div class='col-sm-2'>MOTIVO</div><div class='col-sm-3'> <input class='form-control' name='motivo' placeholder='motivo' ></div><div class='col-sm-3'> <input class='form-control' name='monto' placeholder='monto' ></div><div class='col-sm-2'> <button type='submit' class='btn btn-warning'> <i class='fa fa-money'></i> Registrar multa</button></div></div>";
+        if (idRol==='1'){
+            t+="<div class='row'> <div class='col-sm-2'>MOTIVO</div><div class='col-sm-3'> <input class='form-control' name='motivo' placeholder='motivo' ></div><div class='col-sm-3'> <input class='form-control' name='monto' placeholder='monto' ></div><div class='col-sm-2'> <button type='submit' class='btn btn-warning'> <i class='fa fa-money'></i> Registrar multa</button></div></div>";
+        }
         t+=("        </form>");
         $('#opcion').html(t);
         $('.updatemultas').submit(updatemultas);
@@ -156,19 +177,30 @@ function actualizarnotas(e) {
         "<input type='text' name='idprograma' value='"+idprograma+"' hidden>";
     Promise.all([
         $.ajax({
-            data:  parametros,
-            url:   'Alumno/alumnosnotas',
-            type:  'post'})
+            data: parametros,
+            url: 'Alumno/alumnosnotas',
+            type: 'post'})
     ]).then(function (e) {
-        var documentos=JSON.parse(e);
+        res = JSON.parse(e);
+        var documentos=res.row
+        idRol = res.idRol;
+        var disabled = '';
+        if (idRol==='1'){
+            disabled = '';
+        }else{
+            disabled = 'disabled';
+
+        }
         documentos.forEach(function (documento) {
-            t+="    <div class='row'> <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-4'> <input class='form-control'  name='n"+documento.idmodulo+"' value='"+documento.nota+"' placeholder='notas' ></div></div>";
+            t+="    <div class='row'> <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-4'> <input "+disabled+" class='form-control'  name='n"+documento.idmodulo+"' value='"+documento.nota+"' placeholder='notas' ></div></div>";
         })
-        t+=("<div style='text-align: center; width: 100%' >\n" +
-            "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
-            "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cancelar</a>\n" +
-            "            </div>\n" +
-            "        </form>");
+        if (idRol==='1'){
+            t+=("<div style='text-align: center; width: 100%' >\n" +
+                "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
+                "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cancelar</a>\n" +
+                "            </div>\n" +
+                "        </form>");
+        }
         $('#opcion').html(t);
         $('.updatenotas').submit(actualizarno);
     })
@@ -204,20 +236,29 @@ function actualizarpagos(e) {
         "<input type='text' name='idprograma' value='"+idprograma+"' hidden>";
     Promise.all([
         $.ajax({
-            data:  parametros,
-            url:   'Alumno/alumnospagos',
-            type:  'post'})
+            data: parametros,
+            url: 'Alumno/alumnospagos',
+            type: 'post'})
     ]).then(function (e) {
-        var documentos=JSON.parse(e);
-        //console.log(e);
+        res = JSON.parse(e);
+        var documentos=res.row
+        idRol = res.idRol;
+        var disabled = '';
+        if (idRol==='1'){
+            disabled = '';
+        }else{
+            disabled = 'disabled';
+        }
         documentos.forEach(function (documento) {
-            t+=" <div class='col-sm-3'>"+documento.nombre+"("+documento.m1+")</div> <div class='col-sm-9'> <input class='form-control'  name='p"+documento.idtipopago+"' value='"+documento.monto+"' ></div>";
+            t+=" <div class='col-sm-3'>"+documento.nombre+"("+documento.m1+")</div> <div class='col-sm-9'> <input "+disabled+" class='form-control'  name='p"+documento.idtipopago+"' value='"+documento.monto+"' ></div>";
         })
-        t+=("<div style='text-align: center; width: 100%' >\n" +
-            "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
-            "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cancelar</a>\n" +
-            "            </div>\n" +
-            "        </form>");
+        if (idRol==='1'){
+            t+=("<div style='text-align: center; width: 100%' >\n" +
+                "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
+                "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cancelar</a>\n" +
+                "            </div>\n" +
+                "        </form>");
+        }
         $('#opcion').html(t);
         $('.updatepagos').submit(actualizarpa);
     })
@@ -253,23 +294,36 @@ function actualizardocumentos(e) {
                     "<input type='text' name='idprograma' value='"+idprograma+"' hidden>";
     Promise.all([
         $.ajax({
-        data:  parametros,
-        url:   'Alumno/alumnosdocumento',
-        type:  'post'})
+        data: parametros,
+        url: 'Alumno/alumnosdocumento',
+        type: 'post'})
     ]).then(function (e) {
-        var documentos=JSON.parse(e);
+        res = JSON.parse(e);
+        var documentos= res.row;
+        idRol = res.idRol;
+        disabled = '';
+        console.log('idRol',idRol);
+        if (idRol==='1'){
+            console.log('entro');
+            disabled = '';
+        }else{
+            console.log('no entro');
+            disabled = 'disabled';
+        }
         documentos.forEach(function (documento) {
             if(documento.tienedocumento=="SI"){
-                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'> <input type='radio' name='d"+documento.iddocumento+"' checked value='SI'> SI <input type='radio' name='d"+documento.iddocumento+"' value='NO'>NO </div>";
+                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'><input "+disabled+" type='radio' name='d"+documento.iddocumento+"' checked value='SI'> SI <input "+disabled+" type='radio' name='d"+documento.iddocumento+"' value='NO'>NO </div>";
             }else{
-                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'><input type='radio' name='d"+documento.iddocumento+"' value='SI'> SI <input type='radio' name='d"+documento.iddocumento+"' checked value='NO'>NO  </div>";
+                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'><input "+disabled+" type='radio' name='d"+documento.iddocumento+"' value='SI'> SI <input "+disabled+" type='radio' name='d"+documento.iddocumento+"' checked value='NO'>NO  </div>";
             }
         })
-       t+=("<div style='text-align: center; width: 100%' >\n" +
-            "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
-            "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cancelar</a>\n" +
-            "            </div>\n" +
-            "        </form>");
+        if (idRol==='1'){
+            t+=("<div style='text-align: center; width: 100%' >\n" +
+                "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
+                "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cancelar</a>\n" +
+                "            </div>\n" +
+                "        </form>");
+        }
         $('#opcion').html(t);
         $('.updatedocuments').submit(actualizardoc);
     })
@@ -328,76 +382,92 @@ function actualizar(e) {
         "dato": idpersona,
     };
     $.ajax({
-        data:  parametros,
-        url:   'Alumno/dat',
-        type:  'post',
+        data: parametros,
+        url: 'Alumno/dat',
+        type: 'post',
         beforeSend: function () {
             $('#opcion').html("Procesando, espere por favor...");
         },
-        success:  function (response) {
-            var datos=JSON.parse(response)[0];
-            var t='\n' +
-                '        <form method="post" style="padding-top: 20px" id="datos">\n' +
-                '            <div class="form-group row">\n' +
-                '                <label  class="col-sm-3 col-form-label">paterno</label>\n' +
-                '                <div class="col-sm-9">\n' +
-                '                    <input type="text" id="idpersona"  name="idpersona" hidden value="'+datos.idpersona+'">\n' +
-                '                    <input type="text" id="paterno" class="form-control" placeholder="paterno" name="paterno" required value="'+datos.paterno+'">\n' +
-                '                </div>\n' +
-                '            </div>\n' +
-                '            <div class="form-group row">\n' +
-                '                <label  class="col-sm-3 col-form-label">materno</label>\n' +
-                '                <div class="col-sm-9">\n' +
-                '                    <input type="text" id="materno" class="form-control" placeholder="materno" name="materno" value="'+datos.materno+'">\n' +
-                '                </div>\n' +
-                '            </div>\n' +
-                '            <div class="form-group row">\n' +
-                '                <label  class="col-sm-3 col-form-label">nombres</label>\n' +
-                '                <div class="col-sm-9">\n' +
-                '                    <input type="text" id="nombres" class="form-control" placeholder="nombres" name="nombres" required value="'+datos.nombres+'">\n' +
-                '                </div>\n' +
-                '            </div>\n' +
-                '            <div class="form-group row">\n' +
-                '                <label  class="col-sm-3 col-form-label">ci</label>\n' +
-                '                <div class="col-sm-9">\n' +
-                '                    <input type="text" id="ci" class="form-control" placeholder="ci" name="ci" required value="'+datos.ci+'">\n' +
-                '                </div>\n' +
-                '            </div>\n' +
-                '            <div class="form-group row">\n' +
-                '                <label  class="col-sm-3 col-form-label">profesion</label>\n' +
-                '                <div class="col-sm-9">\n' +
-                '                    <input type="text" id="profesion" class="form-control" placeholder="profesion" name="profesion" value="'+datos.profesion+'">\n' +
-                '                </div>\n' +
-                '            </div><div class="form-group row">\n' +
-                '                <label  class="col-sm-3 col-form-label">telefono</label>\n' +
-                '                <div class="col-sm-9">\n' +
-                '                    <input type="text" id="telefono" class="form-control" placeholder="telefono" name="telefono" value="'+datos.telefono+'">\n' +
-                '                </div>\n' +
-                '            </div><div class="form-group row">\n' +
-                '                <label  class="col-sm-3 col-form-label">celular</label>\n' +
-                '                <div class="col-sm-9">\n' +
-                '                    <input type="text" id="celular" class="form-control" placeholder="celular" name="celular" value="'+datos.celular+'">\n' +
-                '                </div>\n' +
-                '            </div><div class="form-group row">\n' +
-                '                <label  class="col-sm-3 col-form-label">email</label>\n' +
-                '                <div class="col-sm-9">\n' +
-                '                    <input type="email" id="email" class="form-control" placeholder="email" name="email" value="'+datos.email+'">\n' +
-                '                </div>\n' +
-                '            </div><div class="form-group row">\n' +
-                '                <label  class="col-sm-3 col-form-label">genero</label>\n' +
-                '                <div class="col-sm-9">\n' +
-                '                    <select name="genero" id="genero" class="form-control" required>\n' +
-                '                        <option value="">Selecionar...</option>\n' +
-                '                        <option value="MASCULINO">MASCULINO</option>\n' +
-                '                        <option value="FEMENINO">FEMENINO</option>\n' +
-                '                    </select>\n' +
-                '                </div>\n' +
-                '            </div>\n' +
-                '            <div style="text-align: center; width: 100%" >\n' +
-                '                <button type="submit" class="btn btn-success"> <i class="fa fa-save"></i> Actualizar</button>\n' +
-                '                <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-times"></i> Close</button>\n' +
-                '            </div>\n' +
-                '        </form>';
+        success: function (response) {
+            const res = JSON.parse(response);
+            const idRol = res.idRol;
+            var datos=res.row[0];
+            var botones = '';
+            var disabled = '';
+            if (idRol==='1'){
+                botones = `<button type="submit" class="btn btn-success"> <i class="fa fa-save"></i> Actualizar</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-times"></i> Close</button>`;
+                disabled = '';
+            }else{
+                botones = '';
+                disabled = 'disabled';
+            }
+            const t = `
+                    <form method="post" style="padding-top: 20px" id="datos">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">paterno</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="idpersona" name="idpersona" hidden value="${datos.idpersona}">
+                                <input ${disabled} type="text" id="paterno" class="form-control" placeholder="paterno" name="paterno" required value="${datos.paterno}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">materno</label>
+                            <div class="col-sm-9">
+                                <input ${disabled} type="text" id="materno" class="form-control" placeholder="materno" name="materno" value="${datos.materno}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">nombres</label>
+                            <div class="col-sm-9">
+                                <input ${disabled} type="text" id="nombres" class="form-control" placeholder="nombres" name="nombres" required value="${datos.nombres}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">ci</label>
+                            <div class="col-sm-9">
+                                <input ${disabled} type="text" id="ci" class="form-control" placeholder="ci" name="ci" required value="${datos.ci}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">profesion</label>
+                            <div class="col-sm-9">
+                                <input ${disabled} type="text" id="profesion" class="form-control" placeholder="profesion" name="profesion" value="${datos.profesion}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">telefono</label>
+                            <div class="col-sm-9">
+                                <input ${disabled} type="text" id="telefono" class="form-control" placeholder="telefono" name="telefono" value="${datos.telefono}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">celular</label>
+                            <div class="col-sm-9">
+                                <input ${disabled} type="text" id="celular" class="form-control" placeholder="celular" name="celular" value="${datos.celular}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">email</label>
+                            <div class="col-sm-9">
+                                <input ${disabled} type="email" id="email" class="form-control" placeholder="email" name="email" value="${datos.email}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">genero</label>
+                            <div class="col-sm-9">
+                                <select ${disabled} name="genero" id="genero" class="form-control" required>
+                                    <option value="">Selecionar...</option>
+                                    <option value="MASCULINO">MASCULINO</option>
+                                    <option value="FEMENINO">FEMENINO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="text-align: center; width: 100%">
+                            ${botones}
+                        </div>
+                    </form>
+                `;
             $('#opcion').html(t);
             $('#genero').val(datos.sexo);
             $('#datos').submit(saveestudent);

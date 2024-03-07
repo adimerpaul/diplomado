@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="icon" type="image/png" href="<?=base_url()?>assets/images/uto.png" />
     <meta charset="utf-8" />
     <title><?=$title?></title>
 
@@ -205,35 +206,41 @@
                     </a>
                 </li>
                 <li class="">
-                    <a href="<?=base_url()?>Documentacion/index/<?=$_SESSION['idestudiante']?>" >
+                    <a href="<?=base_url()?>Alumno" >
                         <i class="menu-icon fa fa-list"></i>
-                        <span class="menu-text"> Documentacion  </span>
+                        <span class="menu-text"> Alumnos </span>
                     </a>
                 </li>
-                <li class="">
-                    <a href="<?=base_url()?>Pagos/index/<?=$_SESSION['idestudiante']?>" >
-                        <i class="menu-icon fa fa-pencil-square-o"></i>
-                        <span class="menu-text"> Pagos efectuados </span>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="<?=base_url()?>Pagospormultas">
-                        <i class="menu-icon fa fa-list-alt"></i>
-                        <span class="menu-text"> Pagos por multas </span>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="<?=base_url()?>Calificacion/index/<?=$_SESSION['idestudiante']?>" >
-                        <i class="menu-icon fa fa-calendar"></i>
-                        <span class="menu-text"> Calificacion</span>
-                    </a>
-                </li>
-                <li class="">
-                    <a href="<?=base_url()?>Tramitedetitulo">
-                        <i class="menu-icon fa fa-file"></i>
-                        <span class="menu-text"> Tramite de titulo </span>
-                    </a>
-                </li>
+<!--                <li class="">-->
+<!--                    <a href="--><?php //=base_url()?><!--Documentacion/index/--><?php //=$_SESSION['idestudiante']?><!--" >-->
+<!--                        <i class="menu-icon fa fa-list"></i>-->
+<!--                        <span class="menu-text"> Documentacion  </span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li class="">-->
+<!--                    <a href="--><?php //=base_url()?><!--Pagos/index/--><?php //=$_SESSION['idestudiante']?><!--" >-->
+<!--                        <i class="menu-icon fa fa-pencil-square-o"></i>-->
+<!--                        <span class="menu-text"> Pagos efectuados </span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li class="">-->
+<!--                    <a href="--><?php //=base_url()?><!--Pagospormultas">-->
+<!--                        <i class="menu-icon fa fa-list-alt"></i>-->
+<!--                        <span class="menu-text"> Pagos por multas </span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li class="">-->
+<!--                    <a href="--><?php //=base_url()?><!--Calificacion/index/--><?php //=$_SESSION['idestudiante']?><!--" >-->
+<!--                        <i class="menu-icon fa fa-calendar"></i>-->
+<!--                        <span class="menu-text"> Calificacion</span>-->
+<!--                    </a>-->
+<!--                </li>-->
+<!--                <li class="">-->
+<!--                    <a href="--><?php //=base_url()?><!--Tramitedetitulo">-->
+<!--                        <i class="menu-icon fa fa-file"></i>-->
+<!--                        <span class="menu-text"> Tramite de titulo </span>-->
+<!--                    </a>-->
+<!--                </li>-->
             <?php endif?>
 
         </ul><!-- /.nav-list -->

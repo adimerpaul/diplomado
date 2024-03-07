@@ -14,10 +14,12 @@
         </h1>
     </div>
     <!-- Button trigger modal -->
+    <?php if ($_SESSION['idrol']==1):?>
     <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">
         <i class="fa fa-user"></i>
         Registrar alumno
     </button>
+    <?php endif;?>
     <div class="table-responsive">
         <table id="example" class="table" style="width:100%">
             <thead>
@@ -32,10 +34,19 @@
             </thead>
             <tbody>
             <?php
-            $query = $this->db->query("SELECT * FROM persona WHERE idpersona in (select idpersona FROM estudiante)");
+            if ($_SESSION['idrol'] == 1){
+                $query = $this->db->query("SELECT * FROM persona WHERE idpersona in (select idpersona FROM estudiante)");
+            }else{
+                $query = $this->db->query("SELECT * FROM persona WHERE idpersona=".$_SESSION['idpersona']);
+            }
 
             foreach ($query->result() as $row)
             {
+                if ($_SESSION['idrol'] == 1){
+                    $botonAdd="<button type=\"button\" class=\"btn btn-success btn-mini\" data-toggle=\"modal\" data-target=\"#update\" data-idestudiante=".$this->User->consulta("idestudiante","estudiante","idpersona",$row->idpersona)."> <i class='fa fa-history'></i>Add Programa</button>";
+                }else{
+                    $botonAdd="";
+                }
                 echo "<tr>
                     <td>".$row->paterno." ".$row->materno." ".$row->nombres."</td>
                     <td>".$row->ci."</td>
@@ -43,7 +54,7 @@
                     <td>".$row->email."</td>
                     <td>".$row->sexo."</td>
                     <td>
-                    <button type=\"button\" class=\"btn btn-success btn-mini\" data-toggle=\"modal\" data-target=\"#update\" data-idestudiante=".$this->User->consulta("idestudiante","estudiante","idpersona",$row->idpersona)."> <i class='fa fa-history'></i>Add Programa</button>
+                    $botonAdd
                     <button type=\"button\" class=\"btn btn-warning btn-mini\" data-toggle=\"modal\" data-target=\"#historial\" data-idestudiante=".$this->User->consulta("idestudiante","estudiante","idpersona",$row->idpersona)."> <i class='fa fa-file-archive-o'></i>Historial</button>        
                     </td>
                 </tr>";
@@ -206,7 +217,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-times-circle-o"></i> Close</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-times-circle-o"></i> Cerrar</button>
                     </div>
             </div>
         </div>

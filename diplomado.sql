@@ -24,26 +24,6 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `docente`
--- --
---     	docente	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	1	InnoDB	latin1_swedish_ci	32 KB	-
--- 	estudiante	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	2	InnoDB	latin1_swedish_ci	32 KB	-
--- 	estudiantedocumento	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	27	InnoDB	latin1_swedish_ci	64 KB	-
--- 	estudiantemodulo	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	6	InnoDB	latin1_swedish_ci	32 KB	-
--- 	estudianteprograma	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	3	InnoDB	latin1_swedish_ci	32 KB	-
--- 	estudiantetramite	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	4	InnoDB	latin1_swedish_ci	48 KB	-
--- 	modulo	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	6	InnoDB	latin1_swedish_ci	48 KB	-
--- 	multas	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	1	InnoDB	latin1_swedish_ci	48 KB	-
--- 	pago	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	4	InnoDB	latin1_swedish_ci	48 KB	-
--- 	persona	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	4	InnoDB	latin1_swedish_ci	16 KB	-
--- 	programa	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	2	InnoDB	latin1_swedish_ci	16 KB	-
--- 	rol	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	3	InnoDB	latin1_swedish_ci	16 KB	-
--- 	tipopago	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	2	InnoDB	latin1_swedish_ci	16 KB	-
--- 	tramite	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	2	InnoDB	latin1_swedish_ci	16 KB	-
--- 	usuario	 	Examinar Examinar	Estructura Estructura	Buscar Buscar	Insertar Insertar	Vaciar Vaciar	Eliminar Eliminar	4	InnoDB	latin1_swedish_ci	48 KB	-
-DROP TABLE `docente`, `documento`, `estudiante`, `estudiantedocumento`, `estudiantemodulo`, `estudianteprograma`, `estudiantetramite`, `modulo`, `multas`, `pago`, `persona`, `programa`, `rol`, `tipopago`, `tramite`, `usuario`;
-
 
 
 CREATE TABLE `docente` (
@@ -359,7 +339,7 @@ CREATE TABLE `programa` (
 
 INSERT INTO `programa` (`idprograma`, `nombre`, `version`, `estado`) VALUES
 (3, 'ASISTENCIA TÉCNICA INTEGRAL ( ATI ) Y DESARROLLO COMUNITARIO DESCOM  2da .  VERSIÓN', '2', 'ACTIVO'),
-(5, 'GESTION AMBIENTAL', '2', 'ACTIVO');
+(5, 'INGENIERÍA HIDROLÓGICA E HIDRAULICA', '1', 'ACTIVO');
 
 -- --------------------------------------------------------
 

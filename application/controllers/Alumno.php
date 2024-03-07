@@ -37,7 +37,7 @@ sexo='$sexo'
 ");
         $idpersona=$this->db->insert_id();
         $this->db->query("INSERT INTO estudiante SET idpersona='$idpersona',beca='$beca',observaciones='$observacion'");
-        $this->db->query("INSERT INTO usuario SET idpersona='$idpersona',nombre='$paterno',clave='$ci',idrol='2'");
+        $this->db->query("INSERT INTO usuario SET idpersona='$idpersona',nombre='$paterno',clave=md5('$ci'),idrol='2'");
 
         header("Location: ".base_url()."Alumno");
     }
@@ -55,7 +55,8 @@ VALUES('$idestudiante','$idprograma')");
         FROM multas m
         WHERE idprograma='$idprograma' AND idestudiante='$idestudiante'");
         $row=$query->result_array();
-        echo json_encode($row);
+        $idRol = $_SESSION['idrol'];
+        echo json_encode(["row"=>$row,"idRol"=>$idRol]);
     }
     function alumnosnotas(){
         $idestudiante=$_POST['idestudiante'];
@@ -73,7 +74,8 @@ as nota
 FROM modulo m
 WHERE m.idprograma='$idprograma'");
         $row=$query->result_array();
-        echo json_encode($row);
+        $idRol = $_SESSION['idrol'];
+        echo json_encode(["row"=>$row,"idRol"=>$idRol]);
     }
     function datos(){
         $idestudiante=$_POST['idestudiante'];
@@ -138,7 +140,8 @@ END
 as estado
 FROM tramite t");
         $row=$query->result_array();
-        echo json_encode($row);
+        $idRol = $_SESSION['idrol'];
+        echo json_encode(["row"=>$row,"idRol"=>$idRol]);
     }
     function updatepagos(){
         $idestudiante=$_POST['idestudiante'];
@@ -170,7 +173,8 @@ ON DUPLICATE KEY UPDATE nota= '".$_POST['n'.$row->idmodulo]."';");
         $dato=$_POST['dato'];
         $query = $this->db->query("SELECT * FROM $table WHERE $where='$dato'");
         $row=$query->result_array();
-        echo json_encode($row);
+        $idRol = $_SESSION['idrol'];
+        echo json_encode(["row"=>$row,"idRol"=>$idRol]);
     }
     function dat2(){
         $table=$_POST['table'];
@@ -210,7 +214,8 @@ END
 as tienedocumento
 FROM documento d");
         $row=$query->result_array();
-        echo json_encode($row);
+        $idRol = $_SESSION['idrol'];
+        echo json_encode(["row"=>$row,"idRol"=>$idRol]);
     }
     function alumnospagos(){
         $idestudiante=$_POST['idestudiante'];
@@ -229,7 +234,8 @@ END
 as monto
 FROM tipopago t");
         $row=$query->result_array();
-        echo json_encode($row);
+        $idRol = $_SESSION['idrol'];
+        echo json_encode(["row"=>$row,"idRol"=>$idRol]);
     }
     function updatestudent(){
         $email=$_POST['email'];
