@@ -198,15 +198,43 @@ ON DUPLICATE KEY UPDATE nota= '".$_POST['n'.$row->idmodulo]."';");
         $row=$query->result_array();
         echo json_encode($row);
     }
+    function estudiantePrograma($idPrograma, $idModulo){
+        $estudiantesPrograma = $this->db->query("
+        SELECT e.idestudiante, 
+               CONCAT(pe.paterno,' ',pe.materno,' ',pe.nombres) as nombre,
+               COALESCE(em.nota, 0) as nota
+        FROM programa p
+        INNER JOIN estudianteprograma ep ON p.idprograma = ep.idprograma
+        INNER JOIN estudiante e ON ep.idestudiante = e.idestudiante
+        INNER JOIN persona pe ON e.idpersona = pe.idpersona
+        LEFT JOIN estudiantemodulo em ON e.idestudiante = em.idestudiante AND em.idmodulo = '$idModulo'
+        WHERE p.idprograma = '$idPrograma'
+    ");
+        echo json_encode($estudiantesPrograma->result_array());
+    }
+
+    function actualizarNota(){
+        $idEstudiante = $_POST['idEstudiante'];
+        $idModulo = $_POST['idModulo'];
+        $nota = $_POST['nota'];
+
+        // Realizar la inserción o actualización
+        $query = "INSERT INTO estudiantemodulo (idestudiante, idmodulo, nota) VALUES ('$idEstudiante', '$idModulo', '$nota') 
+              ON DUPLICATE KEY UPDATE nota = '$nota'";
+        error_log($query);
+        $this->db->query($query);
+
+        echo 1;
+    }
     function alumnosdocumento(){
         $idestudiante=$_POST['idestudiante'];
         $idprograma=$_POST['idprograma'];
         $query = $this->db->query("SELECT d.iddocumento,d.nombre,
-( 
+(
 CASE
-    WHEN (SELECT count(*) FROM estudiantedocumento 
+    WHEN (SELECT count(*) FROM estudiantedocumento
           WHERE iddocumento=d.iddocumento AND idestudiante='$idestudiante'AND idprograma='$idprograma')=0 THEN 'NO'
-          WHEN (SELECT estado FROM estudiantedocumento 
+          WHEN (SELECT estado FROM estudiantedocumento
           WHERE iddocumento=d.iddocumento AND idestudiante='$idestudiante'AND idprograma='$idprograma')='NO' THEN 'NO'
     ELSE 'SI'
 END
@@ -248,7 +276,7 @@ FROM tipopago t");
         $celular=$_POST['celular'];
         $genero=$_POST['genero'];
         $idpersona=$_POST['idpersona'];
-        $this->db->query("UPDATE persona SET 
+        $this->db->query("UPDATE persona SET
 paterno='$paterno',
 materno='$materno',
 nombres='$nombres',
