@@ -32,6 +32,12 @@
 
     <!--[if lte IE 9]>
     <link rel="stylesheet" href="<?=base_url()?>assets/css/ace-ie.min.css" />
+<style>
+.zero{
+    padding: 0px !important;
+    margin: 0px !important;
+}
+</style>
     <![endif]-->
 
     <!-- inline styles related to this page -->
@@ -186,8 +192,8 @@
                 </a>
             </li>
             <li class="">
-                <a href="gallery.html">
-                    <i class="menu-icon fa fa-picture-o"></i>
+                <a href="<?=base_url()?>Listas" >
+                    <i class="menu-icon fa fa-file-o"></i>
                     <span class="menu-text"> Listas </span>
                 </a>
             </li>
@@ -241,6 +247,14 @@
 <!--                        <span class="menu-text"> Tramite de titulo </span>-->
 <!--                    </a>-->
 <!--                </li>-->
+            <?php endif?>
+            <?php if ($_SESSION['idrol']==3):?>
+                <li class="">
+                    <a href="<?=base_url()?>Listas" >
+                        <i class="menu-icon fa fa-file-o"></i>
+                        <span class="menu-text"> Listas </span>
+                    </a>
+                </li>
             <?php endif?>
 
         </ul><!-- /.nav-list -->
