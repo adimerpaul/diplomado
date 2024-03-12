@@ -33,7 +33,12 @@
             </thead>
             <tbody>
             <?php
-            $query = $this->db->query("SELECT * FROM programa");
+//            if ($_SESSION['idrol']==1)
+                $query = $this->db->query("SELECT * FROM programa");
+//            else if ($_SESSION['idrol']==2)
+//                $query = $this->db->query("SELECT * FROM programa WHERE idprograma in (SELECT idprograma FROM programa_usuario WHERE idusuario=".$_SESSION['idusuario'].")");
+//
+//            $query = $this->db->query("SELECT * FROM programa");
 
             foreach ($query->result() as $row)
             {

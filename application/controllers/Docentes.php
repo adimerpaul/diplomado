@@ -37,7 +37,7 @@ sexo='$sexo'
 ");
         $idpersona=$this->db->insert_id();
         $this->db->query("INSERT INTO docente SET idpersona='$idpersona'");
-        $this->db->query("INSERT INTO usuario SET idpersona='$idpersona',nombre='$user',clave='$password',idrol='3'");
+        $this->db->query("INSERT INTO usuario SET idpersona='$idpersona',nombre='$user',clave=md5('$password'),idrol='3'");
 
 
 
