@@ -1,4 +1,28 @@
 $('#insertProgram').submit(insertProgram);
+var idestudianteDato;
+var idprogramaDato;
+$(document).ready(function() {
+    $('#opcion').on('change', '#file', function () {
+        var file = $('#file')[0].files[0];
+        var data = new FormData();
+        data.append('file', file);
+        data.append('idestudiante', idestudianteDato);
+        data.append('idprograma', idprogramaDato);
+        $.ajax({
+            url: 'Alumno/uploadfile',
+            type: 'POST',
+            data: data,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                $('#frame').attr('src','uploads/'+response);
+            },
+            error: function () {
+                alert('Algo salio mal');
+            }
+        });
+    });
+});
 function insertProgram() {
     Promise.all([
         $.ajax({
@@ -301,13 +325,14 @@ function actualizardocumentos(e) {
         res = JSON.parse(e);
         var documentos= res.row;
         idRol = res.idRol;
+        base_url = res.base_url;
+        console.log(res.documento.length);
+        archivo = res.documento.length>0?res.documento[0].archivo:'';
+        console.log('archivo',archivo);
         disabled = '';
-        console.log('idRol',idRol);
         if (idRol==='1'){
-            console.log('entro');
             disabled = '';
         }else{
-            console.log('no entro');
             disabled = 'disabled';
         }
         documentos.forEach(function (documento) {
@@ -317,6 +342,9 @@ function actualizardocumentos(e) {
                 t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'><input "+disabled+" type='radio' name='d"+documento.iddocumento+"' value='SI'> SI <input "+disabled+" type='radio' name='d"+documento.iddocumento+"' checked value='NO'>NO  </div>";
             }
         })
+        //solo pdf
+        t+=("<input type='file' name='file' class='form-control' accept='application/pdf' id='file'>" +
+            "<iframe src='"+base_url+"/uploads/"+archivo+"' style='width: 100%; height: 300px;' id='frame'></iframe>");
         if (idRol==='1'){
             t+=("<div style='text-align: center; width: 100%' >\n" +
                 "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
@@ -324,6 +352,8 @@ function actualizardocumentos(e) {
                 "            </div>\n" +
                 "        </form>");
         }
+        idestudianteDato=idestudiante;
+        idprogramaDato=idprograma;
         $('#opcion').html(t);
         $('.updatedocuments').submit(actualizardoc);
     })

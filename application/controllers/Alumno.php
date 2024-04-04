@@ -12,6 +12,26 @@ class Alumno extends CI_Controller{
         $data['js']="<script src='".base_url()."assets/js/alumno.js'></script>";
         $this->load->View('templates/footer',$data);
     }
+    function uploadfile(){
+        $idestudiante=$_POST['idestudiante'];
+        $idprograma=$_POST['idprograma'];
+
+        $file=$_FILES['file'];
+        $ruta="uploads/";
+        $nombre=time().".pdf";
+        $temp=$file['tmp_name'];
+        $ruta=$ruta.$nombre;
+        move_uploaded_file($temp,$ruta);
+
+//        verificamos is existe en documentoarchivo
+        $query=$this->db->query("SELECT * FROM documentoarchivo WHERE idestudiante='$idestudiante' AND idprograma='$idprograma'");
+        if ($query->num_rows()>0){
+            $this->db->query("UPDATE documentoarchivo SET archivo='$nombre' WHERE idestudiante='$idestudiante' AND idprograma='$idprograma'");
+        }else{
+            $this->db->query("INSERT INTO documentoarchivo SET idestudiante='$idestudiante',idprograma='$idprograma',archivo='$nombre'");
+        }
+        echo $nombre;
+    }
     function insert(){
         $paterno=$_POST['paterno'];
         $materno=$_POST['materno'];
@@ -242,8 +262,12 @@ END
 as tienedocumento
 FROM documento d");
         $row=$query->result_array();
+        //buscamos en docuemntoarchivo
+        $query=$this->db->query("SELECT archivo FROM documentoarchivo WHERE idestudiante='$idestudiante' AND idprograma='$idprograma'");
+        $documento=$query->result_array();
         $idRol = $_SESSION['idrol'];
-        echo json_encode(["row"=>$row,"idRol"=>$idRol]);
+        $base_url = base_url();
+        echo json_encode(["row"=>$row,"idRol"=>$idRol, "base_url" => $base_url, "documento" => $documento]);
     }
     function alumnospagos(){
         $idestudiante=$_POST['idestudiante'];

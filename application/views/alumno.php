@@ -214,6 +214,7 @@
                             <p id="contenedor"></p>
                         </div>
                         <div id="opcion"  class="col-sm-10">
+<!--                            Acaba va el codigo-->
                         </div>
                     </div>
                     <div class="modal-footer">
