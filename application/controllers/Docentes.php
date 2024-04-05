@@ -64,7 +64,7 @@ sexo='$sexo'
         $query = $this->db->query("UPDATE  usuario
 SET
 nombre ='$nombre'
-, clave ='$clave'
+, clave = md5('$clave')
 , estado ='$estado' WHERE idusuario='$idusuario'");
         header("Location: ".base_url()."Docentes");
     }

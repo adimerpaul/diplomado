@@ -21,6 +21,7 @@
 <!--    </button>-->
     <?php endif;?>
     <div class="table-responsive">
+<!--        <pre>--><?php //echo $_SESSION['idrol'];?><!--</pre>-->
         <table id="example" class="table" style="width:100%">
             <thead>
             <tr>
@@ -33,20 +34,32 @@
             </thead>
             <tbody>
             <?php
-//            if ($_SESSION['idrol']==1)
+            if ($_SESSION['idrol']==1)
                 $query = $this->db->query("SELECT * FROM programa");
-//            else if ($_SESSION['idrol']==2)
-//                $query = $this->db->query("SELECT * FROM programa WHERE idprograma in (SELECT idprograma FROM programa_usuario WHERE idusuario=".$_SESSION['idusuario'].")");
-//
+            else if ($_SESSION['idrol']==3){
+                $query = $this->db->query("SELECT * FROM programa WHERE idprograma in (SELECT idprograma FROM modulo WHERE iddocente = ".$_SESSION['idusuario'].")");
+            }
 //            $query = $this->db->query("SELECT * FROM programa");
 
             foreach ($query->result() as $row)
             {
-                $modulosQuery = $this->db->query("SELECT m.nombre, concat(p.paterno,' ',p.materno,' ',p.nombres) docente, m.idmodulo
+                if ($_SESSION['idrol']==1){
+                    $modulosQuery = $this->db->query("SELECT m.nombre, concat(p.paterno,' ',p.materno,' ',p.nombres) docente, m.idmodulo
                     FROM modulo m
                     inner join usuario u on m.iddocente = u.idusuario
                     inner join persona p on u.idpersona = p.idpersona
                     WHERE idprograma='$row->idprograma'");
+                    $botonNotas="<a type='button' class='btn btn-primary btn-mini' target='_blank'  href='".base_url()."Programas/archivo/$row->idprograma' > <i class='fa fa-file-pdf-o'></i> Notas</a>";
+                }
+                else if ($_SESSION['idrol']==3){
+                    $modulosQuery = $this->db->query("SELECT m.nombre, concat(p.paterno,' ',p.materno,' ',p.nombres) docente, m.idmodulo
+                    FROM modulo m
+                    inner join usuario u on m.iddocente = u.idusuario
+                    inner join persona p on u.idpersona = p.idpersona
+                    WHERE idprograma='$row->idprograma' and iddocente=".$_SESSION['idusuario']);
+                    $botonNotas="";
+                }
+
                 $modulos="<table style='padding: 0px;margin: 0px'>";
                 foreach ($modulosQuery->result() as $modulo) {
                     $modulos.="<tr style='padding: 0px;margin: 0px'>
@@ -65,7 +78,7 @@
                     <td>$modulos</td>
                     <td>
                     <!--button type='button' class='btn btn-warning btn-mini' data-toggle='modal' data-target='#update' data-nombre='$row->nombre' data-id='$row->idprograma' data-version='$row->version' data-estado='$row->estado'> <i class='fa fa-pencil-square-o'></i> Modificar</button><br-->
-                    <a type='button' class='btn btn-primary btn-mini' target='_blank'  href='".base_url()."Programas/archivo/$row->idprograma' > <i class='fa fa-file-pdf-o'></i> Notas</a>
+                    $botonNotas
                     <a type='button' class='btn btn-success btn-mini' target='_blank'  href='".base_url()."Programas/lista/$row->idprograma' > <i class='fa fa-file-pdf-o'></i> Alumnos</a>
                     </td>
                 </tr>";
