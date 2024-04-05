@@ -21,6 +21,7 @@ class Programas extends CI_Controller{
     }
     function archivo($id){
         $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+        $pdf->SetTitle('CERTIFICADO DE CALIFICACIONES');
 //        $pdf->SetCreator(PDF_CREATOR);
 //        $pdf->SetAuthor('Nicola Asuni');
 //        $pdf->SetTitle('TCPDF Example 002');
@@ -91,6 +92,7 @@ WHERE p.idprograma='$id'");
 //        $pdf->SetTitle('TCPDF Example 002');
 //        $pdf->SetSubject('TCPDF Tutorial');
 //        $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+        $pdf->SetTitle('ESTUDIANTES REGISTRADOS');
         $estudiantes=$this->db->query("SELECT nombres,nombre,paterno,materno,e.idestudiante,pe.ci,pe.celular,pe.email  FROM estudiante e
 INNER JOIN estudianteprograma ep ON ep.idestudiante=e.idestudiante
 INNER JOIN programa p ON p.idprograma=ep.idprograma

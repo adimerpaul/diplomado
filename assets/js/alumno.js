@@ -56,7 +56,7 @@ $(document).ready(function() {
                             $('.actualizartramite').click(actualizartramite);
                         }
                     });
-                }, 0);
+                }, 100);
             }
         }
     });

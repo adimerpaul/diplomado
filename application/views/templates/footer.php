@@ -7,8 +7,8 @@
     <div class="footer-inner">
         <div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">Ace</span>
-							Application &copy; 2019
+							<span class="blue bolder">Postgrado UTO</span>
+							Application &copy; <?=date('Y')?>-<?=date('Y')+1?>
 						</span>
 
         </div>
@@ -42,10 +42,14 @@
 
 
 
-<script !src="">
+<script>
     $(document).ready(function() {
-        $('#example').DataTable();
-    } );
+        $('#example').DataTable({
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/2.0.3/i18n/es-ES.json"
+            }
+        });
+    });
 </script>
 
 <!-- inline scripts related to this page -->
