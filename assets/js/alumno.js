@@ -326,7 +326,7 @@ function actualizardocumentos(e) {
         var documentos= res.row;
         idRol = res.idRol;
         base_url = res.base_url;
-        console.log(res.documento.length);
+        // console.log(res.documento.length);
         archivo = res.documento.length>0?res.documento[0].archivo:'';
         console.log('archivo',archivo);
         disabled = '';
@@ -342,9 +342,13 @@ function actualizardocumentos(e) {
                 t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'><input "+disabled+" type='radio' name='d"+documento.iddocumento+"' value='SI'> SI <input "+disabled+" type='radio' name='d"+documento.iddocumento+"' checked value='NO'>NO  </div>";
             }
         })
-        //solo pdf
-        t+=("<input type='file' name='file' class='form-control' accept='application/pdf' id='file'>" +
-            "<iframe src='"+base_url+"/uploads/"+archivo+"' style='width: 100%; height: 300px;' id='frame'></iframe>");
+        t+=("<input type='file' name='file' class='form-control' accept='application/pdf' id='file'>");
+        if (archivo != ''){
+            t+=("<iframe src='"+base_url+"/uploads/"+archivo+"' style='width: 100%; height: 300px;' id='frame' class='form-control'></iframe>");
+        }else{
+            //ocultasr el frame
+            t+=("<iframe src='' style='width: 100%; height: 300px;' id='frame' class='form-control'></iframe>");
+        }
         if (idRol==='1'){
             t+=("<div style='text-align: center; width: 100%' >\n" +
                 "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
