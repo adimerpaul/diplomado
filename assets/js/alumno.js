@@ -1,6 +1,7 @@
 $('#insertProgram').submit(insertProgram);
 var idestudianteDato;
 var idprogramaDato;
+var idRol;
 $(document).ready(function() {
     $('#opcion').on('change', '#file', function () {
         var file = $('#file')[0].files[0];
@@ -22,16 +23,54 @@ $(document).ready(function() {
             }
         });
     });
+
+    //click historial si es usuarioid2
+
+    $.ajax({
+        url:'Alumno/rolGet',
+        success: function (response) {
+            const dato = JSON.parse(response);
+            if (dato.idRol==='2') {
+                $('#historial').modal('show');
+                setTimeout(function() {
+                    $('#historial').modal('show');
+                    $('#idestudiante2').val(dato.idestudiante);
+                    var parametros = {
+                        "idestudiante": dato.idestudiante
+                    };
+                    $.ajax({
+                        data: parametros,
+                        url: 'Alumno/datos',
+                        type: 'post',
+                        beforeSend: function () {
+                            $('#contenedor').html("Procesando, espere por favor...");
+                        },
+                        success:  function (response) {
+                            $('#opcion').html('');
+                            $('#contenedor').html(response);
+                            $('#personal').click(actualizar);
+                            $('.actualizardoc').click(actualizardocumentos);
+                            $('.actualizarpagos').click(actualizarpagos);
+                            $('.actualizarnotas').click(actualizarnotas);
+                            $('.actualizarmulta').click(actualizarmulta);
+                            $('.actualizartramite').click(actualizartramite);
+                        }
+                    });
+                }, 0);
+            }
+        }
+    });
 });
+
 function insertProgram() {
     Promise.all([
         $.ajax({
-            data:$(this).serialize(),
-            type:'POST',
-            url:'Alumno/update'
+            data: $(this).serialize(),
+            type: 'POST',
+            url: 'Alumno/update'
         })
     ]).then(function (e) {
-        if (e[0]==1){
+        if (e[0] == 1) {
             alert('Actualizado correctamente');
             $('#update').modal('hide');
         } else {
@@ -47,14 +86,15 @@ $('#update').on('show.bs.modal', function (event) {
 $('#historial').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
     var idestudiante = button.data('idestudiante') // Extract info from data-* attributes
+    console.log('idestudiante',idestudiante);
     $('#idestudiante2').prop('value', button.data('idestudiante'))
     var parametros = {
         "idestudiante": idestudiante
     };
     $.ajax({
-        data:  parametros,
-        url:   'Alumno/datos',
-        type:  'post',
+        data: parametros,
+        url: 'Alumno/datos',
+        type: 'post',
         beforeSend: function () {
             $('#contenedor').html("Procesando, espere por favor...");
         },

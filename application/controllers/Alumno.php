@@ -2,6 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Alumno extends CI_Controller{
+    function rolGet(){
+        $idRol = $_SESSION['idrol'];
+//        $idestudiante = $_SESSION['idusuario'];
+        $idestudiante = $this->User->consulta('idestudiante','estudiante','idpersona',$_SESSION['idusuario']);
+        echo json_encode(["idRol"=>$idRol, "idestudiante" => $idestudiante]);
+    }
     function index(){
         if ($_SESSION['idusuario']==""){
             header('Location: '.base_url());
