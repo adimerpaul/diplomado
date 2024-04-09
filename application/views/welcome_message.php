@@ -4,7 +4,8 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>Login Page - Ace Admin</title>
+    <title>Post Grado UTO</title>
+    <link rel="icon" type="image/png" href="<?=base_url()?>assets/images/uto.png" />
 
     <meta name="description" content="User login page" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -102,7 +103,10 @@
 
                                 <div class="toolbar clearfix">
                                     <div>
-                                        <a href="#" data-target="#forgot-box" class="forgot-password-link">
+
+                                        <a data-target="#forgot-box" class="forgot-password-link" href="https://api.whatsapp.com/send?phone=59172358466&text=Hola%20quiero%20recuperar%20mi%20contrase%C3%B1a"
+                                           target="_blank"
+                                        >
 <!--                                            <i class="ace-icon fa fa-arrow-left"></i>-->
                                             Olvide mi password
                                         </a>

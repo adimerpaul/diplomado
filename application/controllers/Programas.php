@@ -20,6 +20,7 @@ class Programas extends CI_Controller{
         header("Location: ".base_url()."Programas");
     }
     function archivo($id){
+        header('Content-Type: application/pdf');
         $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->SetTitle('CERTIFICADO DE CALIFICACIONES');
 //        $pdf->SetCreator(PDF_CREATOR);
@@ -54,9 +55,9 @@ WHERE p.idprograma='$id'");
             $pdf->Cell(15,5 , "", 0, 0, 'C');
             $pdf->Cell(20,5 , "SIGLA ", 1, 0, 'C');
             $pdf->Cell(70,5 , "NOMBRE ", 1, 0, 'C');
-            $pdf->Cell(20,5 , "CREDITOS ", 1, 0, 'C');
+            $pdf->Cell(30,5 , "FEC. APROBA. ", 1, 0, 'C');
             $pdf->Cell(10,5 , "NUM ", 1, 0, 'C');
-            $pdf->Cell(60,5 , "LITERAL ", 1, 0, 'C');
+            $pdf->Cell(50,5 , "LITERAL ", 1, 0, 'C');
             $pdf->Cell(15,5 , "", 0, 0, 'C');
             $query2=$this->db->query("SELECT idmodulo,m.nombre FROM modulo m INNER JOIN programa p ON m.idprograma=p.idprograma where p.idprograma='$id'");
             $pdf->SetFont('times', '', 9);
@@ -66,16 +67,21 @@ WHERE p.idprograma='$id'");
                 $query3=$this->db->query("SELECT * FROM estudiantemodulo WHERE idestudiante='$idestudiante' AND  idmodulo='$idmodulo'");
                 if ($query3->num_rows()>0){
                     $nota=$query3->row()->nota;
+
+                    $fechaAprovacion=$query3->row()->fechaAprovacion;
+                    //sacar primero 10 caracteres
+                    $fechaAprovacion=substr($fechaAprovacion,0,10);
                 }else{
                     $nota=0;
+                    $fechaAprovacion="";
                 }
                 $pdf->Ln();
                 $pdf->Cell(15,5 , "", 0, 0, 'C');
                 $pdf->Cell(20,5 , "", 1, 0, 'C');
                 $pdf->Cell(70,5 , " $row2->nombre", 1, 0, 'L');
-                $pdf->Cell(20,5 , " ", 1, 0, 'L');
+                $pdf->Cell(30,5 , "$fechaAprovacion", 1, 0, 'L');
                 $pdf->Cell(10,5 , " $nota", 1, 0, 'C');
-                $pdf->Cell(60,5 , NumerosEnLetras::convertir($nota), 1, 0, 'C');
+                $pdf->Cell(50,5 , NumerosEnLetras::convertir($nota), 1, 0, 'C');
                 $pdf->Cell(15,5 , "", 0, 0, 'C');
             }
 
