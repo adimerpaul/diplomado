@@ -145,9 +145,13 @@ ON DUPLICATE KEY UPDATE estado= '".$_POST['d'.$row->iddocumento]."';");
         //echo $idestudiante;
         $query=$this->db->query("SELECT * FROM tramite");
         foreach ($query->result() as $row){
-            $this->db->query ("INSERT INTO estudiantetramite 
-SET idestudiante='$idestudiante' ,idprograma='$idprograma', idtramite='".$row->idtramite."',estado='".$_POST['d'.$row->idtramite]."'
-ON DUPLICATE KEY UPDATE estado= '".$_POST['d'.$row->idtramite]."';");
+            if (isset($_POST['d'.$row->idtramite])) {
+                $this->db->query("INSERT INTO estudiantetramite 
+                SET idestudiante='$idestudiante' ,idprograma='$idprograma', idtramite='" . $row->idtramite . "',estado='" . $_POST['d' . $row->idtramite] . "'
+                ON DUPLICATE KEY UPDATE estado= '" . $_POST['d' . $row->idtramite] . "';");
+            }else{
+                $this->db->query("DELETE FROM estudiantetramite WHERE idestudiante='$idestudiante' AND idprograma='$idprograma' AND idtramite='".$row->idtramite."'");
+            }
         }
         echo 1;
     }

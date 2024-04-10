@@ -137,9 +137,15 @@ function actualizartramite(e) {
         ]
         documentos.forEach(function (documento) {
             if(documento.estado=="SI"){
-                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'> <input "+disabled+" type='radio' name='d"+documento.idtramite+"' checked value='SI'> SI <input "+disabled+" type='radio' name='d"+documento.idtramite+"' value='NO'>NO </div>";
+                //opcion en radio
+                // t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'> <input "+disabled+" type='radio' name='d"+documento.idtramite+"' checked value='SI'> SI <input "+disabled+" type='radio' name='d"+documento.idtramite+"' value='NO'>NO </div>";
+                //opcion en checkbox
+                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'> <input "+disabled+" type='checkbox' name='d"+documento.idtramite+"' checked value='SI'> SI </div>";
             }else{
-                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'><input "+disabled+" type='radio' name='d"+documento.idtramite+"' value='SI'> SI <input "+disabled+" type='radio' name='d"+documento.idtramite+"' checked value='NO'>NO  </div>";
+                //opcion en radio
+                // t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'><input "+disabled+" type='radio' name='d"+documento.idtramite+"' value='SI'> SI <input "+disabled+" type='radio' name='d"+documento.idtramite+"' checked value='NO'>NO  </div>";
+                //opcion en checkbox
+                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'><input "+disabled+" type='checkbox' name='d"+documento.idtramite+"' value='SI'> SI </div>";
             }
         })
         if (idRol==='1'){

@@ -59,7 +59,7 @@ WHERE p.idprograma='$id'");
             $pdf->Cell(10,5 , "NUM ", 1, 0, 'C');
             $pdf->Cell(50,5 , "LITERAL ", 1, 0, 'C');
             $pdf->Cell(15,5 , "", 0, 0, 'C');
-            $query2=$this->db->query("SELECT idmodulo,m.nombre FROM modulo m INNER JOIN programa p ON m.idprograma=p.idprograma where p.idprograma='$id'");
+            $query2=$this->db->query("SELECT idmodulo,m.nombre,m.codigo FROM modulo m INNER JOIN programa p ON m.idprograma=p.idprograma where p.idprograma='$id'");
             $pdf->SetFont('times', '', 9);
             $idestudiante=$row->idestudiante;
             foreach ($query2->result() as $row2){
@@ -77,7 +77,7 @@ WHERE p.idprograma='$id'");
                 }
                 $pdf->Ln();
                 $pdf->Cell(15,5 , "", 0, 0, 'C');
-                $pdf->Cell(20,5 , "", 1, 0, 'C');
+                $pdf->Cell(20,5 , "$row2->codigo", 1, 0, 'C');
                 $pdf->Cell(70,5 , " $row2->nombre", 1, 0, 'L');
                 $pdf->Cell(30,5 , "$fechaAprovacion", 1, 0, 'L');
                 $pdf->Cell(10,5 , " $nota", 1, 0, 'C');
