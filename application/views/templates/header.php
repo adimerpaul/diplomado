@@ -186,7 +186,7 @@
                 </a>
             </li>
             <li class="">
-                <a href="<?=base_url()?>TipoPagos">
+                <a href="<?=base_url()?>Tipopagos">
                     <i class="menu-icon fa fa-calendar"></i>
                     <span class="menu-text">Tipo pagos</span>
                 </a>
