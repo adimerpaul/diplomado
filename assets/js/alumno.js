@@ -26,40 +26,40 @@ $(document).ready(function() {
 
     //click historial si es usuarioid2
 
-    $.ajax({
-        url:'Alumno/rolGet',
-        success: function (response) {
-            const dato = JSON.parse(response);
-            if (dato.idRol==='2') {
-                $('#historial').modal('show');
-                setTimeout(function() {
-                    $('#historial').modal('show');
-                    $('#idestudiante2').val(dato.idestudiante);
-                    var parametros = {
-                        "idestudiante": dato.idestudiante
-                    };
-                    $.ajax({
-                        data: parametros,
-                        url: 'Alumno/datos',
-                        type: 'post',
-                        beforeSend: function () {
-                            $('#contenedor').html("Procesando, espere por favor...");
-                        },
-                        success:  function (response) {
-                            $('#opcion').html('');
-                            $('#contenedor').html(response);
-                            $('#personal').click(actualizar);
-                            $('.actualizardoc').click(actualizardocumentos);
-                            $('.actualizarpagos').click(actualizarpagos);
-                            $('.actualizarnotas').click(actualizarnotas);
-                            $('.actualizarmulta').click(actualizarmulta);
-                            $('.actualizartramite').click(actualizartramite);
-                        }
-                    });
-                }, 100);
-            }
-        }
-    });
+    // $.ajax({
+    //     url:'Alumno/rolGet',
+    //     success: function (response) {
+    //         const dato = JSON.parse(response);
+    //         if (dato.idRol==='2') {
+    //             $('#historial').modal('show');
+    //             setTimeout(function() {
+    //                 $('#historial').modal('show');
+    //                 $('#idestudiante2').val(dato.idestudiante);
+    //                 var parametros = {
+    //                     "idestudiante": dato.idestudiante
+    //                 };
+    //                 $.ajax({
+    //                     data: parametros,
+    //                     url: 'Alumno/datos',
+    //                     type: 'post',
+    //                     beforeSend: function () {
+    //                         $('#contenedor').html("Procesando, espere por favor...");
+    //                     },
+    //                     success:  function (response) {
+    //                         $('#opcion').html('');
+    //                         $('#contenedor').html(response);
+    //                         $('#personal').click(actualizar);
+    //                         $('.actualizardoc').click(actualizardocumentos);
+    //                         $('.actualizarpagos').click(actualizarpagos);
+    //                         $('.actualizarnotas').click(actualizarnotas);
+    //                         $('.actualizarmulta').click(actualizarmulta);
+    //                         $('.actualizartramite').click(actualizartramite);
+    //                     }
+    //                 });
+    //             }, 100);
+    //         }
+    //     }
+    // });
 });
 
 function insertProgram() {
