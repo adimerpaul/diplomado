@@ -105,7 +105,9 @@ ORDER BY paterno,materno,nombres
 INNER JOIN estudianteprograma ep ON ep.idestudiante=e.idestudiante
 INNER JOIN programa p ON p.idprograma=ep.idprograma
 INNER JOIN persona pe ON e.idpersona=pe.idpersona
-WHERE p.idprograma='$id'");
+WHERE p.idprograma='$id'
+ORDER BY paterno,materno,nombres
+");
         $programa=$this->db->query("SELECT * FROM programa WHERE idprograma='$id'")->row();
         $pdf->setPrintHeader(false);
         $pdf->setPrintFooter(false);
