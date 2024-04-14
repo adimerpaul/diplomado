@@ -204,10 +204,11 @@ function actualizarmulta(e) {
         }else{
             disabled = 'disabled';
         }
-
+        var total=0;
         documentos.forEach(function (documento) {
             t+="<div class='row'> <div class='col-sm-6'>"+documento.motivo+"</div> <div class='col-sm-4'> <input "+disabled+" class='form-control'  name='m"+documento.idmulta+"' value='"+documento.monto+"'></div></div>";
         })
+        t+="<div class='row'> <div class='col-sm-6'>TOTAL</div> <div class='col-sm-4'> <input disabled class='form-control'  name='total' value='"+total+"'></div></div>";
         if (idRol==='1'){
             t+="<div class='row'> <div class='col-sm-2'>MOTIVO</div><div class='col-sm-3'> <input class='form-control' name='motivo' placeholder='motivo' ></div><div class='col-sm-3'> <input class='form-control' name='monto' placeholder='monto' ></div><div class='col-sm-2'> <button type='submit' class='btn btn-warning'> <i class='fa fa-money'></i> Registrar multa</button></div></div>";
         }
