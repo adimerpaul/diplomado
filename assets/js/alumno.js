@@ -319,9 +319,12 @@ function actualizarpagos(e) {
         }else{
             disabled = 'disabled';
         }
+        var sum=0;
         documentos.forEach(function (documento) {
             t+=" <div class='col-sm-3'>"+documento.nombre+"("+documento.m1+")</div> <div class='col-sm-9'> <input "+disabled+" class='form-control'  name='p"+documento.idtipopago+"' value='"+documento.monto+"' ></div>";
+            sum+=parseFloat(documento.monto);
         })
+        t+="<div class='col-sm-3'>TOTAL</div> <div class='col-sm-9'> <input "+disabled+" class='form-control'  name='total' value='"+sum+"' ></div>";
         if (idRol==='1'){
             t+=("<div style='text-align: center; width: 100%' >\n" +
                 "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
