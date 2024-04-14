@@ -32,7 +32,9 @@ class Programas extends CI_Controller{
 INNER JOIN estudianteprograma ep ON ep.idestudiante=e.idestudiante
 INNER JOIN programa p ON p.idprograma=ep.idprograma
 INNER JOIN persona pe ON e.idpersona=pe.idpersona
-WHERE p.idprograma='$id'");
+WHERE p.idprograma='$id'
+ORDER BY paterno,materno,nombres
+");
         $pdf->setPrintHeader(false);
         $pdf->setPrintFooter(false);
         foreach ($query->result() as $row){
