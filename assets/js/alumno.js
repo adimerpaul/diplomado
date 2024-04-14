@@ -207,6 +207,7 @@ function actualizarmulta(e) {
         var total=0;
         documentos.forEach(function (documento) {
             t+="<div class='row'> <div class='col-sm-6'>"+documento.motivo+"</div> <div class='col-sm-4'> <input "+disabled+" class='form-control'  name='m"+documento.idmulta+"' value='"+documento.monto+"'></div></div>";
+            total+=parseFloat(documento.monto);
         })
         t+="<div class='row'> <div class='col-sm-6'>TOTAL</div> <div class='col-sm-4'> <input disabled class='form-control'  name='total' value='"+total+"'></div></div>";
         if (idRol==='1'){
