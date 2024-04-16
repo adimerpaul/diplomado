@@ -144,6 +144,68 @@ ORDER BY paterno,materno,nombres
         $pdf->Output('example_002.pdf', 'I');
 
     }
+    function listaNotas($idprograma,$idmodulo){
+        $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+//        $pdf->SetCreator(PDF_CREATOR);
+//        $pdf->SetAuthor('Nicola Asuni');
+//        $pdf->SetTitle('TCPDF Example 002');
+//        $pdf->SetSubject('TCPDF Tutorial');
+//        $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+        $pdf->SetTitle('ESTUDIANTES REGISTRADOS');
+        $estudiantes=$this->db->query("SELECT nombres,nombre,paterno,materno,e.idestudiante,pe.ci,pe.celular,pe.email  FROM estudiante e
+INNER JOIN estudianteprograma ep ON ep.idestudiante=e.idestudiante
+INNER JOIN programa p ON p.idprograma=ep.idprograma
+INNER JOIN persona pe ON e.idpersona=pe.idpersona
+WHERE p.idprograma='$idprograma'
+ORDER BY paterno,materno,nombres
+");
+        $programa=$this->db->query("SELECT * FROM programa WHERE idprograma='$idprograma'")->row();
+        $modulo = $this->db->query("SELECT * FROM modulo WHERE idmodulo='$idmodulo'")->row();
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
+
+        $pdf->AddPage();
+        $this->header($pdf);
+        $pdf->Text(0, 18, "ESTUDIANTES REGISTRADOS", 0, 0, true, 0, 0, 'C');
+        $pdf->SetFont('times', 'B', 10);
+        $pdf->Text(15,28 , "PROGRAMA DE POSTGRADO:", 0, 0, true,0,0,'L');
+        $pdf->SetFont('times', '', 10);
+        $pdf->Text(67,28 , "$programa->nombre", 0, 0, true,0,0,'L');
+        $pdf->SetFont('times', 'B', 10);
+        $pdf->Text(15,32 , "MODULO:", 0, 0, true,0,0,'L');
+        $pdf->SetFont('times', '', 10);
+        $pdf->Text(40,32 , "$modulo->nombre", 0, 0, true,0,0,'L');
+        $pdf->Ln();
+        $pdf->Ln();
+        $pdf->SetFont('times', 'B', 10);
+        $pdf->Cell(15,5 , "", 0, 0, 'C');
+        $pdf->Cell(10,5 , "#", 1, 0, 'C');
+        $pdf->Cell(90,5 , "NOMBRE COMPLETO", 1, 0, 'C');
+        $pdf->Cell(25,5 , "CI / DNI", 1, 0, 'C');
+//        $pdf->Cell(25,5 , "TELEFONO ", 1, 0, 'C');
+        $pdf->Cell(40 ,5 , "EMAIL", 1, 0, 'C');
+        //notas cell
+        $pdf->Cell(15 ,5 , "NOTAS", 1, 0, 'C');
+        $pdf->Cell(15,5 , "", 0, 0, 'C');
+        $pdf->SetFont('times', '', 10);
+        $cont=0;
+        foreach ($estudiantes->result() as $row){
+            $notaModulo = $this->db->query("SELECT * FROM estudiantemodulo WHERE idestudiante='$row->idestudiante' AND idmodulo='$modulo->idmodulo'")->row();
+            $nota = isset($notaModulo->nota)?$notaModulo->nota:0;
+            $cont++;
+            $pdf->Ln();
+            $pdf->Cell(15,5 , "", 0, 0, 'C');
+            $pdf->Cell(10,5 , "$cont", 1, 0, 'C');
+            $pdf->Cell(90,5 , "$row->paterno $row->materno $row->nombres", 1, 0, 'L');
+            $pdf->Cell(25,5 , "$row->ci", 1, 0, 'L');
+            $pdf->Cell(40,5 , "$row->email", 1, 0, 'L');
+            $pdf->Cell(15 ,5 , "$nota", 1, 0, 'C');
+            $pdf->Cell(15,5 , "", 0, 0, 'C');
+        }
+
+        $pdf->Output('example_002.pdf', 'I');
+
+    }
     function update(){
         $idprograma=$_POST['idprograma'];
         $nombre=$_POST['nombre'];

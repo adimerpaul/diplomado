@@ -68,6 +68,7 @@
                                     </td>
                                     <td style='padding: 0px;margin: 0px'>
                                         <button type='button' class='btn btn-warning btn-mini' data-toggle='modal' data-target='#update' data-nombre='$row->nombre' data-id='$row->idprograma' data-version='$row->version' data-estado='$row->estado' data-idModulo='$modulo->idmodulo' data-moduloNombre='$modulo->nombre'> <i class='fa fa-pencil-square-o'></i> Nota</button>
+                                        <a type='button' class='btn btn-success btn-mini' target='_blank'  href='".base_url()."Programas/listaNotas/$row->idprograma/$modulo->idmodulo' > <i class='fa fa-file-pdf-o'></i> Alumnos</a>
                                         $modulo->docente
                                     </td>
                                 </tr>";
