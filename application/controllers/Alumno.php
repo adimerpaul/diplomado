@@ -126,6 +126,14 @@ WHERE m.idprograma='$idprograma'");
         $this->db->query ("INSERT INTO multas SET idprograma='$idprograma' ,idestudiante='$idestudiante',monto='$monto',motivo='$motivo' ");
         echo 1;
     }
+    function duplicarmulta(){
+        $idmultae=$_POST['idmulta'];
+        $query=$this->db->query("SELECT * FROM multas WHERE idmulta='$idmultae'");
+        foreach ($query->result() as $row){
+            $this->db->query ("INSERT INTO multas SET idprograma='$row->idprograma' ,idestudiante='$row->idestudiante',monto='$row->monto',motivo='$row->motivo' ");
+        }
+        echo 1;
+    }
     function updatedocuments(){
         $idestudiante=$_POST['idestudiante'];
         $idprograma=$_POST['idprograma'];

@@ -200,22 +200,54 @@ function actualizarmulta(e) {
 
         if (idRol==='1'){
             disabled = '';
+            ocultar = '';
         }else{
             disabled = 'disabled';
+            ocultar = 'hidden';
         }
         var total=0;
         documentos.forEach(function (documento) {
-            t+="<div class='row'> <div class='col-sm-6'>"+documento.motivo+"</div> <div class='col-sm-4'> <input "+disabled+" class='form-control'  name='m"+documento.idmulta+"' value='"+documento.monto+"'></div></div>";
+            t+="<div class='row'>" +
+                "<div class='col-sm-6'>"+documento.motivo+"</div> <div class='col-sm-4'>" +
+                "<input "+disabled+" class='form-control'  name='m"+documento.idmulta+"' value='"+documento.monto+"'></div>" +
+                "<btn id-documento='"+documento.idmulta+"' class='btn btn-warning duplicar "+ocultar+"'>Duplicar</btn>"+
+                "</div>";
             total+=parseFloat(documento.monto);
         })
         t+="<div class='row'> <div class='col-sm-6'>TOTAL</div> <div class='col-sm-4'> <input disabled class='form-control'  name='total' value='"+total+"'></div></div>";
         if (idRol==='1'){
-            t+="<div class='row'> <div class='col-sm-2'>MOTIVO</div><div class='col-sm-3'> <input class='form-control' name='motivo' placeholder='motivo' ></div><div class='col-sm-3'> <input class='form-control' name='monto' placeholder='monto' ></div><div class='col-sm-2'> <button type='submit' class='btn btn-warning'> <i class='fa fa-money'></i> Registrar multa</button></div></div>";
+            t+="<div class='row'>" +
+                "<div class='col-sm-2'>MOTIVO</div>" +
+                "<div class='col-sm-3'> <input class='form-control' name='motivo' placeholder='motivo' ></div>" +
+                "<div class='col-sm-3'> <input class='form-control' name='monto' placeholder='monto' ></div>" +
+                "<div class='col-sm-2'> <button type='submit' class='btn btn-warning'> <i class='fa fa-money'></i> Registrar multa</button></div>" +
+                "</div>";
         }
         t+=("        </form>");
         $('#opcion').html(t);
         $('.updatemultas').submit(updatemultas);
+        $('.duplicar').click(duplicar);
     })
+    e.preventDefault();
+}
+function duplicar(e) {
+    var idmulta=$(this).attr('id-documento');
+    var parametros = {
+        "idmulta": idmulta
+    };
+    $.ajax({
+        data: parametros,
+        url: 'Alumno/duplicarmulta',
+        type: 'post',
+        success: function (response) {
+            if (response==1){
+                $('#opcion').html('');
+                alert('Duplicado correctamente');
+            } else {
+                alert('Algo salio mal');
+            }
+        }
+    });
     e.preventDefault();
 }
 function updatemultas(e) {
