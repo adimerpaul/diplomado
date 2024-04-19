@@ -19,6 +19,7 @@
             <tr>
                 <th>Nombre programa</th>
                 <th>Version</th>
+                <th>Costo</th>
                 <th>Estado</th>
                 <th>Modulos</th>
                 <th>Opciones</th>
@@ -39,6 +40,7 @@
                 echo "<tr>
                     <td>".$row->nombre."</td>
                     <td>".$row->version."</td>
+                    <td>".$row->costo."</td>
                     <td>".$row->estado."</td>
                     <td>$modulos</td>
                     <td>
@@ -155,6 +157,12 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                             <input type="text" class="form-control" placeholder="version" name="version" required>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label">Costo</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="costo" name="costo" required>
+                        </div>
+                    </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -188,6 +196,12 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                         <label for="version"  class="col-sm-3 col-form-label">Version</label>
                         <div class="col-sm-9">
                             <input id="version" type="text" class="form-control" placeholder="version" name="version" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label">Costo</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="costo" name="costo" required>
                         </div>
                     </div>
                     <div class="form-group row">

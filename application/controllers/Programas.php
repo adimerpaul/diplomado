@@ -16,7 +16,8 @@ class Programas extends CI_Controller{
     function insert(){
         $nombre=$_POST['nombre'];
         $version=$_POST['version'];
-        $query = $this->db->query("INSERT INTO programa SET nombre='$nombre', version='$version'");
+        $costo=$_POST['costo'];
+        $query = $this->db->query("INSERT INTO programa SET nombre='$nombre', version='$version', costo='$costo'");
         header("Location: ".base_url()."Programas");
     }
     function archivo($id){
@@ -210,9 +211,11 @@ ORDER BY paterno,materno,nombres
         $idprograma=$_POST['idprograma'];
         $nombre=$_POST['nombre'];
         $version=$_POST['version'];
+        $costo=$_POST['costo'];
         $estado=$_POST['estado'];
         $query = $this->db->query("UPDATE  programa
-SET nombre='$nombre', version='$version', estado='$estado' WHERE idprograma='$idprograma'");
+SET nombre='$nombre', version='$version', estado='$estado', costo='$costo'
+WHERE idprograma='$idprograma'");
 
         header("Location: ".base_url()."Programas");
     }
