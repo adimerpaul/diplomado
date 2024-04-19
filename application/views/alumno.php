@@ -43,7 +43,10 @@
             foreach ($query->result() as $row)
             {
                 if ($_SESSION['idrol'] == 1){
-                    $botonAdd="<button type=\"button\" class=\"btn btn-success btn-mini\" data-toggle=\"modal\" data-target=\"#update\" data-idestudiante=".$this->User->consulta("idestudiante","estudiante","idpersona",$row->idpersona)."> <i class='fa fa-history'></i>Add Programa</button>";
+                    $botonAdd="
+                    <button type=\"button\" class=\"btn btn-success btn-mini\" data-toggle=\"modal\" data-target=\"#update\" data-idestudiante=".$this->User->consulta("idestudiante","estudiante","idpersona",$row->idpersona)."> <i class='fa fa-history'></i>Agregar Programa</button>
+                    <button type=\"button\" class=\"btn btn-danger btn-mini eliminar \" data-idestudiante=".$this->User->consulta("idestudiante","estudiante","idpersona",$row->idpersona)."> <i class='fa fa-trash'></i>Eliminar</button>
+                    ";
                 }else{
                     $botonAdd="";
                 }
@@ -224,4 +227,22 @@
         </div>
     </div>
 </div>
-
+<script>
+    window.onload = function() {
+        //a fururo boton de eliminar
+        $(".eliminar").click(function () {
+            var idestudiante = $(this).data("idestudiante");
+            if (!confirm("Esta seguro de eliminar el registro?")){
+                return false;
+            }
+            $.ajax({
+                url: "<?=base_url()?>Alumno/delete",
+                type: "post",
+                data: {idestudiante: idestudiante},
+                success: function (data) {
+                    location.reload();
+                }
+            });
+        });
+    };
+</script>
