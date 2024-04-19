@@ -107,9 +107,37 @@ $('#historial').on('show.bs.modal', function (event) {
             $('.actualizarnotas').click(actualizarnotas);
             $('.actualizarmulta').click(actualizarmulta);
             $('.actualizartramite').click(actualizartramite);
+            $('.eliminarprograma').click(eliminarprograma);
         }
     });
 })
+function eliminarprograma(e) {
+    var idprograma=$(this).attr('idprograma');
+    var idestudiante=$(this).attr('idestudiante');
+    var parametros = {
+        "idprograma": idprograma,
+        "idestudiante": idestudiante
+    };
+    if (!confirm('Seguro de eliminar?')){
+        return false;
+    }
+    $.ajax({
+        data: parametros,
+        url: 'Alumno/deleteprograma',
+        type: 'post',
+        success: function (response) {
+            if (response==1){
+                $('#opcion').html('');
+                alert('Eliminado correctamente');
+                //hiden modal
+                $('#historial').modal('hide');
+            } else {
+                alert('Algo salio mal');
+            }
+        }
+    });
+    e.preventDefault();
+}
 function actualizartramite(e) {
     var idestudiante=$(this).attr('idestudiante');
     var idprograma=$(this).attr('idprograma');
