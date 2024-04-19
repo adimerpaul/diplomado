@@ -38,6 +38,16 @@ class Alumno extends CI_Controller{
         }
         echo $nombre;
     }
+    function deletefile(){
+        $idestudiante=$_POST['idestudiante'];
+        $idprograma=$_POST['idprograma'];
+        $query=$this->db->query("SELECT archivo FROM documentoarchivo WHERE idestudiante='$idestudiante' AND idprograma='$idprograma'");
+        $row=$query->row();
+        $archivo=$row->archivo;
+        unlink("uploads/".$archivo);
+        $this->db->query("DELETE FROM documentoarchivo WHERE idestudiante='$idestudiante' AND idprograma='$idprograma'");
+        echo 1;
+    }
     function insert(){
         $paterno=$_POST['paterno'];
         $materno=$_POST['materno'];
@@ -110,7 +120,6 @@ WHERE m.idprograma='$idprograma'");
         echo "<button id='personal' class='btn btn-success btn-mini' idpersona='$idpersona' style='width: 120px'><i class='fa fa-user'></i> Datos personales</button> <br>";
         foreach ($query->result() as $row)
         {
-//            boton de eliminar
         echo "<b>".substr($row->date,0,10)." ".$row->nombre."</b><br>
                <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-primary btn-mini actualizardoc' style='width: 120px'><i class='fa fa-file'></i> Documentacion</button> <br>
                <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-warning btn-mini actualizarpagos ' style='width: 120px'><i class='fa fa-money'></i> Pagos efectuados</button> <br>

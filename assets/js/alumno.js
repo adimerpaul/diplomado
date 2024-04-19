@@ -3,6 +3,25 @@ var idestudianteDato;
 var idprogramaDato;
 var idRol;
 $(document).ready(function() {
+    $('#opcion').on('click', '#eliminararchivo', function () {
+        var parametros = {
+            "idestudiante": idestudianteDato,
+            "idprograma": idprogramaDato
+        };
+        $.ajax({
+            data: parametros,
+            url: 'Alumno/deletefile',
+            type: 'post',
+            success: function (response) {
+                if (response==1){
+                    $('#frame').attr('src','');
+                    alert('Eliminado correctamente');
+                } else {
+                    alert('Algo salio mal');
+                }
+            }
+        });
+    });
     $('#opcion').on('change', '#file', function () {
         var file = $('#file')[0].files[0];
         var data = new FormData();
@@ -452,11 +471,13 @@ function actualizardocumentos(e) {
                 t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'><input "+disabled+" type='radio' name='d"+documento.iddocumento+"' value='SI'> SI <input "+disabled+" type='radio' name='d"+documento.iddocumento+"' checked value='NO'>NO  </div>";
             }
         })
-        t+=("<input type='file' name='file' class='form-control' accept='application/pdf' id='file'>");
+        //boton eliminar archivo
+        t+=("<div class='col-sm-2'>" +
+            "<button type='button' class='btn btn-danger' id='eliminararchivo'>Eliminar archivo</button>" +
+            "</div> <div class='col-sm-10'><input type='file' name='file' class='form-control' accept='application/pdf' id='file'></div>");
         if (archivo != ''){
             t+=("<iframe src='"+base_url+"/uploads/"+archivo+"' style='width: 100%; height: 300px;' id='frame' class='form-control'></iframe>");
         }else{
-            //ocultasr el frame
             t+=("<iframe src='' style='width: 100%; height: 300px;' id='frame' class='form-control'></iframe>");
         }
         if (idRol==='1'){
