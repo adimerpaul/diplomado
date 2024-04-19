@@ -41,10 +41,10 @@ class Alumno extends CI_Controller{
     function deletefile(){
         $idestudiante=$_POST['idestudiante'];
         $idprograma=$_POST['idprograma'];
-        $query=$this->db->query("SELECT archivo FROM documentoarchivo WHERE idestudiante='$idestudiante' AND idprograma='$idprograma'");
-        $row=$query->row();
-        $archivo=$row->archivo;
-        unlink("uploads/".$archivo);
+//        $query=$this->db->query("SELECT archivo FROM documentoarchivo WHERE idestudiante='$idestudiante' AND idprograma='$idprograma'");
+//        $row=$query->row();
+//        $archivo=$row->archivo;
+//        unlink("uploads/".$archivo);
         $this->db->query("DELETE FROM documentoarchivo WHERE idestudiante='$idestudiante' AND idprograma='$idprograma'");
         echo 1;
     }
