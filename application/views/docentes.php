@@ -41,7 +41,8 @@ WHERE u.idrol=3");
                     <td>".$row->email."</td>
                     <td>".$row->sexo."</td>
                     <td>
-                    <button type=\"button\" class=\"btn btn-warning btn-mini\" data-toggle=\"modal\" data-target=\"#update\" data-id='$row->idusuario'> <i class='fa fa-pencil'></i>Modificar</button>
+                    <button type='button' class='btn btn-warning btn-mini' data-toggle='modal' data-target='#update' data-id='$row->idusuario'> <i class='fa fa-pencil'></i>Modificar</button>
+                    <button type='button' class='btn btn-warning btn-mini' data-toggle='modal' data-target='#actualizar' data-id='$row->idusuario'> <i class='fa fa-pencil'></i>Datos</button>
                     <a href='".base_url()."Docentes/delete/$row->idusuario' class='btn btn-danger btn-mini eli' > <i class='fa fa-trash'></i>Eliminar</a>
                     </td>
                 </tr>";
@@ -142,6 +143,74 @@ WHERE u.idrol=3");
         </div>
     </div>
 </div>
+<div class="modal fade" id="actualizar" tabindex="-1" role="dialog" aria-labelledby="actualizarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="actualizarLabel">Editar persona</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="actualizar" method="post" action="<?=base_url()?>Docentes/actualizar">
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label">paterno</label>
+                        <div class="col-sm-3">
+                            <input type="text" id="paterno2" value="" class="form-control" placeholder="paterno" name="paterno" required>
+                            <input type="hidden" id="id2" name="id">
+                        </div>
+                        <label class="col-sm-1 col-form-label">materno</label>
+                        <div class="col-sm-3">
+                            <input type="text" id="materno2" class="form-control" placeholder="materno" name="materno" required>
+                        </div>
+                        <label class="col-sm-1 col-form-label">nombres</label>
+                        <div class="col-sm-3">
+                            <input type="text" id="nombres2" class="form-control" placeholder="nombres" name="nombres" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label">ci</label>
+                        <div class="col-sm-3">
+                            <input type="text" id="ci2" class="form-control" placeholder="ci" name="ci" required>
+                        </div>
+                        <label class="col-sm-1 col-form-label">profesion</label>
+                        <div class="col-sm-3">
+                            <input type="text" id="profesion2" class="form-control" placeholder="profesion" name="profesion" >
+                        </div>
+                        <label class="col-sm-1 col-form-label">email</label>
+                        <div class="col-sm-3">
+                            <input type="text" id="email2" class="form-control" placeholder="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-1 col-form-label">celular</label>
+                        <div class="col-sm-3">
+                            <input type="text" id="celular2" class="form-control" placeholder="celular" name="celular" >
+                        </div>
+                        <label class="col-sm-1 col-form-label">telefono</label>
+                        <div class="col-sm-3">
+                            <input type="text" id="telefono2" class="form-control" placeholder="telefono" name="telefono" >
+                        </div>
+                        <label class="col-sm-1 col-form-label">Genero</label>
+                        <div class="col-sm-3">
+                            <select name="sexo" class="form-control" id="sexo2" required>
+                                <option value="">Selecionar...</option>
+                                <option value="MASCULINO">MASCULINO</option>
+                                <option value="FEMENINO">FEMENINO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-trash-o"></i> Cerrae</button>
+                        <button type="submit" class="btn btn-warning"> <i class="fa fa-check"></i> Actualizar</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 
 
@@ -192,6 +261,20 @@ WHERE u.idrol=3");
 <script >
 
     window.onload=function (e) {
+        // Función para convertir a mayúsculas
+        function convertirAMayusculas(input) {
+            input.value = input.value.toUpperCase();
+        }
+
+        // Obtener todos los elementos de entrada
+        var inputs = document.querySelectorAll('input[type="text"]');
+
+        // Iterar sobre cada elemento de entrada y asignar el evento input
+        inputs.forEach(function(input) {
+            input.addEventListener('input', function() {
+                convertirAMayusculas(this);
+            });
+        });
         var eli=document.getElementsByClassName("eli");
         for (var i=0;i<eli.length;i++){
             eli[i].addEventListener("click",function (e) {
@@ -213,6 +296,37 @@ WHERE u.idrol=3");
         //     });
         //     return false;
         // });
+        $('#actualizar').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var id = button.data('id') // Extract info from data-* attributes
+            var parametros = {
+                "id": id
+            };
+            $.ajax({
+                data: parametros,
+                url: 'Docentes/find',
+                type: 'post',
+                beforeSend: function () {
+                    //$("#resultado").html("Procesando, espere por favor...");
+                },
+                success: function (response) {
+                    var datos = JSON.parse(response)[0];
+                    // console.log(datos);
+                    $('#id2').val(datos.idpersona);
+                    $('#paterno2').val(datos.paterno);
+                    $('#materno2').val(datos.materno);
+                    $('#nombres2').val(datos.nombres);
+                    $('#ci2').val(datos.ci);
+                    $('#profesion2').val(datos.profesion);
+                    $('#email2').val(datos.email);
+                    $('#celular2').val(datos.celular);
+                    $('#telefono2').val(datos.telefono);
+                    $('#sexo2').val(datos.sexo);
+                }
+            });
+
+        })
+
 
         $('#update').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Button that triggered the modal

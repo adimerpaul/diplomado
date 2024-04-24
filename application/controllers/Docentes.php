@@ -12,6 +12,30 @@ class Docentes extends CI_Controller{
         $data['js']="";
         $this->load->View('templates/footer',$data);
     }
+    function actualizar(){
+        $id=$_POST['id'];
+        $paterno=$_POST['paterno'];
+        $materno=$_POST['materno'];
+        $nombres=$_POST['nombres'];
+        $ci=$_POST['ci'];
+        $profesion=$_POST['profesion'];
+        $email=$_POST['email'];
+        $celular=$_POST['celular'];
+        $telefono=$_POST['telefono'];
+        $sexo=$_POST['sexo'];
+        $this->db->query("UPDATE persona SET
+paterno='$paterno',
+materno='$materno',
+nombres='$nombres',
+ci='$ci',
+profesion='$profesion',
+telefono='$telefono',
+celular='$celular',
+email='$email',
+sexo='$sexo' WHERE idpersona='$id'");
+        header("Location: ".base_url()."Docentes");
+    }
+
     function insert(){
         $paterno=$_POST['paterno'];
         $materno=$_POST['materno'];
@@ -55,6 +79,12 @@ sexo='$sexo'
 //        $query = $this->db->query("INSERT INTO usuario(nombre,clave,idpersona,idrol) VALUES ('$nombre','$clave','$idpersona','3');");
         header("Location: ".base_url()."Docentes");
 
+    }
+    function find(){
+        $id=$_POST['id'];
+        $query = $this->db->query("SELECT * FROM persona WHERE idpersona='$id'");
+        $data=$query->result_array();
+        echo json_encode($data);
     }
     function update(){
         $idusuario=$_POST['idusuario'];
