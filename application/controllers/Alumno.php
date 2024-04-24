@@ -149,6 +149,18 @@ WHERE m.idprograma='$idprograma'");
         $this->db->query("DELETE FROM estudiante WHERE idestudiante='$idestudiante'");
         echo 1;
     }
+    function editarmulta(){
+        $idmulta=$_POST['idmulta'];
+        $monto=$_POST['monto'];
+//        $sql = "UPDATE multas SET monto='$monto' WHERE idmulta='$idmulta'";
+        $query=$this->db->query("UPDATE multas SET monto='$monto' WHERE idmulta='$idmulta'");
+        echo 1;
+    }
+    function eliminarmulta(){
+        $idmulta=$_POST['idmulta'];
+        $query=$this->db->query("DELETE FROM multas WHERE idmulta='$idmulta'");
+        echo 1;
+    }
     function duplicarmulta(){
         $idmultae=$_POST['idmulta'];
         $query=$this->db->query("SELECT * FROM multas WHERE idmulta='$idmultae'");

@@ -256,8 +256,11 @@ function actualizarmulta(e) {
         documentos.forEach(function (documento) {
             t+="<div class='row'>" +
                 "<div class='col-sm-6'>"+documento.motivo+"</div> <div class='col-sm-4'>" +
-                "<input "+disabled+" class='form-control'  name='m"+documento.idmulta+"' value='"+documento.monto+"'></div>" +
-                "<btn id-documento='"+documento.idmulta+"' class='btn btn-warning duplicar "+ocultar+"'>Duplicar</btn>"+
+                "<input "+disabled+" class='form-control' id='monto"+documento.idmulta+"'  name='m"+documento.idmulta+"' value='"+documento.monto+"'></div>" +
+                "<!--btn id-documento='"+documento.idmulta+"' class='btn btn-warning duplicar "+ocultar+"'>Duplicar</btn-->"+
+                "<button id-documento='"+documento.idmulta+"' class='btn btn-warning editar'>Editar</button>"+
+                "<button id-documento='"+documento.idmulta+"' class='btn btn-danger eliminar'>Eliminar</button>"+
+
                 "</div>";
             total+=parseFloat(documento.monto);
         })
@@ -274,7 +277,50 @@ function actualizarmulta(e) {
         $('#opcion').html(t);
         $('.updatemultas').submit(updatemultas);
         $('.duplicar').click(duplicar);
+        $('.eliminar').click(eliminar);
+        $('.editar').click(editar);
     })
+    e.preventDefault();
+}
+function eliminar(e) {
+    var idmulta=$(this).attr('id-documento');
+    var parametros = {
+        "idmulta": idmulta
+    };
+    $.ajax({
+        data: parametros,
+        url: 'Alumno/eliminarmulta',
+        type: 'post',
+        success: function (response) {
+            if (response==1){
+                $('#opcion').html('');
+                alert('Eliminado correctamente');
+            } else {
+                alert('Algo salio mal');
+            }
+        }
+    });
+    e.preventDefault();
+}
+function editar(e) {
+    var idmulta=$(this).attr('id-documento');
+    var parametros = {
+        "idmulta": idmulta,
+        "monto": $('#monto'+idmulta).val()
+    };
+    $.ajax({
+        data: parametros,
+        url: 'Alumno/editarmulta',
+        type: 'post',
+        success: function (response) {
+            if (response==1){
+                $('#opcion').html('');
+                alert('Editado correctamente');
+            } else {
+                alert('Algo salio mal');
+            }
+        }
+    });
     e.preventDefault();
 }
 function duplicar(e) {
