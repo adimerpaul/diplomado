@@ -75,10 +75,10 @@
                                             </label>
 
                                             <label class="block clearfix">
-														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" name="password" placeholder="Password" />
-															<i class="ace-icon fa fa-lock"></i>
-														</span>
+                                                <span class="block input-icon input-icon-right">
+                                                    <input type="password" class="form-control" name="password" placeholder="Password" />
+                                                    <i class="ace-icon fa fa-eye" onclick="showPassword = !showPassword; this.className = showPassword ? 'ace-icon fa fa-eye' : 'ace-icon fa fa-eye-slash'; this.previousElementSibling.type = showPassword ? 'text' : 'password';"></i>
+                                                </span>
                                             </label>
 
                                             <div class="space"></div>
@@ -176,8 +176,11 @@
 <script src="<?=base_url()?>assets/js/jquery-1.11.3.min.js"></script>
 <![endif]-->
 <script type="text/javascript">
+    var showPassword = false;
     if('ontouchstart' in document.documentElement) document.write("<script src='<?=base_url()?>assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
     window.onload = function() {
+
+
         document.getElementById('form').onsubmit = function() {
             var name = document.getElementsByName('name')[0].value;
             var password = document.getElementsByName('password')[0].value;
