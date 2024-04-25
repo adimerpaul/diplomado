@@ -130,7 +130,7 @@ WHERE u.idrol=3");
                         </div>
                         <label class="col-sm-1 col-form-label">password</label>
                         <div class="col-sm-3">
-                            <input type="password" class="form-control" placeholder="password" name="password" required>
+                            <input type="" class="form-control" placeholder="password" name="password" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -236,7 +236,7 @@ WHERE u.idrol=3");
                     <div class="form-group row">
                         <label for="clave"  class="col-sm-3 col-form-label">Clave</label>
                         <div class="col-sm-9">
-                            <input id="clave" type="password" class="form-control" placeholder="clave" name="clave">
+                            <input id="clave" type="" class="form-control" placeholder="clave" name="clave">
                         </div>
                     </div>
                     <div class="form-group row">
