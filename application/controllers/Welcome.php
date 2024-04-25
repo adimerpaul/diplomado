@@ -2,6 +2,29 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Welcome extends CI_Controller {
+    public function cambiar(){
+        if ($_SESSION['idusuario']==""){
+            header('Location: '.base_url());
+        }
+        $data['title']='Alumno';
+        $this->load->View('templates/header',$data);
+        $this->load->View('cambiar',$data);
+        $data['js']="";
+        $this->load->View('templates/footer',$data);
+    }
+    public function cambiarPassword(){
+        $clave=$_POST['clave'];
+        $clave2=$_POST['clave2'];
+        $idusuario=$_SESSION['idusuario'];
+        $query = $this->db->query("SELECT * FROM usuario WHERE idusuario='$idusuario' AND clave='".md5($clave)."'");
+        if($query->num_rows()==1){
+            $this->db->query("UPDATE usuario SET clave='".md5($clave2)."' WHERE idusuario='$idusuario'");
+            echo 1;
+        }else{
+            echo 0;
+        }
+
+    }
 	public function index()
 	{
 		$this->load->view('welcome_message');
