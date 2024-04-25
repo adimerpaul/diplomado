@@ -105,7 +105,8 @@ $('#update').on('show.bs.modal', function (event) {
 $('#historial').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
     var idestudiante = button.data('idestudiante') // Extract info from data-* attributes
-    console.log('idestudiante',idestudiante);
+    $('#nombreUsuario').html(button.data('nombre'))
+    // console.log('idestudiante',idestudiante);
     $('#idestudiante2').prop('value', button.data('idestudiante'))
     var parametros = {
         "idestudiante": idestudiante
@@ -117,7 +118,7 @@ $('#historial').on('show.bs.modal', function (event) {
         beforeSend: function () {
             $('#contenedor').html("Procesando, espere por favor...");
         },
-        success:  function (response) {
+        success: function (response) {
             $('#opcion').html('');
             $('#contenedor').html(response);
             $('#personal').click(actualizar);

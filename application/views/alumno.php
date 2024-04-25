@@ -58,7 +58,9 @@
                     <td>".$row->sexo."</td>
                     <td>
                     $botonAdd
-                    <button type=\"button\" class=\"btn btn-warning btn-mini\" data-toggle=\"modal\" data-target=\"#historial\" data-idestudiante=".$this->User->consulta("idestudiante","estudiante","idpersona",$row->idpersona)."> <i class='fa fa-file-archive-o'></i>Historial</button>        
+                    <button type=\"button\" class=\"btn btn-warning btn-mini\" data-toggle=\"modal\" data-target=\"#historial\"
+                        data-nombre='".$row->paterno." ".$row->materno." ".$row->nombres."'
+                        data-idestudiante=".$this->User->consulta("idestudiante","estudiante","idpersona",$row->idpersona)."> <i class='fa fa-file-archive-o'></i>Historial</button>        
                     </td>
                 </tr>";
             }
@@ -178,8 +180,8 @@
                     <div class="form-group row">
                         <label  class="col-sm-3 col-form-label"> Seleccione Programa</label>
                         <div class="col-sm-9">
-                            <input type="text" id="idestudiante"  name="idestudiante" hidden>
-                            <select name="idmodulo"  class="form-control" required >
+<!--                            <input type="text" id="idestudiante"  name="idestudiante" hidden>-->
+                            <select name="idmodulo"  class="js-example-basic-single"  required >
                                 <?php
                                 $query = $this->db->query("SELECT * FROM programa  ");
 
@@ -208,6 +210,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
+                <label id="nombreUsuario"></label>
             </div>
             <div class="modal-body">
                     <div class="form-group row">
@@ -229,6 +232,8 @@
 </div>
 <script>
     window.onload = function() {
+        $('.js-example-basic-single').select2();
+
         //a fururo boton de eliminar
         $(".eliminar").click(function () {
             var idestudiante = $(this).data("idestudiante");
