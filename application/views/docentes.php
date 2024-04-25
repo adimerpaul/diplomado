@@ -261,20 +261,6 @@ WHERE u.idrol=3");
 <script >
 
     window.onload=function (e) {
-        // Función para convertir a mayúsculas
-        function convertirAMayusculas(input) {
-            input.value = input.value.toUpperCase();
-        }
-
-        // Obtener todos los elementos de entrada
-        var inputs = document.querySelectorAll('input[type="text"]');
-
-        // Iterar sobre cada elemento de entrada y asignar el evento input
-        inputs.forEach(function(input) {
-            input.addEventListener('input', function() {
-                convertirAMayusculas(this);
-            });
-        });
         var eli=document.getElementsByClassName("eli");
         for (var i=0;i<eli.length;i++){
             eli[i].addEventListener("click",function (e) {

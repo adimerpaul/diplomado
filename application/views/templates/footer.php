@@ -44,6 +44,20 @@
 
 <script>
     $(document).ready(function() {
+        // Función para convertir a mayúsculas
+        function convertirAMayusculas(input) {
+            input.value = input.value.toUpperCase();
+        }
+
+        // Obtener todos los elementos de entrada
+        var inputs = document.querySelectorAll('input[type="text"]');
+
+        // Iterar sobre cada elemento de entrada y asignar el evento input
+        inputs.forEach(function(input) {
+            input.addEventListener('input', function() {
+                convertirAMayusculas(this);
+            });
+        });
         $('#example').DataTable({
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/2.0.3/i18n/es-ES.json"
