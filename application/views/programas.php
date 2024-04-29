@@ -148,7 +148,7 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                     <div class="form-group row">
                         <label  class="col-sm-3 col-form-label">Nombre del programa</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" placeholder="nombre" name="nombre" required>
+                            <input type="text" class="form-control" placeholder="nombre" name="nombre" required maxlength="55">
                         </div>
                     </div>
                     <div class="form-group row">

@@ -265,8 +265,8 @@ WHERE idprograma='$idprograma'");
         $pdf->Image('assets/images/uto.png', 10, 5, 20);
         $pdf->SetMargins(0, 0, 0);
         $pdf->SetFont('times', 'BI', 12);
-        $pdf->Text(0, 5, "UNIVERSIDAD TECNICA DE ORURO ", 0, 0, true, 0, 0, 'C');
-        $pdf->Text(0, 10, "DIRECCION DE POSTGRADO", 0, 0, true, 0, 0, 'C');
+        $pdf->Text(0, 5, "UNIVERSIDAD TÉCNICA DE ORURO", 0, 0, true, 0, 0, 'C');
+        $pdf->Text(0, 10, "DIRECCIÓN DE POSTGRADO", 0, 0, true, 0, 0, 'C');
         $pdf->SetFont('times', 'BI', 15);
     }
 }
