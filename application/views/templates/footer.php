@@ -65,7 +65,13 @@
         });
     });
 </script>
-
+<style>
+    div.dataTables_wrapper input[type="search"] {
+        width: 400px; /* Cambia este valor según tu preferencia */
+        padding: 5px; /* Ajusta el relleno según sea necesario */
+        margin-bottom: 10px; /* Ajusta el margen inferior según sea necesario */
+    }
+</style>
 <!-- inline scripts related to this page -->
 </body>
 </html>
