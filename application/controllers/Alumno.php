@@ -152,8 +152,9 @@ WHERE m.idprograma='$idprograma'");
     function editarmulta(){
         $idmulta=$_POST['idmulta'];
         $monto=$_POST['monto'];
+        $motivo=$_POST['motivo'];
 //        $sql = "UPDATE multas SET monto='$monto' WHERE idmulta='$idmulta'";
-        $query=$this->db->query("UPDATE multas SET monto='$monto' WHERE idmulta='$idmulta'");
+        $query=$this->db->query("UPDATE multas SET monto='$monto', motivo='$motivo' WHERE idmulta='$idmulta'");
         echo 1;
     }
     function eliminarmulta(){

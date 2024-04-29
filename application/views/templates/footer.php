@@ -35,8 +35,8 @@
 
 <script src="<?=base_url()?>assets/js/ace-elements.min.js"></script>
 <script src="<?=base_url()?>assets/js/ace.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<link href="https://select2.github.io/select2/select2-3.5.3/select2.css" rel="stylesheet" />
+<script src="https://select2.github.io/select2/select2-3.5.3/select2.js"></script>
 
 <?=$js?>
 

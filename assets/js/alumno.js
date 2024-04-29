@@ -304,9 +304,16 @@ function eliminar(e) {
     e.preventDefault();
 }
 function editar(e) {
-    var idmulta=$(this).attr('id-documento');
+    var idmulta = $(this).attr('id-documento');
+    // Solicitar motivo de la multa al usuario
+    var motivo = prompt("Por favor, ingresa el motivo de la multa:");
+    if (motivo === null || motivo === "") {
+        alert("Debes ingresar un motivo para la multa.");
+        return false;
+    }
     var parametros = {
         "idmulta": idmulta,
+        "motivo": motivo,
         "monto": $('#monto'+idmulta).val()
     };
     $.ajax({
@@ -314,11 +321,11 @@ function editar(e) {
         url: 'Alumno/editarmulta',
         type: 'post',
         success: function (response) {
-            if (response==1){
+            if (response == 1) {
                 $('#opcion').html('');
                 alert('Editado correctamente');
             } else {
-                alert('Algo salio mal');
+                alert('Algo salió mal');
             }
         }
     });
