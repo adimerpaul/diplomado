@@ -180,7 +180,7 @@
                     <div class="form-group row">
                         <label  class="col-sm-3 col-form-label"> Seleccione Programa</label>
                         <div class="col-sm-9">
-<!--                            <input type="text" id="idestudiante"  name="idestudiante" hidden>-->
+                            <input type="text" id="idestudiante"  name="idestudiante" hidden>
                             <select name="idmodulo"  class="js-example-basic-single"  required >
                                 <?php
                                 $query = $this->db->query("SELECT * FROM programa  ");
