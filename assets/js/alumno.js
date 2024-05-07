@@ -186,13 +186,25 @@ function actualizartramite(e) {
         documentos.forEach(function (documento) {
             if (documento.idtramite==4 || documento.idtramite==5){
                 //input text
-                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'> <input "+disabled+" class='form-control' style='text-transform: uppercase'  name='d"+documento.idtramite+"' value='"+documento.estado+"' ></div>";
-            }else if(documento.estado=="SI"){
+                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'>" +
+                    "<input "+disabled+" class='form-control' style='text-transform: uppercase'  name='d"+documento.idtramite+"' value='"+documento.estado+"' >" +
+                    "</div>";
+            }
+            else if(documento.estado=="SI"){
                 // t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'> <input "+disabled+" type='radio' name='d"+documento.idtramite+"' checked value='SI'> SI <input "+disabled+" type='radio' name='d"+documento.idtramite+"' value='NO'>NO </div>";
-                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'> <input "+disabled+" type='checkbox' name='d"+documento.idtramite+"' checked value='SI'> SI </div>";
+                t+=" <div class='col-sm-6'>"+documento.nombre+"</div>" +
+                    "<div class='col-sm-6'>" +
+                    "<input "+disabled+" type='radio' name='d"+documento.idtramite+"' checked value='SI' id='SI'> SI" +
+                    "<input "+disabled+" type='radio' name='d"+documento.idtramite+"' value='NO' id='NO'> NO" +
+                    "</div>";
+                    "</div>";
             }else{
                 // t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'><input "+disabled+" type='radio' name='d"+documento.idtramite+"' value='SI'> SI <input "+disabled+" type='radio' name='d"+documento.idtramite+"' checked value='NO'>NO  </div>";
-                t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'><input "+disabled+" type='checkbox' name='d"+documento.idtramite+"' value='SI'> NO </div>";
+                t+=" <div class='col-sm-6'>"+documento.nombre+"</div>" +
+                    "<div class='col-sm-6'>" +
+                    "<input "+disabled+" type='radio' name='d"+documento.idtramite+"' value='SI' id='SI'> SI" +
+                    "<input "+disabled+" type='radio' name='d"+documento.idtramite+"' checked value='NO' id='NO'> NO" +
+                    "</div>";
             }
         })
         if (idRol==='1'){
