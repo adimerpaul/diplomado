@@ -59,7 +59,7 @@ ORDER BY paterno,materno,nombres
             $pdf->Cell(20,5 , "SIGLA ", 1, 0, 'C');
             $pdf->Cell(70,5 , "NOMBRE ", 1, 0, 'C');
             $pdf->Cell(30,5 , "FEC. APROBA. ", 1, 0, 'C');
-            $pdf->Cell(10,5 , "NUM ", 1, 0, 'C');
+            $pdf->Cell(10,5 , "NÚM ", 1, 0, 'C');
             $pdf->Cell(50,5 , "LITERAL ", 1, 0, 'C');
             $pdf->Cell(15,5 , "", 0, 0, 'C');
             $query2=$this->db->query("SELECT idmodulo,m.nombre,m.codigo FROM modulo m INNER JOIN programa p ON m.idprograma=p.idprograma where p.idprograma='$id'");
@@ -121,7 +121,7 @@ ORDER BY paterno,materno,nombres
         $pdf->SetFont('times', '', 10);
         $pdf->Text(67,28 , "$programa->nombre", 0, 0, true,0,0,'L');
         $pdf->SetFont('times', 'B', 10);
-        $pdf->Text(15,32 , "VERSION: $programa->version GESTION:".date('Y'), 0, 0, true,0,0,'L');
+        $pdf->Text(15,32 , "VERSIÓN: $programa->version   GESTIÓN:".date('Y'), 0, 0, true,0,0,'L');
         $pdf->Ln();
         $pdf->Ln();
         $pdf->Cell(15,5 , "", 0, 0, 'C');
@@ -173,7 +173,7 @@ ORDER BY paterno,materno,nombres
         $pdf->SetFont('times', '', 10);
         $pdf->Text(67,28 , "$programa->nombre", 0, 0, true,0,0,'L');
         $pdf->SetFont('times', 'B', 10);
-        $pdf->Text(15,32 , "MODULO:", 0, 0, true,0,0,'L');
+        $pdf->Text(15,32 , "MÓDULO:", 0, 0, true,0,0,'L');
         $pdf->SetFont('times', '', 10);
         $pdf->Text(40,32 , "$modulo->nombre", 0, 0, true,0,0,'L');
         $pdf->Ln();

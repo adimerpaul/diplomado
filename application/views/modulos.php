@@ -62,7 +62,7 @@ INNER JOIN programa p ON p.idprograma=m.idprograma");
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registrar Programa</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Registrar Modulo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -102,7 +102,7 @@ INNER JOIN programa p ON p.idprograma=m.idprograma");
                                 $query=$this->db->query("SELECT * FROM docente d 
 INNER JOIN persona p ON p.idpersona=d.idpersona");
                                 foreach ($query->result() as $row){
-                                    echo "<option value='$row->idpersona'> $row->apellido_paterno $row->apellido_materno $row->nombres</option>";
+                                    echo "<option value='$row->idpersona'> $row->paterno $row->materno $row->nombres</option>";
                                 }
                                 ?>
                             </select>
