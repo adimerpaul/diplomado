@@ -13,6 +13,14 @@ class Programas extends CI_Controller{
         $data['js']="";
         $this->load->View('templates/footer',$data);
     }
+    function subirarchivo($idprograma,$status){
+        if ($status==1){
+            $this->db->query("UPDATE programa SET subirarchivo='1' WHERE idprograma='$idprograma'");
+        }else{
+            $this->db->query("UPDATE programa SET subirarchivo='0' WHERE idprograma='$idprograma'");
+        }
+        header("Location: ".base_url()."Programas");
+    }
     function insert(){
         $nombre=$_POST['nombre'];
         $version=$_POST['version'];

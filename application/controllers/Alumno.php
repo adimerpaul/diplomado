@@ -323,7 +323,8 @@ FROM documento d");
         $documento=$query->result_array();
         $idRol = $_SESSION['idrol'];
         $base_url = base_url();
-        echo json_encode(["row"=>$row,"idRol"=>$idRol, "base_url" => $base_url, "documento" => $documento]);
+        $programa=$this->db->query("SELECT * FROM programa WHERE idprograma='$idprograma'")->row();
+        echo json_encode(["row"=>$row,"idRol"=>$idRol, "base_url" => $base_url, "documento" => $documento, "programa" => $programa]);
     }
     function alumnospagos(){
         $idestudiante=$_POST['idestudiante'];

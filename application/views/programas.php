@@ -31,6 +31,11 @@
 
             foreach ($query->result() as $row)
             {
+                if ($row->subirarchivo==1){
+                    $subir="<a href='".base_url()."Programas/subirarchivo/$row->idprograma/0' type='button' class='btn btn-success btn-mini' > <i class='fa fa-upload'></i> bloquear</a>";
+                }else{
+                    $subir="<a href='".base_url()."Programas/subirarchivo/$row->idprograma/1' type='button' class='btn btn-danger btn-mini' > <i class='fa fa-upload'></i> desbloquear</a>";
+                }
                 $query2 = $this->db->query("SELECT * FROM modulo WHERE idprograma='$row->idprograma'");
                 $modulos="<table>";
                 foreach ($query2->result() as $row2) {
@@ -48,6 +53,7 @@
                     <a href='".base_url()."Programas/delete/$row->idprograma' type='button' class='btn btn-danger btn-mini eli' > <i class='fa fa-trash-o'></i> Eliminar</a>        <br>
                     <button type='button' class='btn btn-info btn-mini' data-toggle='modal' data-target='#modulo' data-id='$row->idprograma' > <i class='fa fa-plus'></i> Modulos</button> <br>
                     <a type='button' class='btn btn-primary btn-mini'  href='".base_url()."Programas/archivo/$row->idprograma' > <i class='fa fa-file-pdf-o'></i> Notas</a>
+                    $subir
                     </td>
                 </tr>";
             }

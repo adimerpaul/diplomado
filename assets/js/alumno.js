@@ -521,9 +521,10 @@ function actualizardocumentos(e) {
         var documentos= res.row;
         idRol = res.idRol;
         base_url = res.base_url;
+        programa = res.programa;
         // console.log(res.documento.length);
         archivo = res.documento.length>0?res.documento[0].archivo:'';
-        console.log('archivo',archivo);
+        // console.log('archivo',archivo);
         disabled = '';
         if (idRol==='1'){
             disabled = '';
@@ -537,10 +538,12 @@ function actualizardocumentos(e) {
                 t+=" <div class='col-sm-6'>"+documento.nombre+"</div> <div class='col-sm-6'><input "+disabled+" type='radio' name='d"+documento.iddocumento+"' value='SI'> SI <input "+disabled+" type='radio' name='d"+documento.iddocumento+"' checked value='NO'>NO  </div>";
             }
         })
-        //boton eliminar archivo
-        t+=("<div class='col-sm-2'>" +
-            "<button type='button' class='btn btn-danger' id='eliminararchivo'>Eliminar archivo</button>" +
-            "</div> <div class='col-sm-10'><input type='file' name='file' class='form-control' accept='application/pdf' id='file'></div>");
+        if (programa.subirarchivo=='1'){
+            t+=("<div class='col-sm-2'>" +
+                "<button type='button' class='btn btn-danger' id='eliminararchivo'>Eliminar archivo</button>" +
+                "</div> <div class='col-sm-10'><input type='file' name='file' class='form-control' accept='application/pdf' id='file'></div>");
+        }
+
         if (archivo != ''){
             t+=("<iframe src='"+base_url+"/uploads/"+archivo+"' style='width: 100%; height: 300px;' id='frame' class='form-control'></iframe>");
         }else{
