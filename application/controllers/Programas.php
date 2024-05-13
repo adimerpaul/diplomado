@@ -22,11 +22,24 @@ class Programas extends CI_Controller{
         header("Location: ".base_url()."Programas");
     }
     function insert(){
+        echo json_encode($_POST);
         $nombre=$_POST['nombre'];
         $version=$_POST['version'];
         $costo=$_POST['costo'];
-        $query = $this->db->query("INSERT INTO programa SET nombre='$nombre', version='$version', costo='$costo'");
-        header("Location: ".base_url()."Programas");
+        $this->db->query("INSERT INTO programa SET nombre='$nombre', version='$version', costo='$costo'");
+        $idprograma=$this->db->insert_id();
+//$idprograma=1;
+        for ($i=1;$i<100;$i++){
+            if (isset($_POST['Cuota'.$i])){
+                $cuota=$_POST['Cuota'.$i];
+                $nombre='CUOTA '.($i);
+                $sql="INSERT INTO tipopago SET idprograma='$idprograma', nombre='$nombre', monto='$cuota'";
+//                echo $sql;
+                $this->db->query($sql);
+            }
+        }
+
+//        header("Location: ".base_url()."Programas");
     }
     function archivo($id){
         header('Content-Type: application/pdf');

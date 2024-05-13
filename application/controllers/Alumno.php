@@ -225,9 +225,11 @@ FROM tramite t");
         //echo $idestudiante;
         $query=$this->db->query("SELECT * FROM tipopago");
         foreach ($query->result() as $row){
-            $this->db->query("INSERT INTO pago 
+            if (isset($_POST['p'.$row->idtipopago])) {
+                $this->db->query("INSERT INTO pago 
 SET idestudiante='$idestudiante' ,idprograma='$idprograma', idtipopago='".$row->idtipopago."',monto='".$_POST['p'.$row->idtipopago]."'
 ON DUPLICATE KEY UPDATE monto= '".$_POST['p'.$row->idtipopago]."';");
+            }
         }
         echo 1;
     }
@@ -341,7 +343,8 @@ CASE
 END
 )
 as monto
-FROM tipopago t");
+FROM tipopago t
+WHERE idprograma='$idprograma'");
         $row=$query->result_array();
         $idRol = $_SESSION['idrol'];
         echo json_encode(["row"=>$row,"idRol"=>$idRol]);

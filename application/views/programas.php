@@ -169,6 +169,33 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                             <input type="text" class="form-control" placeholder="costo" name="costo" required>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-2 col-form-label">Cuotas</label>
+                        <div class="col-sm-3" id="Cuotas">
+<!--                            <input type="text" class="form-control" placeholder="costo" name="costo" required>-->
+                        </div>
+                        <label  class="col-sm-2 col-form-label">Monto</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" placeholder="Monto" name="costo" required id="monto">
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-success btn-sm" id="agregar">
+                                <i class="fa fa-map-o"></i>
+                                Agregar
+                            </button>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Cuota</th>
+                            <th>Monto</th>
+                        </tr>
+                        </thead>
+                        <thead id="cuotas">
+                        </thead>
+                    </table>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -229,8 +256,20 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
         </div>
     </div>
 </div>
-<script !src="">
+<script>
     window.onload=function (e) {
+        cuotas=0
+        $('#agregar').on('click',function (e) {
+            if ($('#monto').val()==''){
+                alert('ingrese monto');
+                return false;
+            }
+            cuotas++;
+            const cuota='Cuota'+cuotas;
+            const monto=$('#monto').val();
+            $('#cuotas').append('<tr><td>'+cuotas+'</td><td>'+cuota+'</td><td>'+monto+' <input type="text" name="'+cuota+'" value="'+monto+'" hidden></td></tr>');
+            $('#Cuotas').html('<input type="text" class="form-control" placeholder="costo" name="costo" disabled required value="'+cuotas+'">')
+        })
         var eli =document.getElementsByClassName('eli');
         for (var i=0;i<eli.length;i++){
             eli[i].addEventListener('click',function (e) {
