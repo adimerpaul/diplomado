@@ -108,7 +108,7 @@
                                 $query=$this->db->query("SELECT * FROM docente d 
 INNER JOIN persona p ON p.idpersona=d.idpersona");
                                 foreach ($query->result() as $row){
-                                    echo "<option value='$row->idpersona'> $row->apellido_paterno $row->apellido_materno $row->nombres</option>";
+                                    echo "<option value='$row->idpersona'> $row->paterno $row->materno $row->nombres</option>";
                                 }
                                 ?>
                             </select>
