@@ -118,15 +118,20 @@ WHERE m.idprograma='$idprograma'");
         $idpersona=$this->User->consulta('idpersona','estudiante','idestudiante',$idestudiante);
         $query = $this->db->query("SELECT * FROM estudianteprograma e INNER JOIN programa p ON e.idprograma=p.idprograma  WHERE e.idestudiante='$idestudiante'");
         echo "<button id='personal' class='btn btn-success btn-mini' idpersona='$idpersona' style='width: 120px'><i class='fa fa-user'></i> Datos personales</button> <br>";
-        foreach ($query->result() as $row)
-        {
+//        $eliminar programa si solo es admin
+        if ($_SESSION['idrol']==1){
+            $eliminarprograma="<button idestudiante='$idestudiante' class='btn btn-danger btn-mini eliminar' style='width: 120px'><i class='fa fa-trash'></i> Eliminar</button> <br>";
+        }else{
+            $eliminarprograma="";
+        }
+        foreach ($query->result() as $row) {
         echo "<b>".substr($row->date,0,10)." ".$row->nombre."</b><br>
                <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-primary btn-mini actualizardoc' style='width: 120px'><i class='fa fa-file'></i> Documentacion</button> <br>
                <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-warning btn-mini actualizarpagos ' style='width: 120px'><i class='fa fa-money'></i> Pagos efectuados</button> <br>
                <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-danger btn-mini actualizarmulta' style='width: 120px'><i class='fa fa-dollar'></i> Pagos por multas</button> <br>
                <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-info btn-mini  actualizarnotas' style='width: 120px'><i class='fa fa-barcode'></i> Calificacion</button> <br>
                <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-primary btn-mini actualizartramite' style='width: 120px'><i class='fa fa-file-text'></i> Tramite del titulo</button> <br>
-               <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-secondary btn-mini eliminarprograma' style='width: 120px'><i class='fa fa-trash'></i> Eliminar programa</button> <br>";
+               $eliminarprograma";
         }
     }
     function insertmultas(){
