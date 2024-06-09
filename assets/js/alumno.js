@@ -210,7 +210,7 @@ function actualizartramite(e) {
         if (idRol==='1'){
             t+=("<div style='text-align: center; width: 100%' >\n" +
                 "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
-                "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cancelar</a>\n" +
+                "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cerrar</a>\n" +
                 "            </div>\n" +
                 "        </form>");
         }
@@ -418,7 +418,7 @@ function actualizarnotas(e) {
         if (idRol==='1'){
             t+=("<div style='text-align: center; width: 100%' >\n" +
                 "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
-                "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cancelar</a>\n" +
+                "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cerrar</a>\n" +
                 "            </div>\n" +
                 "        </form>");
         }
@@ -479,7 +479,7 @@ function actualizarpagos(e) {
         if (idRol==='1'){
             t+=("<div style='text-align: center; width: 100%' >\n" +
                 "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
-                "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cancelar</a>\n" +
+                "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cerrar</a>\n" +
                 "            </div>\n" +
                 "        </form>");
         }
@@ -557,7 +557,7 @@ function actualizardocumentos(e) {
         if (idRol==='1'){
             t+=("<div style='text-align: center; width: 100%' >\n" +
                 "                <button type='submit' class='btn btn-success'>Guardar</button>\n" +
-                "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cancelar</a>\n" +
+                "                <a data-dismiss='modal' type='button' class='btn btn-danger' >Cerrar</a>\n" +
                 "            </div>\n" +
                 "        </form>");
         }
