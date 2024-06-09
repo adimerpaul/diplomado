@@ -120,7 +120,7 @@
                         </div>
                         <label class="col-sm-1 col-form-label">email</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="email" name="email" >
+                            <input type="email" class="form-control" placeholder="email" name="email" >
                         </div>
                     </div>
                     <div class="form-group row">
