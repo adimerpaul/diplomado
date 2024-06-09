@@ -16,20 +16,30 @@
     <table id="example" class="display" style="width:100%">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Nombre</th>
+            <th>#</th>
+            <th>Programa</th>
+            <th>Version</th>
+            <th>Cuota</th>
             <th>Monto</th>
             <th>Opciones</th>
         </tr>
         </thead>
         <tbody>
         <?php
-        $query = $this->db->query("SELECT * FROM tipopago");
+        $query = $this->db->query("SELECT programa.nombre as nombreprograma,
+       programa.version as version,
+       tipopago.idtipopago as idtipopago,
+       tipopago.nombre as nombre,
+       tipopago.monto as monto
+            FROM tipopago
+            inner join programa on tipopago.idprograma=programa.idprograma");
 
-        foreach ($query->result() as $row)
+        foreach ($query->result() as $index => $row)
         {
             echo "<tr>
-                    <td>".$row->idtipopago."</td>
+                    <td>".($index+1)."</td>
+                    <td>".$row->nombreprograma."</td>
+                    <td>".$row->version."</td>
                     <td>".$row->nombre."</td>
                     <td>".$row->monto."</td>
                     <td>
