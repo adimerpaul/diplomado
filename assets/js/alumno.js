@@ -257,6 +257,7 @@ function actualizarmulta(e) {
         res = JSON.parse(e);
         var documentos = res.row
         idRol = res.idRol;
+        console.log('idRol',idRol);
 
         if (idRol==='1'){
             disabled = '';
@@ -269,12 +270,16 @@ function actualizarmulta(e) {
         documentos.forEach(function (documento) {
             t+="<div class='row'>" +
                 "<div class='col-sm-6'>"+documento.motivo+"</div> <div class='col-sm-4'>" +
-                "<input "+disabled+" class='form-control' id='monto"+documento.idmulta+"'  name='m"+documento.idmulta+"' value='"+documento.monto+"'></div>" +
-                "<!--btn id-documento='"+documento.idmulta+"' class='btn btn-warning duplicar "+ocultar+"'>Duplicar</btn-->"+
-                "<button id-documento='"+documento.idmulta+"' class='btn btn-warning editar'>Editar</button>"+
-                "<button id-documento='"+documento.idmulta+"' class='btn btn-danger eliminar'>Eliminar</button>"+
-
+                "<input "+disabled+" class='form-control' id='monto"+documento.idmulta+"'  name='m"+documento.idmulta+"' value='"+documento.monto+"'></div>";
+                "<!--btn id-documento='"+documento.idmulta+"' class='btn btn-warning duplicar "+ocultar+"'>Duplicar</btn-->"
+            //ocultar el¿dita y elminar
+            if (idRol==='1') {
+                t+="<button id-documento='"+documento.idmulta+"' class='btn btn-warning editar' "+(idRol==='1'?'hidden':'')+">Editar</button>"+
+                    "<button id-documento='"+documento.idmulta+"' class='btn btn-danger eliminar' "+(idRol==='1'?'hidden':'')+">Eliminar</button>";
                 "</div>";
+            }else{
+                t+="</div>";
+            }
             total+=parseFloat(documento.monto);
         })
         t+="<div class='row'> <div class='col-sm-6'>TOTAL</div> <div class='col-sm-4'> <input disabled class='form-control'  name='total' value='"+total+"'></div></div>";
