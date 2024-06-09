@@ -231,12 +231,12 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                             <input id="version" type="text" class="form-control" placeholder="version" name="version" required>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label  class="col-sm-3 col-form-label">Costo</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" placeholder="costo" name="costo" required>
-                        </div>
-                    </div>
+<!--                    <div class="form-group row">-->
+<!--                        <label  class="col-sm-3 col-form-label">Costo</label>-->
+<!--                        <div class="col-sm-9">-->
+<!--                            <input type="text" class="form-control" placeholder="costo" name="costo" required>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="form-group row">
                         <label for="estado" class="col-sm-3 col-form-label">Estado</label>
                         <div class="col-sm-9">
@@ -247,6 +247,39 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                             </select>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-3 col-form-label">Costo</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" placeholder="costo" name="costo" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label  class="col-sm-2 col-form-label">Cuotas</label>
+                        <div class="col-sm-3" id="Cuotas">
+                            <!--                            <input type="text" class="form-control" placeholder="costo" name="costo" required>-->
+                        </div>
+                        <label  class="col-sm-2 col-form-label">Monto</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" placeholder="Monto" name="costo2" required id="monto2">
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-success btn-sm" id="agregar2">
+                                <i class="fa fa-map-o"></i>
+                                Agregar
+                            </button>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Cuota</th>
+                            <th>Monto</th>
+                        </tr>
+                        </thead>
+                        <thead id="cuotas2">
+                        </thead>
+                    </table>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-trash-o"></i> Close</button>
                         <button type="submit" class="btn btn-warning"> <i class="fa fa-edit"></i> Modificar</button>
@@ -269,6 +302,17 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
             const monto=$('#monto').val();
             $('#cuotas').append('<tr><td>'+cuotas+'</td><td>'+cuota+'</td><td>'+monto+' <input type="text" name="'+cuota+'" value="'+monto+'" hidden></td></tr>');
             $('#Cuotas').html('<input type="text" class="form-control" placeholder="costo" name="costo" disabled required value="'+cuotas+'">')
+        })
+        $('#agregar2').on('click',function (e) {
+            if ($('#monto2').val()==''){
+                alert('ingrese monto');
+                return false;
+            }
+            cuotas++;
+            const cuota='Cuota'+cuotas;
+            const monto=$('#monto2').val();
+            $('#cuotas2').append('<tr><td>'+cuotas+'</td><td>'+cuota+'</td><td>'+monto+' <input type="text" name="'+cuota+'" value="'+monto+'" hidden></td></tr>');
+            $('#Cuotas2').html('<input type="text" class="form-control" placeholder="costo" name="costo" disabled required value="'+cuotas+'">')
         })
         var eli =document.getElementsByClassName('eli');
         for (var i=0;i<eli.length;i++){

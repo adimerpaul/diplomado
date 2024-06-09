@@ -28,18 +28,15 @@ class Programas extends CI_Controller{
         $costo=$_POST['costo'];
         $this->db->query("INSERT INTO programa SET nombre='$nombre', version='$version', costo='$costo'");
         $idprograma=$this->db->insert_id();
-//$idprograma=1;
         for ($i=1;$i<100;$i++){
             if (isset($_POST['Cuota'.$i])){
                 $cuota=$_POST['Cuota'.$i];
                 $nombre='CUOTA '.($i);
                 $sql="INSERT INTO tipopago SET idprograma='$idprograma', nombre='$nombre', monto='$cuota'";
-//                echo $sql;
                 $this->db->query($sql);
             }
         }
-
-//        header("Location: ".base_url()."Programas");
+        header("Location: ".base_url()."Programas");
     }
     function archivo($id){
         header('Content-Type: application/pdf');
@@ -238,9 +235,25 @@ ORDER BY paterno,materno,nombres
 SET nombre='$nombre', version='$version', estado='$estado', costo='$costo'
 WHERE idprograma='$idprograma'");
 
+        $this->db->query("DELETE FROM tipopago WHERE idprograma='$idprograma'");
+
+        for ($i=1;$i<100;$i++){
+            if (isset($_POST['Cuota'.$i])){
+                $cuota=$_POST['Cuota'.$i];
+                $nombre='CUOTA '.($i);
+                $sql="UPDATE tipopago SET monto='$cuota' WHERE idprograma='$idprograma' AND nombre='$nombre'";
+                $this->db->query($sql);
+            }
+        }
+
         header("Location: ".base_url()."Programas");
     }
     function delete($id){
+        $count=$this->db->query("SELECT * FROM estudianteprograma WHERE idprograma='$id'")->num_rows();
+        if ($count>0){
+            echo "No se puede eliminar el programa porque tiene estudiantes registrados";
+            return;
+        }
         $query = $this->db->query("DELETE FROM programa WHERE idprograma='$id'");
         header("Location: ".base_url()."Programas");
 
