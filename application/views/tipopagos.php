@@ -9,10 +9,10 @@
         </h1>
     </div>
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">
-        <i class="fa fa-money"></i>
-        Registrar Tipo pago
-    </button>
+<!--    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">-->
+<!--        <i class="fa fa-money"></i>-->
+<!--        Registrar Tipo pago-->
+<!--    </button>-->
     <table id="example" class="display" style="width:100%">
         <thead>
         <tr>
