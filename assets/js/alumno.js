@@ -659,25 +659,25 @@ function actualizar(e) {
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">nombres</label>
                             <div class="col-sm-9">
-                                <input ${disabled} type="text" id="nombres" class="form-control" placeholder="nombres" name="nombres" required value="${datos.nombres}">
+                                <input ${disabled} type="text" style="text-transform: uppercase" id="nombres" class="form-control" placeholder="nombres" name="nombres" required value="${datos.nombres}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">ci</label>
                             <div class="col-sm-9">
-                                <input ${disabled} type="text" id="ci" class="form-control" placeholder="ci" name="ci" required value="${datos.ci}">
+                                <input ${disabled} type="text" style="text-transform: uppercase" id="ci" class="form-control" placeholder="ci" name="ci" required value="${datos.ci}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">profesion</label>
                             <div class="col-sm-9">
-                                <input ${disabled} type="text" id="profesion" class="form-control" placeholder="profesion" name="profesion" value="${datos.profesion}">
+                                <input ${disabled} type="text" style="text-transform: uppercase" id="profesion" class="form-control" placeholder="profesion" name="profesion" value="${datos.profesion}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">telefono</label>
                             <div class="col-sm-9">
-                                <input ${disabled} type="text" id="telefono" class="form-control" placeholder="telefono" name="telefono" value="${datos.telefono}">
+                                <input ${disabled} type="text" style="text-transform: uppercase" id="telefono" class="form-control" placeholder="telefono" name="telefono" value="${datos.telefono}">
                             </div>
                         </div>
                         <div class="form-group row">

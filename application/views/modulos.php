@@ -176,7 +176,7 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                     <div class="form-group row">
                         <label for="iddocente" class="col-sm-3 col-form-label">Docente</label>
                         <div class="col-sm-9">
-                            <select id="iddocente" type="text" class="form-control" placeholder="iddocente" name="iddocente" required>
+                            <select id="iddocente" type="text" class="form-control select2" placeholder="iddocente" name="iddocente" required>
                                 <option value="">Seleccionar...</option>
                                 <?php
                                 $query=$this->db->query("SELECT * FROM docente d 
@@ -191,7 +191,7 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                     <div class="form-group row">
                         <label for="idprograma"  class="col-sm-3 col-form-label">Programa</label>
                         <div class="col-sm-9">
-                            <select id="idprograma" type="text" class="form-control" placeholder="idprograma" name="idprograma" required>
+                            <select id="idprograma" type="text" class="form-control select2" placeholder="idprograma" name="idprograma" required>
                                 <option value="">Seleccionar...</option>
                                 <?php
                                 $query=$this->db->query("SELECT * FROM programa WHERE estado='ACTIVO'");
@@ -213,6 +213,7 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
 </div>
 <script !src="">
     window.onload=function (e) {
+        $('.select2').select2();
         $('#iddocenteseacrh').select2();
         $('#iddocentesearch').select2();
         var eli =document.getElementsByClassName('eli');
