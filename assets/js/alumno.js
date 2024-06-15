@@ -463,6 +463,7 @@ function actualizarpagos(e) {
     ]).then(function (e) {
         res = JSON.parse(e);
         var documentos=res.row
+        var programa=res.programa[0];
         idRol = res.idRol;
         var disabled = '';
         if (idRol==='1'){
@@ -471,6 +472,7 @@ function actualizarpagos(e) {
             disabled = 'disabled';
         }
         var sum=0;
+        var t = "<div class='col-sm-3'>COSTO DEL PROGRAMA:</div><div class='col-sm-9'>"+programa.costo+"</div>"
         documentos.forEach(function (documento) {
             t+=" <div class='col-sm-3'>"+documento.nombre+"("+documento.m1+")</div> <div class='col-sm-9'> <input "+disabled+" class='form-control'  name='p"+documento.idtipopago+"' value='"+documento.monto+"' ></div>";
             sum+=parseFloat(documento.monto);

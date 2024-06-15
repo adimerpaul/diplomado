@@ -352,7 +352,9 @@ FROM tipopago t
 WHERE idprograma='$idprograma'");
         $row=$query->result_array();
         $idRol = $_SESSION['idrol'];
-        echo json_encode(["row"=>$row,"idRol"=>$idRol]);
+        $query=$this->db->query("SELECT * FROM programa WHERE  idprograma ='$idprograma'");
+        $programa=$query->result_array();
+        echo json_encode(["row"=>$row,"idRol"=>$idRol,"programa"=>$programa]);
     }
     function updatestudent(){
         $email=$_POST['email'];
