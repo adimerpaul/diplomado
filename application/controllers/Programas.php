@@ -64,12 +64,12 @@ ORDER BY paterno,materno,nombres
             $pdf->Text(15,28 , "NOMBRES Y APELLIDOS: $row->nombres $row->paterno $row->materno", 0, 0, true,0,0,'L');
             $pdf->Text(150,28 , "N: ", 0, 0, true,0,0,'L');
             $pdf->Text(15,32 , "PROGRAMA DE POSTGRADO: $row->nombre", 0, 0, true,0,0,'L');
-            $pdf->Text(15,37 , "NIVEL: DIPLOMADO", 0, 0, true,0,0,'L');
-            $pdf->Text(83,37 , "SEMESTRE: ", 0, 0, true,0,0,'L');
-            $pdf->Text(155,37 , "AÑO: ".date('Y'), 0, 0, true,0,0,'L');
+            //$pdf->Text(15,37 , "NIVEL: DIPLOMADO", 0, 0, true,0,0,'L');
+            //$pdf->Text(83,37 , "SEMESTRE: ", 0, 0, true,0,0,'L');
+//            $pdf->Text(155,37 , "AÑO: ".date('Y'), 0, 0, true,0,0,'L');
             $pdf->Ln();
             $pdf->Cell(15,5 , "", 0, 0, 'C');
-            $pdf->Cell(110,5 , "ASIGNATURAS ", 1, 0, 'C');
+            $pdf->Cell(110,5 , "MODULOS ", 1, 0, 'C');
             $pdf->Cell(70,5 , "CALIFICACIONES ", 1, 0, 'C');
             $pdf->Cell(15,5 , "", 0, 0, 'C');
             $pdf->Ln();
@@ -133,30 +133,47 @@ ORDER BY paterno,materno,nombres
 
         $pdf->AddPage();
         $this->header($pdf);
+
+        // Configura el padding de las celdas
+//        $pdf->SetCellPadding(2); // Puedes ajustar este valor según sea necesario
+
         $pdf->Text(0, 18, "ESTUDIANTES REGISTRADOS", 0, 0, true, 0, 0, 'C');
-        $pdf->SetFont('times', 'B', 10);
-        $pdf->Text(15,28 , "PROGRAMA DE POSTGRADO:", 0, 0, true,0,0,'L');
-        $pdf->SetFont('times', '', 10);
-        $pdf->Text(67,28 , "$programa->nombre", 0, 0, true,0,0,'L');
-        $pdf->SetFont('times', 'B', 10);
+        $pdf->SetFont('times', 'B', 9);
+        $pdf->Text(10,28 , "PROGRAMA:", 0, 0, true,0,0,'L');
+        $pdf->SetFont('times', '', 9);
+        $pdf->Text(30,28 , "$programa->nombre", 0, 0, true,0,0,'L');
+        $pdf->SetFont('times', 'B', 9);
         $pdf->Text(15,32 , "VERSIÓN: $programa->version   GESTIÓN:".date('Y'), 0, 0, true,0,0,'L');
         $pdf->Ln();
         $pdf->Ln();
         $pdf->Cell(15,5 , "", 0, 0, 'C');
-        $pdf->Cell(90,5 , "NOMBRE COMPLETO", 1, 0, 'C');
+        $pdf->Cell(5,5 , "#", 1, 0, 'C');
+        $pdf->Cell(85,5 , "NOMBRE COMPLETO", 1, 0, 'C');
 //        $pdf->Cell(70,5 , "APELLIDOS ", 1, 0, 'C');
         $pdf->Cell(25,5 , "CI / DNI", 1, 0, 'C');
         $pdf->Cell(25,5 , "TELEFONO ", 1, 0, 'C');
-        $pdf->Cell(40 ,5 , "EMAIL", 1, 0, 'C');
+        $pdf->Cell(45 ,5 , "EMAIL", 1, 0, 'C');
         $pdf->Cell(15,5 , "", 0, 0, 'C');
-        $pdf->SetFont('times', '', 10);
+        $pdf->SetFont('times', '', 9);
+        $con=0;
         foreach ($estudiantes->result() as $row){
+            $con++;
             $pdf->Ln();
+            if ($con==46){
+                $pdf->AddPage();
+                $this->header($pdf);
+                $pdf->Ln();
+                $pdf->Ln();
+                $pdf->Ln();
+                $pdf->Ln();
+                $pdf->SetFont('times', '', 9);
+            }
             $pdf->Cell(15,5 , "", 0, 0, 'C');
-            $pdf->Cell(90,5 , "$row->paterno $row->materno $row->nombres", 1, 0, 'L');
+            $pdf->Cell(5,5 , "$con", 1, 0, 'C');
+            $pdf->Cell(85,5 , "$row->paterno $row->materno $row->nombres", 1, 0, 'L');
             $pdf->Cell(25,5 , "$row->ci", 1, 0, 'L');
             $pdf->Cell(25,5 , "$row->celular", 1, 0, 'L');
-            $pdf->Cell(40,5 , "$row->email", 1, 0, 'L');
+            $pdf->Cell(45,5 , "$row->email", 1, 0, 'L');
             $pdf->Cell(15,5 , "", 0, 0, 'C');
         }
 

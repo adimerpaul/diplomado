@@ -70,7 +70,7 @@ WHERE u.idrol=3");
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registrar persona</h5>
+                <h5 class="modal-title" id="exampleModalLabel">REGISTRAR DOCENTE</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -134,7 +134,7 @@ WHERE u.idrol=3");
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-trash-o"></i> Close</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-trash-o"></i> Cerrar</button>
                         <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Registrar</button>
                     </div>
                 </form>
@@ -147,7 +147,7 @@ WHERE u.idrol=3");
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="actualizarLabel">Editar persona</h5>
+                <h5 class="modal-title" id="actualizarLabel">EDITAR DATOS PERSONALES</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -202,7 +202,7 @@ WHERE u.idrol=3");
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-trash-o"></i> Cerrae</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-trash-o"></i> Cerrar</button>
                         <button type="submit" class="btn btn-warning"> <i class="fa fa-check"></i> Actualizar</button>
                     </div>
                 </form>
@@ -219,7 +219,7 @@ WHERE u.idrol=3");
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modificar persona</h5>
+                <h5 class="modal-title" id="exampleModalLabel">MODIFICAR DATOS PERSONALES</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -250,7 +250,7 @@ WHERE u.idrol=3");
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-warning">Modificar</button>
                     </div>
                 </form>

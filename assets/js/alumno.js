@@ -637,7 +637,7 @@ function actualizar(e) {
             var disabled = '';
             if (idRol==='1'){
                 botones = `<button type="submit" class="btn btn-success"> <i class="fa fa-save"></i> Actualizar</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-times"></i> Close</button>`;
+                                <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-times"></i> Cerrar</button>`;
                 disabled = '';
             }else{
                 botones = '';

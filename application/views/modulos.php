@@ -62,7 +62,7 @@ INNER JOIN programa p ON p.idprograma=m.idprograma");
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Registrar Modulo</h5>
+                <h5 class="modal-title" id="exampleModalLabel">REGISTRAR MODULO</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -124,7 +124,7 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-success">Registra</button>
                     </div>
                 </form>
@@ -141,7 +141,7 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Seleccionar programa</h5>
+                <h5 class="modal-title" id="exampleModalLabel">MODIFICAR</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -203,7 +203,7 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-trash-o"></i> Close</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal"> <i class="fa fa-trash-o"></i> Cerrar</button>
                         <button type="submit" class="btn btn-warning"> <i class="fa fa-edit"></i> Modificar</button>
                     </div>
                 </form>

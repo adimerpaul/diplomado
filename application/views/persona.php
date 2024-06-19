@@ -133,7 +133,7 @@
               </div>
 
               <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                   <button type="submit" class="btn btn-success">Registra</button>
               </div>
           </form>
@@ -209,7 +209,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                         <button type="submit" class="btn btn-warning">Modificar</button>
                     </div>
                 </form>
