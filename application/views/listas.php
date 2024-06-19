@@ -25,7 +25,9 @@
         <table id="example" class="table" style="width:100%">
             <thead>
             <tr>
-                <th>Nombre programa</th>
+                <th style="width: 30%">
+                    Nombre programa
+                </th>
 <!--                <th>Version</th>-->
 <!--                <th>Estado</th>-->
                 <th>Modulos</th>

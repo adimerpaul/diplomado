@@ -60,7 +60,7 @@ ORDER BY paterno,materno,nombres
             $pdf->AddPage();
             $this->header($pdf);
             $pdf->Text(0, 18, "CERTIFICADO DE CALIFICACIONES", 0, 0, true, 0, 0, 'C');
-            $pdf->SetFont('times', 'B', 10);
+            $pdf->SetFont('times', 'B', 8);
             $pdf->Text(15,28 , "NOMBRES Y APELLIDOS: $row->nombres $row->paterno $row->materno", 0, 0, true,0,0,'L');
             $pdf->Text(150,28 , "N: ", 0, 0, true,0,0,'L');
             $pdf->Text(15,32 , "PROGRAMA DE POSTGRADO: $row->nombre", 0, 0, true,0,0,'L');
@@ -74,14 +74,14 @@ ORDER BY paterno,materno,nombres
             $pdf->Cell(15,5 , "", 0, 0, 'C');
             $pdf->Ln();
             $pdf->Cell(15,5 , "", 0, 0, 'C');
-            $pdf->Cell(20,5 , "SIGLA ", 1, 0, 'C');
-            $pdf->Cell(70,5 , "NOMBRE ", 1, 0, 'C');
-            $pdf->Cell(30,5 , "FEC. APROBA. ", 1, 0, 'C');
+            $pdf->Cell(10,5 , "SIGLA ", 1, 0, 'C');
+            $pdf->Cell(90,5 , "NOMBRE ", 1, 0, 'C');
+            $pdf->Cell(20,5 , "FEC. APROBA. ", 1, 0, 'C');
             $pdf->Cell(10,5 , "NÚM ", 1, 0, 'C');
             $pdf->Cell(50,5 , "LITERAL ", 1, 0, 'C');
             $pdf->Cell(15,5 , "", 0, 0, 'C');
             $query2=$this->db->query("SELECT idmodulo,m.nombre,m.codigo FROM modulo m INNER JOIN programa p ON m.idprograma=p.idprograma where p.idprograma='$id'");
-            $pdf->SetFont('times', '', 9);
+            $pdf->SetFont('times', '', 8);
             $idestudiante=$row->idestudiante;
             foreach ($query2->result() as $row2){
                 $idmodulo=$row2->idmodulo;
@@ -98,9 +98,9 @@ ORDER BY paterno,materno,nombres
                 }
                 $pdf->Ln();
                 $pdf->Cell(15,5 , "", 0, 0, 'C');
-                $pdf->Cell(20,5 , "$row2->codigo", 1, 0, 'C');
-                $pdf->Cell(70,5 , " $row2->nombre", 1, 0, 'L');
-                $pdf->Cell(30,5 , "$fechaAprovacion", 1, 0, 'L');
+                $pdf->Cell(10,5 , "$row2->codigo", 1, 0, 'C');
+                $pdf->Cell(90,5 , " $row2->nombre", 1, 0, 'L');
+                $pdf->Cell(20,5 , "$fechaAprovacion", 1, 0, 'L');
                 $pdf->Cell(10,5 , " $nota", 1, 0, 'C');
                 $pdf->Cell(50,5 , NumerosEnLetras::convertir($nota), 1, 0, 'C');
                 $pdf->Cell(15,5 , "", 0, 0, 'C');
@@ -138,11 +138,11 @@ ORDER BY paterno,materno,nombres
 //        $pdf->SetCellPadding(2); // Puedes ajustar este valor según sea necesario
 
         $pdf->Text(0, 18, "ESTUDIANTES REGISTRADOS", 0, 0, true, 0, 0, 'C');
-        $pdf->SetFont('times', 'B', 9);
+        $pdf->SetFont('times', 'B', 8);
         $pdf->Text(10,28 , "PROGRAMA:", 0, 0, true,0,0,'L');
-        $pdf->SetFont('times', '', 9);
+        $pdf->SetFont('times', '', 8);
         $pdf->Text(30,28 , "$programa->nombre", 0, 0, true,0,0,'L');
-        $pdf->SetFont('times', 'B', 9);
+        $pdf->SetFont('times', 'B', 8);
         $pdf->Text(15,32 , "VERSIÓN: $programa->version   GESTIÓN:".date('Y'), 0, 0, true,0,0,'L');
         $pdf->Ln();
         $pdf->Ln();
@@ -154,7 +154,7 @@ ORDER BY paterno,materno,nombres
         $pdf->Cell(25,5 , "TELEFONO ", 1, 0, 'C');
         $pdf->Cell(45 ,5 , "EMAIL", 1, 0, 'C');
         $pdf->Cell(15,5 , "", 0, 0, 'C');
-        $pdf->SetFont('times', '', 9);
+        $pdf->SetFont('times', '', 8);
         $con=0;
         foreach ($estudiantes->result() as $row){
             $con++;
@@ -166,7 +166,7 @@ ORDER BY paterno,materno,nombres
                 $pdf->Ln();
                 $pdf->Ln();
                 $pdf->Ln();
-                $pdf->SetFont('times', '', 9);
+                $pdf->SetFont('times', '', 8);
             }
             $pdf->Cell(15,5 , "", 0, 0, 'C');
             $pdf->Cell(5,5 , "$con", 1, 0, 'C');
@@ -204,22 +204,22 @@ ORDER BY paterno,materno,nombres
         $this->header($pdf);
         $pdf->Text(0, 18, "ESTUDIANTES REGISTRADOS", 0, 0, true, 0, 0, 'C');
         $pdf->SetFont('times', 'B', 10);
-        $pdf->Text(15,28 , "PROGRAMA DE POSTGRADO:", 0, 0, true,0,0,'L');
+        $pdf->Text(10,28 , "PROGRAMA:", 0, 0, true,0,0,'L');
         $pdf->SetFont('times', '', 10);
-        $pdf->Text(67,28 , "$programa->nombre", 0, 0, true,0,0,'L');
+        $pdf->Text(35,28 , "$programa->nombre", 0, 0, true,0,0,'L');
         $pdf->SetFont('times', 'B', 10);
         $pdf->Text(15,32 , "MÓDULO:", 0, 0, true,0,0,'L');
         $pdf->SetFont('times', '', 10);
-        $pdf->Text(40,32 , "$modulo->nombre", 0, 0, true,0,0,'L');
+        $pdf->Text(35,32 , "$modulo->nombre", 0, 0, true,0,0,'L');
         $pdf->Ln();
         $pdf->Ln();
         $pdf->SetFont('times', 'B', 10);
         $pdf->Cell(15,5 , "", 0, 0, 'C');
         $pdf->Cell(10,5 , "#", 1, 0, 'C');
-        $pdf->Cell(90,5 , "NOMBRE COMPLETO", 1, 0, 'C');
+        $pdf->Cell(80,5 , "NOMBRE COMPLETO", 1, 0, 'C');
         $pdf->Cell(25,5 , "CI / DNI", 1, 0, 'C');
 //        $pdf->Cell(25,5 , "TELEFONO ", 1, 0, 'C');
-        $pdf->Cell(40 ,5 , "EMAIL", 1, 0, 'C');
+        $pdf->Cell(50 ,5 , "EMAIL", 1, 0, 'C');
         //notas cell
         $pdf->Cell(15 ,5 , "NOTAS", 1, 0, 'C');
         $pdf->Cell(15,5 , "", 0, 0, 'C');
@@ -232,9 +232,9 @@ ORDER BY paterno,materno,nombres
             $pdf->Ln();
             $pdf->Cell(15,5 , "", 0, 0, 'C');
             $pdf->Cell(10,5 , "$cont", 1, 0, 'C');
-            $pdf->Cell(90,5 , "$row->paterno $row->materno $row->nombres", 1, 0, 'L');
+            $pdf->Cell(80,5 , "$row->paterno $row->materno $row->nombres", 1, 0, 'L');
             $pdf->Cell(25,5 , "$row->ci", 1, 0, 'L');
-            $pdf->Cell(40,5 , "$row->email", 1, 0, 'L');
+            $pdf->Cell(50,5 , "$row->email", 1, 0, 'L');
             $pdf->Cell(15 ,5 , "$nota", 1, 0, 'C');
             $pdf->Cell(15,5 , "", 0, 0, 'C');
         }
