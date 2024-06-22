@@ -214,12 +214,12 @@
             </div>
             <div class="modal-body">
                     <div class="form-group row">
-                        <div class="col-sm-2">
+                        <div class="col-md-3">
                             <h6  class="col-form-label">Programas:</h6>
                             <input type="text" id="idestudiante2"  name="idestudiante" hidden>
                             <p id="contenedor"></p>
                         </div>
-                        <div id="opcion"  class="col-sm-10">
+                        <div id="opcion"  class="col-md-9">
 <!--                            Acaba va el codigo-->
                         </div>
                     </div>

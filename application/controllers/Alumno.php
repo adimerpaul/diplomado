@@ -128,7 +128,7 @@ class='btn btn-purple btn-mini eliminarprograma' style='width: 120px'><i class='
             $eliminarprograma="";
         }
         foreach ($query->result() as $row) {
-        echo "<b>".substr($row->date,0,10)." ".$row->nombre."</b><br>
+        echo "<div class='text-capitalize ' style='font-size: 10px'>".substr($row->date,0,10)." ".trim($row->nombre)."</div>
                <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-primary btn-mini actualizardoc' style='width: 120px'><i class='fa fa-file'></i> Documentacion</button> <br>
                <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-warning btn-mini actualizarpagos ' style='width: 120px'><i class='fa fa-money'></i> Pagos efectuados</button> <br>
                <button idestudiante='$idestudiante' idprograma='$row->idprograma' class='btn btn-danger btn-mini actualizarmulta' style='width: 120px'><i class='fa fa-dollar'></i> Pagos por multas</button> <br>
