@@ -300,7 +300,13 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                 return false;
             }
             cuotas++;
-            const cuota='Cuota'+cuotas;
+            let cuota = ''
+            if (cuotas==1){
+                cuota ='Matricula';
+            }else{
+                cuota ='Cuota'+(cuotas-1);
+            }
+
             const monto=$('#monto').val();
             $('#cuotas').append('<tr><td>'+cuotas+'</td><td>'+cuota+'</td><td>'+monto+' <input type="text" name="'+cuota+'" value="'+monto+'" hidden></td></tr>');
             $('#Cuotas').html('<input type="text" class="form-control" placeholder="costo" name="costo" disabled required value="'+cuotas+'">')
