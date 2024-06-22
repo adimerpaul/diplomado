@@ -252,12 +252,21 @@ ORDER BY paterno,materno,nombres
         //notas cell
         $pdf->Cell(15 ,5 , "NOTAS", 1, 0, 'C');
         $pdf->Cell(15,5 , "", 0, 0, 'C');
-        $pdf->SetFont('times', '', 10);
+        $pdf->SetFont('times', '', 9);
         $cont=0;
         foreach ($estudiantes->result() as $row){
             $notaModulo = $this->db->query("SELECT * FROM estudiantemodulo WHERE idestudiante='$row->idestudiante' AND idmodulo='$modulo->idmodulo'")->row();
             $nota = isset($notaModulo->nota)?$notaModulo->nota:0;
             $cont++;
+            if ($cont==46){
+                $pdf->AddPage();
+                $this->header($pdf);
+                $pdf->Ln();
+                $pdf->Ln();
+                $pdf->Ln();
+                $pdf->Ln();
+                $pdf->SetFont('times', '', 8);
+            }
             $pdf->Ln();
             $pdf->Cell(15,5 , "", 0, 0, 'C');
             $pdf->Cell(10,5 , "$cont", 1, 0, 'C');
