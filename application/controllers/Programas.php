@@ -13,6 +13,11 @@ class Programas extends CI_Controller{
         $data['js']="";
         $this->load->View('templates/footer',$data);
     }
+    function programaShow($idprograma){
+//        echo $idprograma;
+        $query = $this->db->query("SELECT * FROM tipopago WHERE idprograma='$idprograma'");
+        echo json_encode($query->result());
+    }
     function subirarchivo($idprograma,$status){
         if ($status==1){
             $this->db->query("UPDATE programa SET subirarchivo='1' WHERE idprograma='$idprograma'");
@@ -28,10 +33,16 @@ class Programas extends CI_Controller{
         $costo=$_POST['costo'];
         $this->db->query("INSERT INTO programa SET nombre='$nombre', version='$version', costo='$costo'");
         $idprograma=$this->db->insert_id();
+        $cont = 0;
         for ($i=1;$i<100;$i++){
             if (isset($_POST['Cuota'.$i])){
+                $cont++;
                 $cuota=$_POST['Cuota'.$i];
-                $nombre='CUOTA '.($i);
+                if ($cont==1){
+                    $nombre="MATRICULA";
+                }else{
+                    $nombre='CUOTA '.($cont-1);
+                }
                 $sql="INSERT INTO tipopago SET idprograma='$idprograma', nombre='$nombre', monto='$cuota'";
                 $this->db->query($sql);
             }
@@ -301,7 +312,7 @@ WHERE idprograma='$idprograma'");
             }
         }
 
-        header("Location: ".base_url()."Programas");
+//        header("Location: ".base_url()."Programas");
     }
     function delete($id){
         $count=$this->db->query("SELECT * FROM estudianteprograma WHERE idprograma='$id'")->num_rows();

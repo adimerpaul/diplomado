@@ -176,7 +176,7 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                         </div>
                         <label  class="col-sm-2 col-form-label">Monto</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="Monto" name="costo" required id="monto">
+                            <input type="text" class="form-control" placeholder="Monto" required id="monto">
                         </div>
                         <div>
                             <button type="button" class="btn btn-success btn-sm" id="agregar">
@@ -250,7 +250,7 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                     <div class="form-group row">
                         <label  class="col-sm-3 col-form-label">Costo</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" placeholder="costo" name="costo" required>
+                            <input type="text" class="form-control" placeholder="costo" name="costo" required id="costo2">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -260,7 +260,7 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                         </div>
                         <label  class="col-sm-2 col-form-label">Monto</label>
                         <div class="col-sm-3">
-                            <input type="text" class="form-control" placeholder="Monto" name="costo2" required id="monto2">
+                            <input type="text" class="form-control" placeholder="Monto" name="costo2" id="monto2">
                         </div>
                         <div>
                             <button type="button" class="btn btn-success btn-sm" id="agregar2">
@@ -308,7 +308,7 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
             }
 
             const monto=$('#monto').val();
-            $('#cuotas').append('<tr><td>'+cuotas+'</td><td>'+cuota+'</td><td>'+monto+' <input type="text" name="'+cuota+'" value="'+monto+'" hidden></td></tr>');
+            $('#cuotas').append('<tr><td>'+cuotas+'</td><td>'+cuota+'</td><td>'+monto+' <input type="text" name="Cuota'+cuotas+'" value="'+monto+'" hidden></td></tr>');
             $('#Cuotas').html('<input type="text" class="form-control" placeholder="costo" name="costo" disabled required value="'+cuotas+'">')
         })
         $('#agregar2').on('click',function (e) {
@@ -340,6 +340,24 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
             $('#idprograma').val(id);
             $('#estado').val(estado);
             $('#version').val(version);
+
+            // console.log(id);
+            $.ajax({
+                url: '<?=base_url()?>Programas/programaShow/'+id,
+                type: 'GET',
+                success: function (data) {
+                    // console.log(data);
+                    var cuotas=JSON.parse(data);
+                    var html='';
+                    var monto=0;
+                    for (var i=0;i<cuotas.length;i++){
+                        html+='<tr><td>'+(i+1)+'</td><td>'+cuotas[i].nombre+'</td><td>'+cuotas[i].monto+'</td></tr>';
+                        monto+=parseInt(cuotas[i].monto);
+                    }
+                    $('#cuotas2').html(html);
+                    $('#costo2').val(monto);
+                }
+            })
         })
         $('#modulo').on('show.bs.modal',function (e) {
             var button=$(e.relatedTarget);
