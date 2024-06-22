@@ -120,7 +120,10 @@ WHERE m.idprograma='$idprograma'");
         echo "<button id='personal' class='btn btn-success btn-mini' idpersona='$idpersona' style='width: 120px'><i class='fa fa-user'></i> Datos personales</button> <br>";
 //        $eliminar programa si solo es admin
         if ($_SESSION['idrol']==1){
-            $eliminarprograma="<button idestudiante='$idestudiante' class='btn btn-danger btn-mini eliminar' style='width: 120px'><i class='fa fa-trash'></i> Eliminar</button> <br>";
+            $eliminarprograma="<button
+idestudiante='$idestudiante'
+idprograma='".$query->row()->idprograma."'
+class='btn btn-purple btn-mini eliminarprograma' style='width: 120px'><i class='fa fa-trash'></i> Eliminar</button> <br>";
         }else{
             $eliminarprograma="";
         }
