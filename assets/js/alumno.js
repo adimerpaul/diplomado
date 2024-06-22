@@ -649,13 +649,13 @@ function actualizar(e) {
                             <label class="col-sm-3 col-form-label">paterno</label>
                             <div class="col-sm-9">
                                 <input type="text" id="idpersona" name="idpersona" hidden value="${datos.idpersona}">
-                                <input ${disabled} type="text" id="paterno" class="form-control" placeholder="paterno" name="paterno" required value="${datos.paterno}">
+                                <input ${disabled} type="text" style="text-transform: uppercase" id="paterno" class="form-control" placeholder="paterno" name="paterno" required value="${datos.paterno}">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">materno</label>
                             <div class="col-sm-9">
-                                <input ${disabled} type="text" id="materno" class="form-control" placeholder="materno" name="materno" value="${datos.materno}">
+                                <input ${disabled} type="text" style="text-transform: uppercase" id="materno" class="form-control" placeholder="materno" name="materno" value="${datos.materno}">
                             </div>
                         </div>
                         <div class="form-group row">
