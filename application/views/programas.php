@@ -335,6 +335,11 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                 }
             })
         }
+
+        $(document).on('click','.elicuota',function (e) {
+            console.log('hola');
+            $(this).parent().parent().remove();
+        })
         $('#update').on('show.bs.modal',function (e) {
             var button=$(e.relatedTarget);
             var id=button.data('id');
@@ -356,7 +361,13 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                     var html='';
                     var monto=0;
                     for (var i=0;i<cuotas.length;i++){
-                        html+='<tr><td>'+(i+1)+'</td><td>'+cuotas[i].nombre+'</td><td>'+cuotas[i].monto+'<input type="text" name="Cuota'+(i+1)+'" value="'+cuotas[i].monto+'" hidden></td></tr>';
+                        html+='<tr><td>'+(i+1)+'</td>' +
+                            '<td>'+cuotas[i].nombre+'</td>' +
+                            '<td style="display: flex;justify-content: space-between">'+
+                            ''+cuotas[i].monto+'' +
+                            '<input type="text" name="Cuota'+(i+1)+'" value="'+cuotas[i].monto+'" hidden>' +
+                            '<button type="button" class="btn btn-danger btn-mini elicuota"> <i class="fa fa-trash-o"></i></button>'
+                            '</td></tr>';
                         monto+=parseInt(cuotas[i].monto);
                     }
                     $('#cuotas2').html(html);
