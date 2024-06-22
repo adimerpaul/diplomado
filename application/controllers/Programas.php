@@ -63,14 +63,20 @@ ORDER BY paterno,materno,nombres
             $pdf->SetFont('times', 'B', 8);
             $pdf->Text(15,28 , "NOMBRES Y APELLIDOS: $row->nombres $row->paterno $row->materno", 0, 0, true,0,0,'L');
             $pdf->Text(150,28 , "N: ", 0, 0, true,0,0,'L');
-            $pdf->Text(15,32 , "PROGRAMA DE POSTGRADO: $row->nombre", 0, 0, true,0,0,'L');
+            $pdf->SetFillColor(255, 255, 255);
+            $pdf->MultiCell(1, 5, "PROGRAMA: $row->nombre", 0, 'L');
+            $txt = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+//            $pdf->SetFillColor(255, 255, 127);
+            $pdf->MultiCell(15, 5, "", 0, 'L', 1, 0, '', '', true);
+            $pdf->MultiCell(180, 5, "PROGRAMA: $row->nombre", 0, 'L', 1, 0, '', '', true);
+
             //$pdf->Text(15,37 , "NIVEL: DIPLOMADO", 0, 0, true,0,0,'L');
             //$pdf->Text(83,37 , "SEMESTRE: ", 0, 0, true,0,0,'L');
 //            $pdf->Text(155,37 , "AÑO: ".date('Y'), 0, 0, true,0,0,'L');
             $pdf->Ln();
             $pdf->Cell(15,5 , "", 0, 0, 'C');
-            $pdf->Cell(110,5 , "MODULOS ", 1, 0, 'C');
-            $pdf->Cell(70,5 , "CALIFICACIONES ", 1, 0, 'C');
+            $pdf->Cell(120,5 , "MODULOS ", 1, 0, 'C');
+            $pdf->Cell(60,5 , "CALIFICACIONES ", 1, 0, 'C');
             $pdf->Cell(15,5 , "", 0, 0, 'C');
             $pdf->Ln();
             $pdf->Cell(15,5 , "", 0, 0, 'C');
