@@ -47,6 +47,13 @@ class Programas extends CI_Controller{
 //        $pdf->SetTitle('TCPDF Example 002');
 //        $pdf->SetSubject('TCPDF Tutorial');
 //        $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+
+        $query = $this->db->query("SELECT max(fechainicio) as fechainicio, max(fechafin) as fechafin
+FROM programa INNER JOIN modulo ON programa.idprograma=modulo.idprograma
+WHERE programa.idprograma='$id'");
+        $fechaInicio=$query->row()->fechainicio;
+        $fechaFin=$query->row()->fechafin;
+
         $query=$this->db->query("SELECT nombres,nombre,paterno,materno,e.idestudiante  FROM estudiante e
 INNER JOIN estudianteprograma ep ON ep.idestudiante=e.idestudiante
 INNER JOIN programa p ON p.idprograma=ep.idprograma
@@ -56,6 +63,8 @@ ORDER BY paterno,materno,nombres
 ");
         $pdf->setPrintHeader(false);
         $pdf->setPrintFooter(false);
+
+
         foreach ($query->result() as $row){
             $pdf->AddPage();
             $this->header($pdf);
@@ -70,9 +79,23 @@ ORDER BY paterno,materno,nombres
             $pdf->MultiCell(15, 5, "", 0, 'L', 1, 0, '', '', true);
             $pdf->MultiCell(180, 5, "PROGRAMA: $row->nombre", 0, 'L', 1, 0, '', '', true);
 
-            //$pdf->Text(15,37 , "NIVEL: DIPLOMADO", 0, 0, true,0,0,'L');
-            //$pdf->Text(83,37 , "SEMESTRE: ", 0, 0, true,0,0,'L');
-//            $pdf->Text(155,37 , "AÑO: ".date('Y'), 0, 0, true,0,0,'L');
+            $pdf->Ln();
+            $pdf->Ln();
+            $pdf->Ln();
+            $pdf->Ln();
+            $pdf->Ln();
+            $pdf->Ln();
+            $pdf->Ln();
+            $pdf->Ln();
+//            fecha del primer modulo
+//            $pdf->Text(15,32 , "FECHA DE INICIO: ", 0, 0, true,0,0,'L');
+//            $pdf->Text(60,32 , "$fechaInicio", 0, 0, true,0,0,'L');
+//            $pdf->Text(120,32 , "FECHA DE FIN: ", 0, 0, true,0,0,'L');
+//            $pdf->Text(160,32 , "$fechaFin", 0, 0, true,0,0,'L');
+
+            $pdf->Text(15,37 , "FECHA INICIO ".$fechaInicio, 0, 0, true,0,0,'L');
+            $pdf->Text(83,37 , "", 0, 0, true,0,0,'L');
+            $pdf->Text(155,37 , "FECHA FIN ".$fechaFin, 0, 0, true,0,0,'L');
             $pdf->Ln();
             $pdf->Cell(15,5 , "", 0, 0, 'C');
             $pdf->Cell(120,5 , "MODULOS ", 1, 0, 'C');
