@@ -292,6 +292,8 @@ ORDER BY paterno,materno,nombres
 
     }
     function update(){
+        echo json_encode($_POST);
+//        exit;
         $idprograma=$_POST['idprograma'];
         $nombre=$_POST['nombre'];
         $version=$_POST['version'];
@@ -302,17 +304,24 @@ SET nombre='$nombre', version='$version', estado='$estado', costo='$costo'
 WHERE idprograma='$idprograma'");
 
         $this->db->query("DELETE FROM tipopago WHERE idprograma='$idprograma'");
-
+        $cont = 0;
         for ($i=1;$i<100;$i++){
             if (isset($_POST['Cuota'.$i])){
+                echo "Cuota $i: ".$_POST['Cuota'.$i]."<br>";
                 $cuota=$_POST['Cuota'.$i];
-                $nombre='CUOTA '.($i);
-                $sql="UPDATE tipopago SET monto='$cuota' WHERE idprograma='$idprograma' AND nombre='$nombre'";
+                $cont++;
+                if ($i==1){
+                    $nombre="MATRICULA";
+                }else{
+                    $nombre='CUOTA '.($cont-1);
+                }
+                $sql="INSERT INTO tipopago SET idprograma='$idprograma', nombre='$nombre', monto='$cuota'";
+                echo $sql."<br>";
                 $this->db->query($sql);
             }
         }
 
-//        header("Location: ".base_url()."Programas");
+        header("Location: ".base_url()."Programas");
     }
     function delete($id){
         $count=$this->db->query("SELECT * FROM estudianteprograma WHERE idprograma='$id'")->num_rows();

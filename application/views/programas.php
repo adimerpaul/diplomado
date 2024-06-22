@@ -317,9 +317,14 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                 return false;
             }
             cuotas++;
-            const cuota='Cuota'+cuotas;
+            let cuota = ''
+            if (cuotas==1){
+                cuota ='Matricula';
+            }else{
+                cuota ='Cuota'+(cuotas-1);
+            }
             const monto=$('#monto2').val();
-            $('#cuotas2').append('<tr><td>'+cuotas+'</td><td>'+cuota+'</td><td>'+monto+' <input type="text" name="'+cuota+'" value="'+monto+'" hidden></td></tr>');
+            $('#cuotas2').append('<tr><td>'+cuotas+'</td><td>'+cuota+'</td><td>'+monto+' <input type="text" name="Cuota'+cuotas+'" value="'+monto+'" hidden></td></tr>');
             $('#Cuotas2').html('<input type="text" class="form-control" placeholder="costo" name="costo" disabled required value="'+cuotas+'">')
         })
         var eli =document.getElementsByClassName('eli');
@@ -351,7 +356,7 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                     var html='';
                     var monto=0;
                     for (var i=0;i<cuotas.length;i++){
-                        html+='<tr><td>'+(i+1)+'</td><td>'+cuotas[i].nombre+'</td><td>'+cuotas[i].monto+'</td></tr>';
+                        html+='<tr><td>'+(i+1)+'</td><td>'+cuotas[i].nombre+'</td><td>'+cuotas[i].monto+'<input type="text" name="Cuota'+(i+1)+'" value="'+cuotas[i].monto+'" hidden></td></tr>';
                         monto+=parseInt(cuotas[i].monto);
                     }
                     $('#cuotas2').html(html);
