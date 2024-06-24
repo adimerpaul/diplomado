@@ -452,9 +452,7 @@ function actualizarpagos(e) {
         "idestudiante": idestudiante,
         "idprograma": idprograma
     };
-    var t="        <form method='post' style='padding-top: 20px' class='updatepagos' >\n" +
-        "            <input type='text' name='idestudiante' value='"+idestudiante+"' hidden>" +
-        "<input type='text' name='idprograma' value='"+idprograma+"' hidden>";
+
     Promise.all([
         $.ajax({
             data: parametros,
@@ -472,7 +470,10 @@ function actualizarpagos(e) {
             disabled = 'disabled';
         }
         var sum=0;
-        var t = "<div class='col-sm-3'>COSTO DEL PROGRAMA:</div><div class='col-sm-9'>"+programa.costo+"</div>"
+        var t="<form method='post' style='padding-top: 20px' class='updatepagos' >\n" +
+            "            <input type='text' name='idestudiante' value='"+idestudiante+"' hidden>" +
+            "<input type='text' name='idprograma' value='"+idprograma+"' hidden>";
+        t += "<div class='col-sm-3'>COSTO DEL PROGRAMA:</div><div class='col-sm-9'>"+programa.costo+"</div>"
         documentos.forEach(function (documento) {
             t+=" <div class='col-sm-3'>"+documento.nombre+"("+documento.m1+")</div> <div class='col-sm-9'> <input "+disabled+" class='form-control'  name='p"+documento.idtipopago+"' value='"+documento.monto+"' ></div>";
             sum+=parseFloat(documento.monto);
