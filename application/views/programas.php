@@ -49,7 +49,7 @@
                     <td>".$row->estado."</td>
                     <td>$modulos</td>
                     <td>
-                    <button type='button' class='btn btn-warning btn-mini' data-toggle='modal' data-target='#update' data-nombre='$row->nombre' data-id='$row->idprograma' data-version='$row->version' data-estado='$row->estado'> <i class='fa fa-pencil-square-o'></i> Modificar</button><br>
+                    <button type='button' class='btn btn-warning btn-mini' data-toggle='modal' data-target='#update' data-nombre='$row->nombre' data-id='$row->idprograma' data-version='$row->version' data-estado='$row->estado' data-costo='$row->costo'> <i class='fa fa-pencil-square-o'></i> Modificar</button><br>
                     <a href='".base_url()."Programas/delete/$row->idprograma' type='button' class='btn btn-danger btn-mini eli' > <i class='fa fa-trash-o'></i> Eliminar</a>        <br>
                     <button type='button' class='btn btn-info btn-mini' data-toggle='modal' data-target='#modulo' data-id='$row->idprograma' > <i class='fa fa-plus'></i> Modulos</button> <br>
                     <a type='button' class='btn btn-primary btn-mini'  href='".base_url()."Programas/archivo/$row->idprograma' > <i class='fa fa-file-pdf-o'></i> Notas</a>
@@ -337,7 +337,7 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
         }
 
         $(document).on('click','.elicuota',function (e) {
-            console.log('hola');
+            // console.log('hola');
             $(this).parent().parent().remove();
         })
         $('#update').on('show.bs.modal',function (e) {
@@ -346,10 +346,13 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
             var nombre=button.data('nombre');
             var version=button.data('version');
             var estado=button.data('estado');
+            var costo=button.data('costo');
+
             $('#nombre').val(nombre);
             $('#idprograma').val(id);
             $('#estado').val(estado);
             $('#version').val(version);
+            $('#costo2').val(costo);
 
             // console.log(id);
             $.ajax({
@@ -357,21 +360,22 @@ INNER JOIN persona p ON p.idpersona=d.idpersona");
                 type: 'GET',
                 success: function (data) {
                     // console.log(data);
-                    var cuotas=JSON.parse(data);
+                    var cuotasRes=JSON.parse(data);
                     var html='';
-                    var monto=0;
-                    for (var i=0;i<cuotas.length;i++){
+                    // var monto=0;
+                    cuotas = cuotasRes.length;
+                    for (var i=0;i<cuotasRes.length;i++){
                         html+='<tr><td>'+(i+1)+'</td>' +
-                            '<td>'+cuotas[i].nombre+'</td>' +
+                            '<td>'+cuotasRes[i].nombre+'</td>' +
                             '<td style="display: flex;justify-content: space-between">'+
-                            ''+cuotas[i].monto+'' +
-                            '<input type="text" name="Cuota'+(i+1)+'" value="'+cuotas[i].monto+'" hidden>' +
+                            ''+cuotasRes[i].monto+'' +
+                            '<input type="text" name="Cuota'+(i+1)+'" value="'+cuotasRes[i].monto+'" hidden>' +
                             '<button type="button" class="btn btn-danger btn-mini elicuota"> <i class="fa fa-trash-o"></i></button>'
                             '</td></tr>';
-                        monto+=parseInt(cuotas[i].monto);
+                        // monto+=parseInt(cuotasRes[i].monto);
                     }
                     $('#cuotas2').html(html);
-                    $('#costo2').val(monto);
+                    // $('#costo2').val(monto);
                 }
             })
         })

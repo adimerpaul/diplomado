@@ -341,7 +341,7 @@ WHERE idmodulo='$idmodulo'");
 
     }
     function update(){
-        echo json_encode($_POST);
+//        echo json_encode($_POST);
 //        exit;
         $idprograma=$_POST['idprograma'];
         $nombre=$_POST['nombre'];
@@ -356,7 +356,7 @@ WHERE idprograma='$idprograma'");
         $cont = 0;
         for ($i=1;$i<100;$i++){
             if (isset($_POST['Cuota'.$i])){
-                echo "Cuota $i: ".$_POST['Cuota'.$i]."<br>";
+//                echo "Cuota $i: ".$_POST['Cuota'.$i]."<br>";
                 $cuota=$_POST['Cuota'.$i];
                 $cont++;
                 if ($i==1){
@@ -365,7 +365,7 @@ WHERE idprograma='$idprograma'");
                     $nombre='CUOTA '.($cont-1);
                 }
                 $sql="INSERT INTO tipopago SET idprograma='$idprograma', nombre='$nombre', monto='$cuota'";
-                echo $sql."<br>";
+//                echo $sql."<br>";
                 $this->db->query($sql);
             }
         }
