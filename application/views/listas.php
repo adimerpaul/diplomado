@@ -51,7 +51,7 @@
                     inner join usuario u on m.iddocente = u.idusuario
                     inner join persona p on u.idpersona = p.idpersona
                     WHERE idprograma='$row->idprograma'");
-                    $botonNotas="<a type='button' class='btn btn-primary btn-mini' target='_blank'  href='".base_url()."Programas/archivo/$row->idprograma' > <i class='fa fa-file-pdf-o'></i> Notas</a>";
+                    $botonNotas="<a type='button' class='btn btn-primary btn-mini' target='_blank'  href='".base_url()."Programas/archivo/$row->idprograma' > <i class='fa fa-file-pdf-o'></i> Cert. Notas</a>";
                 }
                 else if ($_SESSION['idrol']==3){
                     $modulosQuery = $this->db->query("SELECT m.nombre, concat(p.paterno,' ',p.materno,' ',p.nombres) docente, m.idmodulo
@@ -70,7 +70,7 @@
                                     </td>
                                     <td style='padding: 0px;margin: 0px'>
                                         <button type='button' class='btn btn-warning btn-mini' data-toggle='modal' data-target='#update' data-nombre='$row->nombre' data-id='$row->idprograma' data-version='$row->version' data-estado='$row->estado' data-idModulo='$modulo->idmodulo' data-moduloNombre='$modulo->nombre'> <i class='fa fa-pencil-square-o'></i> Nota</button>
-                                        <a type='button' class='btn btn-success btn-mini' target='_blank'  href='".base_url()."Programas/listaNotas/$row->idprograma/$modulo->idmodulo' > <i class='fa fa-file-pdf-o'></i> Alumnos</a>
+                                        <a type='button' class='btn btn-success btn-mini' target='_blank'  href='".base_url()."Programas/listaNotas/$row->idprograma/$modulo->idmodulo' > <i class='fa fa-file-pdf-o'></i> Calificaciones</a>
                                         $modulo->docente
                                     </td>
                                 </tr>";
