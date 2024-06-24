@@ -59,7 +59,7 @@ class Programas extends CI_Controller{
 //        $pdf->SetSubject('TCPDF Tutorial');
 //        $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 
-        $query = $this->db->query("SELECT max(fechainicio) as fechainicio, max(fechafin) as fechafin
+        $query = $this->db->query("SELECT min(fechainicio) as fechainicio, max(fechafin) as fechafin
 FROM programa INNER JOIN modulo ON programa.idprograma=modulo.idprograma
 WHERE programa.idprograma='$id'");
         $fechaInicio=$query->row()->fechainicio;
@@ -82,7 +82,7 @@ ORDER BY paterno,materno,nombres
             $pdf->Text(0, 18, "CERTIFICADO DE CALIFICACIONES", 0, 0, true, 0, 0, 'C');
             $pdf->SetFont('times', 'B', 8);
             $pdf->Text(15,28 , "NOMBRES Y APELLIDOS: $row->nombres $row->paterno $row->materno", 0, 0, true,0,0,'L');
-            $pdf->Text(150,28 , "N: ", 0, 0, true,0,0,'L');
+//            $pdf->Text(150,28 , "N: ", 0, 0, true,0,0,'L');
             $pdf->SetFillColor(255, 255, 255);
             $pdf->MultiCell(1, 5, "PROGRAMA: $row->nombre", 0, 'L');
             $txt = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
@@ -109,19 +109,19 @@ ORDER BY paterno,materno,nombres
             $pdf->Text(155,37 , "FECHA FIN ".$fechaFin, 0, 0, true,0,0,'L');
             $pdf->Ln();
             $pdf->Cell(15,5 , "", 0, 0, 'C');
-            $pdf->Cell(120,5 , "MODULOS ", 1, 0, 'C');
-            $pdf->Cell(60,5 , "CALIFICACIONES ", 1, 0, 'C');
+            $pdf->Cell(150,5 , "MODULOS ", 1, 0, 'C');
+            $pdf->Cell(30,5 , "CALIFICACIONES ", 1, 0, 'C');
             $pdf->Cell(15,5 , "", 0, 0, 'C');
             $pdf->Ln();
             $pdf->Cell(15,5 , "", 0, 0, 'C');
             $pdf->Cell(10,5 , "SIGLA ", 1, 0, 'C');
-            $pdf->Cell(90,5 , "NOMBRE ", 1, 0, 'C');
+            $pdf->Cell(120,5 , "NOMBRE ", 1, 0, 'C');
             $pdf->Cell(20,5 , "FEC. APROBA. ", 1, 0, 'C');
             $pdf->Cell(10,5 , "NÚM ", 1, 0, 'C');
-            $pdf->Cell(50,5 , "LITERAL ", 1, 0, 'C');
+            $pdf->Cell(20,5 , "LITERAL ", 1, 0, 'C');
             $pdf->Cell(15,5 , "", 0, 0, 'C');
             $query2=$this->db->query("SELECT idmodulo,m.nombre,m.codigo FROM modulo m INNER JOIN programa p ON m.idprograma=p.idprograma where p.idprograma='$id'");
-            $pdf->SetFont('times', '', 8);
+            $pdf->SetFont('times', '', 7);
             $idestudiante=$row->idestudiante;
             foreach ($query2->result() as $row2){
                 $idmodulo=$row2->idmodulo;
@@ -139,10 +139,10 @@ ORDER BY paterno,materno,nombres
                 $pdf->Ln();
                 $pdf->Cell(15,5 , "", 0, 0, 'C');
                 $pdf->Cell(10,5 , "$row2->codigo", 1, 0, 'C');
-                $pdf->Cell(90,5 , " $row2->nombre", 1, 0, 'L');
+                $pdf->Cell(120,5 , " $row2->nombre", 1, 0, 'L');
                 $pdf->Cell(20,5 , "$fechaAprovacion", 1, 0, 'L');
                 $pdf->Cell(10,5 , " $nota", 1, 0, 'C');
-                $pdf->Cell(50,5 , NumerosEnLetras::convertir($nota), 1, 0, 'C');
+                $pdf->Cell(20,5 , NumerosEnLetras::convertir($nota), 1, 0, 'C');
                 $pdf->Cell(15,5 , "", 0, 0, 'C');
             }
 
