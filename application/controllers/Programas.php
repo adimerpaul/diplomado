@@ -85,7 +85,6 @@ ORDER BY paterno,materno,nombres
 //            $pdf->Text(150,28 , "N: ", 0, 0, true,0,0,'L');
             $pdf->SetFillColor(255, 255, 255);
             $pdf->MultiCell(1, 5, "PROGRAMA: $row->nombre", 0, 'L');
-            $txt = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
 //            $pdf->SetFillColor(255, 255, 127);
             $pdf->MultiCell(15, 5, "", 0, 'L', 1, 0, '', '', true);
             $pdf->MultiCell(180, 5, "PROGRAMA: $row->nombre", 0, 'L', 1, 0, '', '', true);
@@ -154,6 +153,8 @@ ORDER BY paterno,materno,nombres
     }
     function lista($id){
         $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+//        $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
 //        $pdf->SetCreator(PDF_CREATOR);
 //        $pdf->SetAuthor('Nicola Asuni');
 //        $pdf->SetTitle('TCPDF Example 002');
@@ -167,6 +168,13 @@ INNER JOIN persona pe ON e.idpersona=pe.idpersona
 WHERE p.idprograma='$id'
 ORDER BY paterno,materno,nombres
 ");
+
+        $query = $this->db->query("SELECT min(fechainicio) as fechainicio, max(fechafin) as fechafin
+FROM programa INNER JOIN modulo ON programa.idprograma=modulo.idprograma
+WHERE programa.idprograma='$id'");
+        $fechaInicio=$query->row()->fechainicio;
+        $fechaFin=$query->row()->fechafin;
+
         $programa=$this->db->query("SELECT * FROM programa WHERE idprograma='$id'")->row();
         $pdf->setPrintHeader(false);
         $pdf->setPrintFooter(false);
@@ -182,6 +190,9 @@ ORDER BY paterno,materno,nombres
         $pdf->Text(30,28 , "$programa->nombre", 0, 0, true,0,0,'L');
         $pdf->SetFont('times', 'B', 8);
         $pdf->Text(15,32 , "VERSIÓN: $programa->version   GESTIÓN:".date('Y'), 0, 0, true,0,0,'L');
+        $pdf->Text(15,37 , "FECHA INICIO ".$fechaInicio, 0, 0, true,0,0,'L');
+        $pdf->Text(83,37 , "", 0, 0, true,0,0,'L');
+        $pdf->Text(155,37 , "FECHA FIN ".$fechaFin, 0, 0, true,0,0,'L');
         $pdf->Ln();
         $pdf->Ln();
         $pdf->Cell(15,5 , "", 0, 0, 'C');
@@ -207,6 +218,9 @@ ORDER BY paterno,materno,nombres
                 $pdf->Text(30,28 , "$programa->nombre", 0, 0, true,0,0,'L');
                 $pdf->SetFont('times', 'B', 8);
                 $pdf->Text(15,32 , "VERSIÓN: $programa->version   GESTIÓN:".date('Y'), 0, 0, true,0,0,'L');
+                $pdf->Text(15,37 , "FECHA INICIO ".$fechaInicio, 0, 0, true,0,0,'L');
+                $pdf->Text(83,37 , "", 0, 0, true,0,0,'L');
+                $pdf->Text(155,37 , "FECHA FIN ".$fechaFin, 0, 0, true,0,0,'L');
                 $pdf->Ln();
                 $pdf->Ln();
                 $pdf->Cell(15,5 , "", 0, 0, 'C');
@@ -227,9 +241,7 @@ ORDER BY paterno,materno,nombres
             $pdf->Cell(45,5 , "$row->email", 1, 0, 'L');
             $pdf->Cell(15,5 , "", 0, 0, 'C');
         }
-
         $pdf->Output('example_002.pdf', 'I');
-
     }
     function listaNotas($idprograma,$idmodulo){
         $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -414,5 +426,16 @@ WHERE idprograma='$idprograma'");
         $pdf->Text(0, 5, "UNIVERSIDAD TÉCNICA DE ORURO", 0, 0, true, 0, 0, 'C');
         $pdf->Text(0, 10, "DIRECCIÓN DE POSTGRADO", 0, 0, true, 0, 0, 'C');
         $pdf->SetFont('times', 'BI', 15);
+    }
+}
+class MYPDF extends TCPDF {
+    // Page footer
+    public function Footer() {
+        // Position at 15 mm from bottom
+        $this->SetY(-15);
+        // Set font
+        $this->SetFont('helvetica', 'I', 8);
+        // Page number
+        $this->Cell(0, 10, 'Page '.$this->getAliasNumPage().' of '.$this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
     }
 }
