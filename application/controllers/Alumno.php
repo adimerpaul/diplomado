@@ -116,7 +116,10 @@ WHERE m.idprograma='$idprograma'");
     function datos(){
         $idestudiante=$_POST['idestudiante'];
         $idpersona=$this->User->consulta('idpersona','estudiante','idestudiante',$idestudiante);
-        $query = $this->db->query("SELECT * FROM estudianteprograma e INNER JOIN programa p ON e.idprograma=p.idprograma  WHERE e.idestudiante='$idestudiante'");
+        $query = $this->db->query("SELECT * FROM estudianteprograma e
+    INNER JOIN programa p ON e.idprograma=p.idprograma 
+         WHERE e.idestudiante='$idestudiante'
+         order by p.idprograma desc");
         echo "<button id='personal' class='btn btn-success btn-mini' idpersona='$idpersona' style='width: 120px'><i class='fa fa-user'></i> Datos personales</button> <br>";
 //        $eliminar programa si solo es admin
         if ($_SESSION['idrol']==1){
