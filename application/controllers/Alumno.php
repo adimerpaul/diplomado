@@ -298,6 +298,7 @@ ON DUPLICATE KEY UPDATE nota= '".$_POST['n'.$row->idmodulo]."';");
         INNER JOIN persona pe ON e.idpersona = pe.idpersona
         LEFT JOIN estudiantemodulo em ON e.idestudiante = em.idestudiante AND em.idmodulo = '$idModulo'
         WHERE p.idprograma = '$idPrograma'
+        ORDER BY pe.paterno, pe.materno, pe.nombres
     ");
         echo json_encode($estudiantesPrograma->result_array());
     }
