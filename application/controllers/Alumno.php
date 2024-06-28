@@ -120,9 +120,10 @@ WHERE m.idprograma='$idprograma'");
     INNER JOIN programa p ON e.idprograma=p.idprograma 
          WHERE e.idestudiante='$idestudiante'
          order by p.idprograma desc");
+
         echo "<button id='personal' class='btn btn-success btn-mini' idpersona='$idpersona' style='width: 120px'><i class='fa fa-user'></i> Datos personales</button> <br>";
 //        $eliminar programa si solo es admin
-        if ($_SESSION['idrol']==1){
+        if ($_SESSION['idrol']==1 && $query->num_rows()>0){
             $eliminarprograma="<button
 idestudiante='$idestudiante'
 idprograma='".$query->row()->idprograma."'
